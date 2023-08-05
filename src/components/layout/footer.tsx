@@ -60,6 +60,8 @@ const footerLinks: FooterLink[][] = [
   ],
 ];
 
+const year = new Date().getUTCFullYear();
+
 type FooterLink = {
   name: string;
   href: string;
@@ -170,7 +172,7 @@ export default function Footer() {
             </a>
           </div>
           <div className="text-xs mt-2 font-light">
-            Copyright &copy; 2001-2023 Warwick Student Cinema, all rights
+            Copyright &copy; 2001-{year} Warwick Student Cinema, all rights
             reserved.
           </div>
         </div>
