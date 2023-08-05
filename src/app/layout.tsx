@@ -1,11 +1,11 @@
-import './globals.css'
-import type { Metadata } from 'next'
-import { Lexend, Poppins } from 'next/font/google'
+import './globals.css';
+import type { Metadata } from 'next';
+import { Lexend, Poppins } from 'next/font/google';
 
 const lexend = Lexend({
   subsets: ['latin'],
   display: 'swap',
-  variable: '--font-lexend'
+  variable: '--font-lexend',
 });
 const poppins = Poppins({
   subsets: ['latin'],
@@ -17,16 +17,18 @@ const poppins = Poppins({
 export const metadata: Metadata = {
   title: 'Warwick Student Cinema',
   description: 'Welcome to your student cinema.',
-}
+};
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <html lang="en">
-      <body className={`${lexend.variable} ${poppins.variable}`}>{children}</body>
+      <body className={`${lexend.variable} ${poppins.variable}`}>
+        {children}
+      </body>
     </html>
-  )
+  );
 }
