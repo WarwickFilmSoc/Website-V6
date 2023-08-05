@@ -7,12 +7,13 @@ module.exports = {
   ],
   theme: {
     fontFamily: {
-      'lexend': ['var(--font-lexend)', 'sans-serif'],
-      'poppins': ['var(--font-poppins)', 'sans-serif'],
+      lexend: ['var(--font-lexend)', 'sans-serif'],
+      poppins: ['var(--font-poppins)', 'sans-serif'],
     },
     colors: {
       primary: '#006295',
       secondary: '#4EDAB8',
+      dark: '#05050C',
     },
     extend: {
       backgroundImage: {
@@ -23,4 +24,4 @@ module.exports = {
     },
   },
   plugins: [],
-}
+};

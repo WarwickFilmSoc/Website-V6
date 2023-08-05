@@ -1,6 +1,7 @@
 import './globals.css';
 import type { Metadata } from 'next';
 import { Lexend, Poppins } from 'next/font/google';
+import Footer from '@/components/layout/footer';
 
 const lexend = Lexend({
   subsets: ['latin'],
@@ -11,7 +12,7 @@ const poppins = Poppins({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-poppins',
-  weight: '400',
+  weight: ['300', '400'],
 });
 
 export const metadata: Metadata = {
@@ -28,6 +29,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${lexend.variable} ${poppins.variable}`}>
         {children}
+        <Footer />
       </body>
     </html>
   );
