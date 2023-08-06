@@ -72,7 +72,7 @@ type FooterLink = {
 
 export default function Footer() {
   return (
-    <footer className="text-center bg-dark p-4">
+    <footer className="text-center bg-dark p-4 mt-12">
       <div className="max-w-xl mx-auto">
         <div className="mt-4 flex justify-center items-center space-x-4">
           <a

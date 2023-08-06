@@ -12,15 +12,9 @@ module.exports = {
     },
     colors: {
       primary: '#006295',
-      secondary: '#4EDAB8',
+      accent: '#4EDAB8',
+      white: '#FFFFFF',
       dark: '#05050C',
-    },
-    extend: {
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
-      },
     },
   },
   plugins: [],
