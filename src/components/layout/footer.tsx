@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { FiExternalLink } from 'react-icons/fi';
 
+import letterboxdLogo from '@/assets/logos/social/letterboxd.svg';
 import instagramLogo from '@/assets/logos/social/instagram.svg';
 import xLogo from '@/assets/logos/social/x.svg';
 import facebookLogo from '@/assets/logos/social/facebook.png';
@@ -74,6 +75,18 @@ export default function Footer() {
     <footer className="text-center bg-dark p-4">
       <div className="max-w-xl mx-auto">
         <div className="mt-4 flex justify-center items-center space-x-4">
+          <a
+            href="https://letterboxd.com/wscpog/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Image
+              src={letterboxdLogo}
+              alt="Letterboxd Logo"
+              height={27}
+              width={27}
+            />
+          </a>
           <a
             href="https://www.instagram.com/studentcinemawarwick"
             target="_blank"
