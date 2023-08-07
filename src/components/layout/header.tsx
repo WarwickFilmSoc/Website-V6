@@ -1,25 +1,39 @@
 import Link from 'next/link';
+import Image from 'next/image';
+import wscLogo from '@/assets/logos/logo-white.png';
 
 export default function Header() {
   return (
     <header className="h-24">
       <div className="absolute left-0 right-0 z-20 p-4 mb-8">
         <nav className="flex items-center justify-center uppercase font-lexend text-lg space-x-6">
-          <Link href="/whats-on" className="border-2 border-white px-2">
-            What&apos;s On
+          <div className="flex justify-right space-x-6">
+            <Link href="/whats-on" className="border-2 border-white px-2">
+              What&apos;s On
+            </Link>
+            <Link href="/about">About</Link>
+            <Link href="/crew">Crew</Link>
+          </div>
+          <Link href="/">
+            <Image
+              src={wscLogo}
+              alt="Warwick Student Cinema logo"
+              className="h-16 w-16 object-contain"
+            />
           </Link>
-          <Link href="/about">About</Link>
-          <a href="https://blog.warwick.film" rel="noopener" target="_blank">
-            Blog
-          </a>
-          <Link href="/crew">Crew</Link>
-          <a
-            href="https://www.warwicksu.com/societies-sports/societies/filmsoc/"
-            rel="noopener"
-            target="_blank"
-          >
-            Tickets
-          </a>
+          <div className="flex justify-left space-x-6">
+            <Link href="/login">Account</Link>
+            <a
+              href="https://www.warwicksu.com/societies-sports/societies/filmsoc/"
+              rel="noopener"
+              target="_blank"
+            >
+              Tickets
+            </a>
+            <a href="https://blog.warwick.film" rel="noopener" target="_blank">
+              Blog
+            </a>
+          </div>
         </nav>
       </div>
     </header>
