@@ -8,10 +8,12 @@
 * Make sure to familiarise yourself with the [NextJS Documentation](https://nextjs.org/docs) before getting started.
 
 ## Running the Website
-First, install npm modules:
+1. First, install npm modules:
 ```bash
 npm install
 ```
+
+Copy `.env` to `.env.local` and fill in the required environment variables.
 
 Then run the development server:
 ```bash
