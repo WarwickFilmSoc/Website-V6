@@ -21,6 +21,9 @@ module.exports = {
         112: '28rem',
         128: '32rem',
       },
+      listStyleType: {
+        roman: 'lower-roman',
+      },
     },
     fontFamily: {
       lexend: ['var(--font-lexend)', 'sans-serif'],
