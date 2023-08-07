@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 export default function Constitution() {
   return (
-    <main className={`mx-auto max-w-7xl px-2 ${styles.constitution}`}>
+    <main className={styles.constitution}>
       <h1 className="text-4xl font-bold">
         Warwick Students&apos; Union Film Society Constitution
       </h1>
@@ -424,7 +424,7 @@ export default function Constitution() {
           </ul>
         </li>
         <li>
-          <h2>Elections Procedure</h2>
+          <h2 id="elections">Elections Procedure</h2>
           <ul>
             <li>Only full members of WSC may vote or stand in elections.</li>
             <li>

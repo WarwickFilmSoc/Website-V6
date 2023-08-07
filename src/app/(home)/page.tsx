@@ -8,7 +8,7 @@ import HeroCarousel from '@/app/(home)/hero-carousel';
 
 export default function Home() {
   return (
-    <main className="text-center">
+    <main className="text-center mx-0 max-w-full px-0">
       <section>
         <HeroCarousel />
         <WeekScreeningsList />

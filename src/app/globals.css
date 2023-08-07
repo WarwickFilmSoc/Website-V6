@@ -25,3 +25,7 @@ body {
   @apply text-white;
   background: linear-gradient(157deg, #1B1441 0%, #012C53 100%);
 }
+
+main {
+  @apply mx-auto max-w-7xl px-8;
+}

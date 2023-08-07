@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 export default function TermsAndConditions() {
   return (
-    <main className="mx-auto max-w-7xl px-2">
+    <main>
       <h1 className="mb-4">Terms and Conditions</h1>
       <h2>Ticketing Terms and Conditions</h2>
       <ol className="mb-8 list-decimal">

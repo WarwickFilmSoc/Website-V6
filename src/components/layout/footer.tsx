@@ -8,7 +8,7 @@ import xLogo from '@/assets/logos/social/x.svg';
 import facebookLogo from '@/assets/logos/social/facebook.png';
 import tikTokLogo from '@/assets/logos/social/tiktok.svg';
 
-import warwickSuLogo from '@/assets/logos/partners/warwick-su.png';
+import warwickSuLogo from '@/assets/logos/partners/warwick-su.svg';
 import cinemaForAllLogo from '@/assets/logos/partners/cinema-for-all.png';
 import wscBlueHeader from '@/assets/logos/wsc-header-blue.png';
 

@@ -21,6 +21,10 @@ module.exports = {
         112: '28rem',
         128: '32rem',
       },
+      maxWidth: {
+        112: '28rem',
+        128: '32rem',
+      },
       listStyleType: {
         roman: 'lower-roman',
       },

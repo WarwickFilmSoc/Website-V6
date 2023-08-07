@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 export default function Committees() {
   return (
-    <main className={`mx-auto max-w-7xl px-2 ${styles.constitution}`}>
+    <main className={styles.constitution}>
       <h1>WSC Committees</h1>
       <p>Last Updated: June 2023</p>
 

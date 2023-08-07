@@ -2,9 +2,9 @@ import React from 'react';
 import Link from 'next/link';
 import FaqAccordion from '@/app/(about)/faq/faq-accordion';
 
-export default function About() {
+export default function FrequentlyAskedQuestions() {
   return (
-    <main className="mx-auto max-w-7xl px-2">
+    <main>
       <h1>Frequently Asked Questions</h1>
       <p className="mb-4">
         Here&apos;s some of our frequently asked questions. If you have any

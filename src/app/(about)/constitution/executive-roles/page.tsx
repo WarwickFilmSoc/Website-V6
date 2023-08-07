@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 export default function ExecutiveRoles() {
   return (
-    <main className={`mx-auto max-w-7xl px-2 ${styles.constitution}`}>
+    <main className={styles.constitution}>
       <h1>WSC Executive Roles and Responsibilities</h1>
       <p>Last Updated: February 2023</p>
 

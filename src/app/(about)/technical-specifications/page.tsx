@@ -1,7 +1,7 @@
 export default function About() {
   return (
-    <main className="mx-auto max-w-7xl px-2">
-      <h1>About Us</h1>
+    <main>
+      <h1>Technical Specifications</h1>
       <p className="mb-2">
         Warwick Student Cinema is a student run, professional standard cinema
         located in the University of Warwick L3 Lecture Theatre.
