@@ -5,6 +5,11 @@ import Link from 'next/link';
 export default function Committees() {
   return (
     <main className={styles.constitution}>
+      <p className="text-xl font-lexend uppercase !-mb-1">
+        <Link href="/constitution" className="!text-white">
+          Constitution
+        </Link>
+      </p>
       <h1>WSC Committees</h1>
       <p>Last Updated: June 2023</p>
 

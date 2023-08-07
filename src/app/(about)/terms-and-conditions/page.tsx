@@ -3,7 +3,10 @@ import Link from 'next/link';
 export default function TermsAndConditions() {
   return (
     <main>
-      <h1 className="mb-4">Terms and Conditions</h1>
+      <p className="text-xl font-lexend uppercase -mb-1">
+        <Link href="/about">About Us</Link>
+      </p>
+      <h1 className="mb-1">Terms and Conditions</h1>
       <h2>Ticketing Terms and Conditions</h2>
       <ol className="mb-8 list-decimal">
         <li>

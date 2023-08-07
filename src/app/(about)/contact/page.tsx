@@ -1,7 +1,12 @@
+import Link from 'next/link';
+
 export default function ContactUs() {
   return (
     <main>
-      <h1>Contact Us</h1>
+      <p className="text-xl font-lexend uppercase -mb-1">
+        <Link href="/about">About Us</Link>
+      </p>
+      <h1 className="mb-1">Contact Us</h1>
       <p className="mb-2">
         Warwick Student Cinema is a student run, professional standard cinema
         located in the University of Warwick L3 Lecture Theatre.

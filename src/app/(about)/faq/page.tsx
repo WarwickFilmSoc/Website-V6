@@ -5,7 +5,10 @@ import FaqAccordion from '@/app/(about)/faq/faq-accordion';
 export default function FrequentlyAskedQuestions() {
   return (
     <main>
-      <h1>Frequently Asked Questions</h1>
+      <p className="text-xl font-lexend uppercase -mb-1">
+        <Link href="/about">About Us</Link>
+      </p>
+      <h1 className="mb-1">Frequently Asked Questions</h1>
       <p className="mb-4">
         Here&apos;s some of our frequently asked questions. If you have any
         questions that aren&apos;t covered in the list, please don&apos;t

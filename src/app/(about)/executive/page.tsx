@@ -235,7 +235,10 @@ const execPositions: ExecPosition[] = [
 export default function TheExecutiveTeam() {
   return (
     <main>
-      <h1>The Executive Team</h1>
+      <p className="text-xl font-lexend uppercase -mb-1">
+        <Link href="/about">About Us</Link>
+      </p>
+      <h1 className="mb-1">The Executive Team</h1>
       <p className="mb-2">
         The Executive Committee, or &apos;Exec&apos;, are a team of students
         elected at the end of Term 2 to oversee the society as per the&nbsp;

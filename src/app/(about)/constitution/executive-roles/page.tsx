@@ -5,6 +5,11 @@ import Link from 'next/link';
 export default function ExecutiveRoles() {
   return (
     <main className={styles.constitution}>
+      <p className="text-xl font-lexend uppercase !-mb-1">
+        <Link href="/constitution" className="!text-white">
+          Constitution
+        </Link>
+      </p>
       <h1>WSC Executive Roles and Responsibilities</h1>
       <p>Last Updated: February 2023</p>
 
@@ -25,7 +30,7 @@ export default function ExecutiveRoles() {
             href="/resources/Executive%20Roles%20and%20Responsibilities%20(Februrary%202023).pdf"
             target="_blank"
           >
-            Executive Roles and Responsibilities (PDF)
+            Executive Roles and Responsibilities PDF
           </a>
         </li>
         <li>

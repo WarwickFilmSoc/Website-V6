@@ -5,9 +5,12 @@ import Link from 'next/link';
 export default function Constitution() {
   return (
     <main className={styles.constitution}>
-      <h1 className="text-4xl font-bold">
-        Warwick Students&apos; Union Film Society Constitution
-      </h1>
+      <p className="text-xl font-lexend uppercase !-mb-1">
+        <Link href="/about" className="!text-white">
+          About Us
+        </Link>
+      </p>
+      <h1>Warwick Students&apos; Union Film Society Constitution</h1>
       <p>Last Updated: March 2023</p>
 
       <h2>Supporting Documents</h2>

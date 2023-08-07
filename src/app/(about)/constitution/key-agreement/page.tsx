@@ -5,6 +5,11 @@ import Link from 'next/link';
 export default function KeyAgreement() {
   return (
     <main className={styles.constitution}>
+      <p className="text-xl font-lexend uppercase !-mb-1">
+        <Link href="/constitution" className="!text-white">
+          Constitution
+        </Link>
+      </p>
       <h1>WSC Key Allowances and Agreement</h1>
 
       <h2>Supporting Documents</h2>
