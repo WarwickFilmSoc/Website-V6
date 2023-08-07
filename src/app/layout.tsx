@@ -28,7 +28,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${lexend.variable} ${poppins.variable}`}>
+      <body
+        className={`${lexend.variable} ${poppins.variable} flex flex-col min-h-screen`}
+      >
         <Header />
         {children}
         <Footer />
