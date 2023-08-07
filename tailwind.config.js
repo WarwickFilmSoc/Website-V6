@@ -12,9 +12,14 @@ module.exports = {
     extend: {
       colors: {
         primary: '#006295',
+        'primary-darker': '#005a85',
         accent: '#4EDAB8',
         white: '#FFFFFF',
         dark: '#05050C',
+      },
+      width: {
+        112: '28rem',
+        128: '32rem',
       },
     },
     fontFamily: {

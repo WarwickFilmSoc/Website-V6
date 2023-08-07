@@ -35,10 +35,10 @@ const filmScreeningDays: FilmScreeningDay[] = [
 ];
 export default function WeekScreeningsList() {
   return (
-    <div className="relative h-64">
-      <section className="absolute w-full -mt-48 z-30 mb-20 drop-shadow-lg">
+    <div className="relative h-80">
+      <section className="absolute w-full -mt-64 z-30 mb-20 drop-shadow-lg">
         <h2 className="text-3xl mb-4">This Week&#8217;s Screenings</h2>
-        <div className="flex justify-center">
+        <div className="flex justify-center space-x-6">
           {filmScreeningDays.map((filmScreeningDay) => (
             <FilmScreeningDayCard
               filmScreeningDay={filmScreeningDay}

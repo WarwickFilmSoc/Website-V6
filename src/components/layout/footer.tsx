@@ -41,7 +41,7 @@ const footerLinks: FooterLink[][] = [
   ],
   [
     {
-      name: 'Mise En Scene Blog',
+      name: 'Mise En Scène Blog',
       href: 'https://blog.warwick.film',
       external: true,
       primary: true,
@@ -72,7 +72,7 @@ type FooterLink = {
 
 export default function Footer() {
   return (
-    <footer className="text-center bg-dark p-4 mt-12">
+    <footer className="text-center bg-dark p-4 mt-56">
       <div className="max-w-xl mx-auto">
         <div className="mt-4 flex justify-center items-center space-x-4">
           <a

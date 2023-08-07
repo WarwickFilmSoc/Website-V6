@@ -10,15 +10,15 @@ import popcornImage from '@/assets/home/crew/popcorn-piazza.jpg';
 
 export default function JoinTheCrew() {
   return (
-    <section className="mb-20">
+    <section className="mb-24">
       <h2>
         Join the <span className="text-accent">Crew</span>
       </h2>
-      <div className="flex mx-12 max-w-8xl h-24 space-x-3">
+      <div className="flex justify-center  mx-12 mx-auto h-24 space-x-3">
         <Image
           src={makingUpImage}
           alt="Projectionists making up film for a show"
-          className="w-48 grow object-cover"
+          className="w-48 max-w-xl grow object-cover"
         />
         <p className="mt-2 max-w-lg">
           Come and join our team to make new friends, learn new skills and watch
@@ -28,7 +28,7 @@ export default function JoinTheCrew() {
         <Image
           src={dmsImage}
           alt="Duty managers counting the float after a show"
-          className="w-48 grow object-cover"
+          className="w-48 max-w-xl grow object-cover"
         />
       </div>
       <div className="flex overflow-hidden justify-center items-start space-x-3 mb-4">
@@ -39,14 +39,17 @@ export default function JoinTheCrew() {
         />
         <Image
           src={projectorsImage}
-          alt="Some of the Warwick Student Cinema team at a pizza social"
+          alt="The 35mm and 70mm projectors in our projection box"
           className="w-56 grow object-cover mt-3"
         />
-        <Image
-          src={pizzaSocialImage}
-          alt="The 35mm and 70mm projectors in our projection box"
-          className="w-96 grow object-cover"
-        />
+        <div className="w-96 max-w-lg grow">
+          <Image
+            src={pizzaSocialImage}
+            alt="Some of the Warwick Student Cinema team at a pizza social"
+            className="object-cover mb-4"
+          />
+          <LargeButtonLink href="crew">Find Out More</LargeButtonLink>
+        </div>
         <Image
           src={serverRackImage}
           alt="The server rack in our projection box"
@@ -58,8 +61,6 @@ export default function JoinTheCrew() {
           className="w-64 grow object-cover mt-3"
         />
       </div>
-
-      <LargeButtonLink href="crew">Find Out More</LargeButtonLink>
     </section>
   );
 }
