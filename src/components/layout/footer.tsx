@@ -8,9 +8,11 @@ import xLogo from '@/assets/logos/social/x.svg';
 import facebookLogo from '@/assets/logos/social/facebook.png';
 import tikTokLogo from '@/assets/logos/social/tiktok.svg';
 
+import warwickUniversityLogo from '@/assets/logos/partners/warwick-university.svg';
 import warwickSuLogo from '@/assets/logos/partners/warwick-su.svg';
 import cinemaForAllLogo from '@/assets/logos/partners/cinema-for-all.png';
 import wscBlueHeader from '@/assets/logos/wsc-header-blue.png';
+import filmHubMidlandsLogo from '@/assets/logos/partners/film-hub-midlands.svg';
 
 const footerLinks: FooterLink[][] = [
   [{ name: 'Home', href: '/', primary: true }],
@@ -75,7 +77,7 @@ export default function Footer() {
     <>
       <div className="mt-auto" />
       <footer className="text-center bg-dark p-4 mt-56 justify-self-end">
-        <div className="max-w-xl mx-auto">
+        <div className="max-w-2xl mx-auto">
           <div className="mt-4 flex justify-center items-center space-x-4">
             <a
               href="https://letterboxd.com/wscpog/"
@@ -169,6 +171,13 @@ export default function Footer() {
           </nav>
           <div className="mt-12 mb-4">
             <div className="flex items-center justify-center space-x-4">
+              <a href="https://warwick.ac.uk/" target="_blank" rel="noopener">
+                <Image
+                  src={warwickUniversityLogo}
+                  alt="Warwick University Logo"
+                  width={220}
+                />
+              </a>
               <a
                 href="https://www.warwicksu.com/societies-sports/societies/filmsoc/"
                 target="_blank"
@@ -188,6 +197,17 @@ export default function Footer() {
                   src={cinemaForAllLogo}
                   alt="Cinema For All Logo"
                   width={180}
+                />
+              </a>
+              <a
+                href="https://filmhubmidlands.org/"
+                target="_blank"
+                rel="noopener"
+              >
+                <Image
+                  src={filmHubMidlandsLogo}
+                  alt="Film Hub Midlands Logo"
+                  width={220}
                 />
               </a>
             </div>
