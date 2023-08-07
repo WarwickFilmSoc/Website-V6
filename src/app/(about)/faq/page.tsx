@@ -1,20 +1,30 @@
+import React from 'react';
+import Link from 'next/link';
+import FaqAccordion from '@/app/(about)/faq/faq-accordion';
+
 export default function About() {
   return (
     <main className="mx-auto max-w-7xl px-2">
-      <h1 className="text-4xl font-bold">About Us</h1>
-      <p className="mb-2">
-        Warwick Student Cinema is a student run, professional standard cinema
-        located in the University of Warwick L3 Lecture Theatre.
+      <h1>Frequently Asked Questions</h1>
+      <p className="mb-4">
+        Here&apos;s some of our frequently asked questions. If you have any
+        questions that aren&apos;t covered in the list, please don&apos;t
+        hesitate to&nbsp;
+        <Link href="/contact" className="text-accent">
+          get in touch
+        </Link>
+        &nbsp;or&nbsp;
+        <a
+          href="mailto:info@warwick.film"
+          target="_blank"
+          className="text-accent"
+        >
+          email the Exec
+        </a>
+        !
       </p>
-      <p className="mb-2">
-        For the past 50 years, we have provided a top-quality cinema experience.
-      </p>
-      <h2 className="mt-4">Tickets</h2>
-      <p className="mb-2">Buy tickets pls.</p>
-      <h2 className="mt-4">Warwick Film Society</h2>
-      <p className="mb-2">Members are cool.</p>
-      <h2 className="mt-4">Getting Involved</h2>
-      <p className="mb-2">Once you&apos;re a member, you can join crew.</p>
+
+      <FaqAccordion />
     </main>
   );
 }

@@ -5,7 +5,7 @@ import Link from 'next/link';
 export default function KeyAgreement() {
   return (
     <main className={`mx-auto max-w-7xl px-2 ${styles.constitution}`}>
-      <h1 className="text-4xl font-bold">WSC Key Allowances and Agreement</h1>
+      <h1>WSC Key Allowances and Agreement</h1>
 
       <h2>Supporting Documents</h2>
       <ul>
