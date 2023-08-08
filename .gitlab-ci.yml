@@ -21,11 +21,14 @@ stages:          # List of stages for jobs, and their order of execution
   - build
   - test
 
+default:
+    image: node:18
+
 install-deps-job:       # This job runs in the build stage, which runs first.
   stage: prepare
   script:
     - echo "Installing dependencies..."
-    - npm i
+    - npm ci --cache .npm
     - echo "Dependencies installed."
 
 build-job:       # This job runs in the build stage, which runs first.
