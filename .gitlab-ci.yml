@@ -18,8 +18,8 @@
 
 stages:          # List of stages for jobs, and their order of execution
   - install
+  - lint
   - build
-  - test
 
 default:
     image: node:18-alpine
@@ -29,10 +29,18 @@ install-deps:       # This job runs in the build stage, which runs first.
   script:
     - echo "Installing dependencies..."
     - npm ci --cache .npm
+    - npm i sharp
     - echo "Dependencies installed."
   artifacts:
     paths:
       - node_modules
+
+run-linter:
+  stage: lint
+  script:
+    - echo "Linting code..."
+    - npm run lint
+    - echo "No lint issues found."
 
 build-dist:       # This job runs in the build stage, which runs first.
   stage: build
@@ -43,10 +51,3 @@ build-dist:       # This job runs in the build stage, which runs first.
   artifacts:
     paths:
       - dist
-
-run-linter:
-  stage: test
-  script:
-    - echo "Linting code..."
-    - npm run lint
-    - echo "No lint issues found."
