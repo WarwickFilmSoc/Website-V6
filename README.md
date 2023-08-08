@@ -38,6 +38,7 @@ When committing changes, precede your message with a [Gitmoji](https://gitmoji.d
 * ✨ `:sparkles:` - Introduce new features
 * 🐛 `:bug:` - Fix bugs
 * 💄 `:lipstick:` - Add or update the UI and style files.
+* 🚨 `:rotating_light:` - Fix compiler/linter warnings
 
 After you have completed your work, remove the draft status from your merge and assign Josh to review it!
 

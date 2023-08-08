@@ -13,8 +13,8 @@ export default function FaqAccordion() {
           students, for the members and guests of the University of Warwick.
           Since we were founded back in 1973, we’ve been showing a wide variety
           of films – from Hollywood blockbusters to the more obscure artistic
-          films that didn’t get the cinema release they deserved, as well as the
-          classics that you want to see again.
+          films that didn&apos;t get the cinema release they deserved, as well
+          as the classics that you want to see again.
         </Accordion.Content>
       </Accordion.Panel>
       <Accordion.Panel>
@@ -119,7 +119,7 @@ export default function FaqAccordion() {
       </Accordion.Panel>
       <Accordion.Panel>
         <Accordion.Title>
-          I'm a member of another Warwick society - can we collaborate?
+          I&apos;m a member of another Warwick society - can we collaborate?
         </Accordion.Title>
         <Accordion.Content></Accordion.Content>
       </Accordion.Panel>

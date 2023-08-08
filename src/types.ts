@@ -1,9 +1,9 @@
 export type Film = {
   name: string;
-}
+};
 
 export type FilmScreeningDay = {
   id: number;
-  film: Film,
+  film: Film;
   screeningDates: number[];
-}
+};
