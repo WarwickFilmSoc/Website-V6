@@ -6,6 +6,12 @@
 * The [Website v3](https://wiki.warwick.film/wiki/Functional_Spec_(Website_Version_3)) functional specification can be used as rough guidance.
 * Communication with WSC as a whole is done on the [Website V6](https://discourse.warwick.film/t/website-v6/6548) forum page.
 * Make sure to familiarise yourself with the [NextJS Documentation](https://nextjs.org/docs) before getting started.
+* [Google Photos](***REMOVED***) (may need to optimise and strip metadata first!)
+
+## Contributing
+All contributions are welcome! If you have any questions, ask Josh in the #websidite-v6 Slack channel!
+
+For where to get started, read this README then have a look at the [GitLab Issues Board](https://gitlab.warwick.film/WSC/Website-V6/-/issues). Make sure to assign yourself so no duplicate work is created, and if you can't do it anymore, unassign yourself or ask someone for help!
 
 ## Running the Website
 You will need to have installed NodeJS v18 and NPM for this to work. If you haven't already done this, you can install the LTS version [here](https://nodejs.org/en/download).
@@ -28,6 +34,7 @@ npm run dev
 ```
 
 This will start a live-reloading web server at [http://localhost:3000](http://localhost:3000).
+
 
 ## Code and Commit Style
 ### Git Usage
