@@ -23,8 +23,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
+  ticketsModal,
 }: {
   children: React.ReactNode;
+  ticketsModal: React.ReactNode;
 }) {
   return (
     <html lang="en">
@@ -34,6 +36,7 @@ export default function RootLayout({
         <Header />
         {children}
         <Footer />
+        {ticketsModal}
       </body>
     </html>
   );

@@ -23,13 +23,7 @@ export default function Header() {
           </Link>
           <div className="flex justify-left space-x-6">
             <Link href="/login">Account</Link>
-            <a
-              href="https://www.warwicksu.com/societies-sports/societies/filmsoc/"
-              rel="noopener"
-              target="_blank"
-            >
-              Tickets
-            </a>
+            <Link href="/tickets">Tickets</Link>
             <a href="https://blog.warwick.film" rel="noopener" target="_blank">
               Blog
             </a>

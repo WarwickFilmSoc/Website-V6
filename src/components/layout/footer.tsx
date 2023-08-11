@@ -50,8 +50,7 @@ const footerLinks: FooterLink[][] = [
     },
     {
       name: 'Buy Tickets',
-      href: 'https://www.warwicksu.com/societies-sports/societies/filmsoc/',
-      external: true,
+      href: '/tickets',
       primary: true,
     },
     {
