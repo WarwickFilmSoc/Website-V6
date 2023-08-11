@@ -27,5 +27,5 @@ body {
 }
 
 main {
-  @apply mx-auto max-w-7xl px-8;
+  @apply w-full mx-auto max-w-7xl px-8;
 }

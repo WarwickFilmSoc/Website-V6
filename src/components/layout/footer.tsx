@@ -18,7 +18,7 @@ const footerLinks: FooterLink[][] = [
   [{ name: 'Home', href: '/', primary: true }],
   [
     { name: "What's On", href: '/whats-on', primary: true },
-    { name: 'Film Reviews', href: '/film-reviews' },
+    { name: 'Film Archive', href: '/film-archive' },
     { name: 'Publicity', href: '/publicity' },
     { name: 'Suggestions', href: '/suggestions' },
   ],
@@ -34,7 +34,7 @@ const footerLinks: FooterLink[][] = [
   ],
   [
     { name: 'Crew', href: '/crew', primary: true },
-    { name: 'Meeting Minutes', href: '/meeting-minutes' },
+    { name: 'Meeting Minutes', href: '/crew/meeting-minutes' },
     { name: 'Front of House Team', href: '/crew/front-of-house' },
     { name: 'Projection Team', href: '/crew/projection' },
     { name: 'Publicity Team', href: '/crew/publicity' },
