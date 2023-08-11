@@ -13,7 +13,7 @@ export default function FilmScreeningDayCard({
         width={183}
         height={276}
         alt="Everything Everywhere All At Once"
-        className="mx-auto w-full"
+        className="mx-auto w-full bg-black text-black"
       />
       <h3 className="mt-2 text-md font-bold leading-5">
         {filmScreeningDay.film.name}
