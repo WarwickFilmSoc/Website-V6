@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { execTeam, getExecPositionNames } from '@/data/exec';
 
 export default function FrontOfHouse() {
   return (
@@ -50,10 +51,15 @@ export default function FrontOfHouse() {
 
       <p>
         For more information or to sign up as a new steward,&nbsp;
-        <a href="mailto:chiefdm@warwick.film" target="_blank">
-          contact the Chief Duty Manager
+        <a
+          href={`mailto:${execTeam.chiefDutyManager.email}`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          contact the {execTeam.chiefDutyManager.name},&nbsp;
+          {getExecPositionNames(execTeam.chiefDutyManager)}
         </a>
-        &nbsp; who&apos;ll be pleased to receive your email!
+        , who&apos;ll be pleased to receive your email!
       </p>
 
       <h2>Duty Managers (DMs)</h2>

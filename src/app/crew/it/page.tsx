@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { execTeam, getExecPositionNames } from '@/data/exec';
 
 export default function It() {
   return (
@@ -43,10 +44,15 @@ export default function It() {
 
       <p>
         Find out more by&nbsp;
-        <a href="mailto:itofficer@warwick.film" target="_blank">
-          contacting the IT Officers
+        <a
+          href={`mailto:${execTeam.itOfficer.email}`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          contacting the {execTeam.itOfficer.name},{' '}
+          {getExecPositionNames(execTeam.itOfficer)}
         </a>
-        &nbsp;who&apos;ll be happy to receive your email.
+        .
       </p>
 
       <h2>Hardware</h2>

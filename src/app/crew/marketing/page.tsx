@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { execTeam, getExecPositionNames } from '@/data/exec';
 
 export default function Marketing() {
   return (
@@ -83,8 +84,13 @@ export default function Marketing() {
 
       <p>
         If you are interested in getting involved in the team, please&nbsp;
-        <a href="mailto:marketingofficer@warwick.film" target="_blank">
-          contact the Marketing Officer
+        <a
+          href={`mailto:${execTeam.marketingOfficer.email}`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          contact the {execTeam.marketingOfficer.name},{' '}
+          {getExecPositionNames(execTeam.marketingOfficer)}
         </a>
         .
       </p>

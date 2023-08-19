@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { execTeam, getExecPositionNames } from '@/data/exec';
 
 export default function Projection() {
   return (
@@ -69,10 +70,15 @@ export default function Projection() {
       <p>
         If you would like to get involved in projection or for more information
         please&nbsp;
-        <a href="mailto:chiefprojectionist@warwick.film" target="_blank">
-          contact the Chief Projectionist
+        <a
+          href={`mailto:${execTeam.chiefProjectionist.email}`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          contact the {execTeam.chiefProjectionist.name},&nbsp;
+          {getExecPositionNames(execTeam.chiefProjectionist)}
         </a>
-        &nbsp;who will gladly receive your email.
+        , who will gladly receive your email.
       </p>
       <h2>Technical Team</h2>
       <p>
