@@ -6,9 +6,9 @@ export default function Crew() {
       <p>
         Interested in being more active within WSC? Learning new skills? Meeting
         new people? Discovering the art of running a cinema? Being part of the
-        biggest society on campus? Or just want{' '}
-        <b>free films for you and a guest</b>? There's a role for you with us!
-        For more information, you can always email the exec, or speak to a
+        biggest society on campus? Or just want&nbsp;
+        <b>free films for you and a guest</b>? There&apos;s a role for you with
+        us! For more information, you can always email the exec, or speak to a
         member of crew at any screening.
       </p>
       <p>
