@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 export default function Marketing() {
   return (
-    <main>
+    <main className="content-style">
       <p className="text-xl font-lexend uppercase -mb-1">
         <Link href="/crew">Crew</Link>
       </p>
@@ -19,8 +19,8 @@ export default function Marketing() {
 
       <ul>
         <li>
-          <b>Creating high-quality advertisements</b> for every film screening
-          to populate our pre-show and LCD screen slideshows, whilst maintaing a
+          Creating high-quality advertisements for every film screening to
+          populate our pre-show and LCD screen slideshows, whilst maintaing a
           consistent, high-quality brand image.
         </li>
         <li>
@@ -46,13 +46,14 @@ export default function Marketing() {
         <li>
           <b>Producing promotional videos</b> to sell the society as a whole,
           showing the world what goes on behind the scenes. These videos are
-          typically entered into "Best Society"-style competitions and are shown
-          to our potential sponsors, so quality is of paramount importance!
+          typically entered into &apos;Best Society&apos;-style competitions and
+          are shown to our potential sponsors, so quality is of paramount
+          importance!
         </li>
         <li>
-          <b>Innovating</b> the way the society is publicised, discussing new
-          ways to utilise technology to increase our visibility. You are
-          encouraged to discuss any ideas you may have on the mailing list.
+          Innovating the way the society is publicised, discussing new ways to
+          utilise technology to increase our visibility. You are encouraged to
+          discuss any ideas you may have on the mailing list.
         </li>
       </ul>
 
@@ -64,25 +65,28 @@ export default function Marketing() {
 
       <ul>
         <li>
-          <b>Digital Trailers Co-ordinator</b> acquires trailers for all the
-          films on our schedule and converts them into the correct format for
-          playing on our new digital projector, editing them if needed. They
-          must ensure there is always an appropriate number of trailers ready to
-          play before films. They work closely with the Projection team to
-          ensure the trailers are accessible and work correctly.
+          Digital Trailers Coordinator acquires trailers for all the films on
+          our schedule and converts them into the correct format for playing on
+          our new digital projector, editing them if needed. They must ensure
+          there is always an appropriate number of trailers ready to play before
+          films. They work closely with the Projection team to ensure the
+          trailers are accessible and work correctly.
         </li>
         <li>
-          <b>Photography Co-ordinator</b> ensures that photographs and videos
-          are taken of all major WSC events, and that photos of the day-to-day
-          workings of WSC are kept up-to-date, and that these are organised into
-          our archives. They are the first port of call if anyone in the society
+          Photography Coordinator ensures that photographs and videos are taken
+          of all major WSC events, and that photos of the day-to-day workings of
+          WSC are kept up-to-date, and that these are organised into our
+          archives. They are the first port of call if anyone in the society
           needs photographs of specific things for the sake of publicity.
         </li>
       </ul>
 
       <p>
-        If you are interested in getting involved in the team, please contact
-        the Marketing Officer at.
+        If you are interested in getting involved in the team, please&nbsp;
+        <a href="mailto:marketingofficer@warwick.film" target="_blank">
+          contact the Marketing Officer
+        </a>
+        .
       </p>
     </main>
   );

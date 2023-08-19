@@ -29,3 +29,50 @@ body {
 main {
   @apply w-full mx-auto max-w-7xl px-8;
 }
+
+.content-style p {
+  @apply mb-1;
+}
+
+.content-style h2 {
+  @apply mt-4;
+}
+
+.content-style ol {
+  @apply list-decimal;
+  @apply mb-2;
+}
+
+.content-style ol ul ol {
+  @apply list-roman;
+}
+
+.content-style ul {
+  @apply list-disc;
+  @apply mb-2
+}
+
+.content-style li {
+  @apply ml-4;
+  @apply pl-1;
+}
+
+.content-style li li {
+  @apply ml-8;
+}
+
+.content-style a {
+  @apply text-accent;
+}
+
+.content-style th {
+  @apply text-left;
+  @apply px-2;
+  @apply border border-primary;
+}
+
+.content-style td {
+  @apply text-center;
+  @apply px-2;
+  @apply border border-primary;
+}

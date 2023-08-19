@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 export default function Publicity() {
   return (
-    <main>
+    <main className="content-style">
       <p className="text-xl font-lexend uppercase -mb-1">
         <Link href="/crew">Crew</Link>
       </p>
@@ -25,16 +25,16 @@ export default function Publicity() {
           an especially exciting opportunity for budding journalists to
           contribute their work to an award-winning publication, or indeed for
           the casual film lover who would like to offer their slant on
-          Hollywood's latest.
+          Hollywood&apos;s latest.
         </li>
 
         <li>
           <b>Image and title acquisition</b> is a fairly easy way to help out,
-          simply involving finding quality graphics of each film's title and
-          some images from the film itself for use in our booklets and posters.
-          Aesthetics are a key feature in any form of successful marketing, and
-          a decent variety of eye-catching graphics help set WSC apart from the
-          rest.
+          simply involving finding quality graphics of each film&apos;s title
+          and some images from the film itself for use in our booklets and
+          posters. Aesthetics are a key feature in any form of successful
+          marketing, and a decent variety of eye-catching graphics help set WSC
+          apart from the rest.
         </li>
 
         <li>
@@ -45,9 +45,9 @@ export default function Publicity() {
         </li>
 
         <li>
-          <b>Designing</b> weekly posters and fliers lets people know what's
-          coming soon to WSC in order to keep the masses informed and
-          interested.
+          <b>Designing</b> weekly posters and fliers lets people know
+          what&apos;s coming soon to WSC in order to keep the masses informed
+          and interested.
         </li>
 
         <li>
@@ -61,11 +61,14 @@ export default function Publicity() {
         You can do as much or as little as you like, and your efforts will be
         rewarded with free tickets to our screenings, the opportunity to make
         friends and have fun at socials, and of course the satisfaction of
-        seeing your work in all its glossy glory!{' '}
+        seeing your work in all its glossy glory!
       </p>
 
       <p>
-        <b>Email the publicity officer () for more information.</b>
+        <a href="mailto:publicityofficer@warwick.film" target="_blank">
+          Email the publicity officer
+        </a>
+        &nbsp;for more information.
       </p>
     </main>
   );

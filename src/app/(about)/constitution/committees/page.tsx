@@ -1,10 +1,9 @@
-import styles from '../constitution.module.css';
 import React from 'react';
 import Link from 'next/link';
 
 export default function Committees() {
   return (
-    <main className={styles.constitution}>
+    <main className="content-style">
       <p className="text-xl font-lexend uppercase !-mb-1">
         <Link href="/constitution" className="!text-white">
           Constitution

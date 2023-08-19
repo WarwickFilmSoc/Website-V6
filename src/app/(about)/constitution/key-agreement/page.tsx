@@ -1,10 +1,9 @@
-import styles from '../constitution.module.css';
 import React from 'react';
 import Link from 'next/link';
 
 export default function KeyAgreement() {
   return (
-    <main className={styles.constitution}>
+    <main className="content-style">
       <p className="text-xl font-lexend uppercase !-mb-1">
         <Link href="/constitution" className="!text-white">
           Constitution
@@ -53,9 +52,7 @@ export default function KeyAgreement() {
         Executive Committee should it be deemed necessary, in spite of any
         qualifications held by the person in question.
       </p>
-      <table
-        className={`table-auto ${styles.keyTable} border-2 border-primary mt-2`}
-      >
+      <table className="table-auto border-2 border-primary mt-2">
         <tr>
           <th>Position / Key</th>
           <th>Corridor</th>

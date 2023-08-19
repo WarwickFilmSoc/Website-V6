@@ -50,6 +50,12 @@ const nextConfig = {
       destination: '/terms-and-conditions#loyalty',
       permanent: true,
     },
+
+    {
+      source: '/tech/technical',
+      destination: '/technical-specifications',
+      permanent: true,
+    },
   ],
 };
 

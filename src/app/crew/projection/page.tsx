@@ -2,19 +2,19 @@ import Link from 'next/link';
 
 export default function Projection() {
   return (
-    <main>
+    <main className="content-style">
       <p className="text-xl font-lexend uppercase -mb-1">
         <Link href="/crew">Crew</Link>
       </p>
       <h1 className="mb-1">Projection and Technical Teams</h1>
       <p>
         The projection team ensures that all films are projected to the
-        society's highest standards, whereas it is the responsibility of the
-        technical team to maintain WSC's equipment to minimise the chance that
-        screenings are cancelled or delayed due to equipment problems. WSC
-        currently operates a changeover system of two Victoria 8 35mm
-        projectors, we also have the capability to use a long play system and
-        have recently upgraded to digital projection as well.
+        society&apos;s highest standards, whereas it is the responsibility of
+        the technical team to maintain WSC&apos;s equipment to minimise the
+        chance that screenings are cancelled or delayed due to equipment
+        problems. WSC currently operates a changeover system of two Victoria 8
+        35mm projectors, we also have the capability to use a long play system
+        and have recently upgraded to digital projection as well.
       </p>
       <h2>Projection Team</h2>
       Want to get involved in the society in a more technical capacity? Then
@@ -68,8 +68,11 @@ export default function Projection() {
       </p>
       <p>
         If you would like to get involved in projection or for more information
-        please contact the Chief Projectionist at: , who will gladly receive
-        your email.
+        please&nbsp;
+        <a href="mailto:chiefprojectionist@warwick.film" target="_blank">
+          contact the Chief Projectionist
+        </a>
+        &nbsp;who will gladly receive your email.
       </p>
       <h2>Technical Team</h2>
       <p>
@@ -89,14 +92,14 @@ export default function Projection() {
         knowledge to newer members.
       </p>
       <p>
-        <a href="/tech/technical">
+        <Link href="/technical-specifications">
           Read up on our Full Technical Specifications!
-        </a>
+        </Link>
       </p>
       <p>
         For more information, or if you wish to get involved in the technical
-        team, please don't hesitate to contact our Technical Officer at:, who
-        will be more than pleased to receive your email.
+        team, please don&apos;t hesitate to contact our Technical Officer at:,
+        who will be more than pleased to receive your email.
       </p>
     </main>
   );

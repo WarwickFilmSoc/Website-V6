@@ -2,14 +2,14 @@ import Link from 'next/link';
 
 export default function It() {
   return (
-    <main>
+    <main className="content-style">
       <p className="text-xl font-lexend uppercase -mb-1">
         <Link href="/crew">Crew</Link>
       </p>
       <h1 className="mb-1">IT Team</h1>
       <p>
         Whether you are great with computers or can just about browse the web,
-        WSC's IT Team needs you!
+        WSC&apos;s IT Team needs you!
       </p>
 
       <p>
@@ -19,34 +19,37 @@ export default function It() {
       </p>
 
       <p>
-        If you aren't particularly technical, we need individuals who can input
-        data onto our website, tell us what looks good / works sensibly, learn
-        HTML, make new webpages or learn how to build computers - don't worry,
-        we are happy to train you up!
+        If you aren&apos;t particularly technical, we need individuals who can
+        input data onto our website, tell us what looks good / works sensibly,
+        learn HTML, make new webpages or learn how to build computers -
+        don&apos;t worry, we are happy to train you up!
       </p>
 
       <p>
         However, for those with technical aptitude, we divide into two sub-teams
         - the Website and Hardware groups, each with a maintenance and a new
-        projects responsibility. There's always loads to do, and you can get
-        involved as much or as little as you wish. Advances we make affect a
+        projects responsibility. There&apos;s always loads to do, and you can
+        get involved as much or as little as you wish. Advances we make affect a
         large group of people and are therefore very rewarding, and broken
         systems cause a lot of trouble so we truly appreciate those who give up
         time to fix them.
       </p>
 
       <p>
-        Don't feel you have to only do IT - if you are involved in another area
-        of WSC, come and visit us, or if you are interested in IT it always
+        Don&apos;t feel you have to only do IT - if you are involved in another
+        area of WSC, come and visit us, or if you are interested in IT it always
         helps to get a feel for our systems in their actual use environment!
       </p>
 
       <p>
-        Find out more by contacting the IT Officer who'll be happy to receive
-        your email.
+        Find out more by&nbsp;
+        <a href="mailto:itofficer@warwick.film" target="_blank">
+          contacting the IT Officers
+        </a>
+        &nbsp;who&apos;ll be happy to receive your email.
       </p>
 
-      <h3>Hardware</h3>
+      <h2>Hardware</h2>
       <p>
         We have our own server rack, comprising two Dell Xeon servers running
         Virtual Machines, a WSC-built storage server and several University
@@ -58,12 +61,13 @@ export default function It() {
         machines running Windows 7 and tills on XP.
       </p>
 
-      <h3>Website</h3>
+      <h2>Website</h2>
       <p>
         Our website provides publicity, crew sign ups (including show rotas),
         and our own custom EPOS system. With a new website in the works and a
-        mammoth undertaking, it's all hands on deck! We currently use PHP/MySQL
-        and dabble with several other languages in order to get the job done.
+        mammoth undertaking, it&apos;s all hands on deck! We currently use
+        PHP/MySQL and dabble with several other languages in order to get the
+        job done.
       </p>
     </main>
   );
