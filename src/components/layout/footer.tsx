@@ -75,7 +75,7 @@ export default function Footer() {
   return (
     <>
       <div className="mt-auto" />
-      <footer className="text-center bg-dark p-4 mt-56 justify-self-end">
+      <footer className="text-center bg-dark p-4 mt-24 justify-self-end">
         <div className="max-w-2xl mx-auto">
           <div className="mt-4 flex justify-center items-center space-x-4">
             <a

@@ -6,7 +6,7 @@ export default async function BlogCarousel() {
   const posts = await getLatestPosts();
 
   return (
-    <section className="mb-20">
+    <section>
       <h2 className="mb-4">
         Mise En Scène <span className="text-accent">Blog</span>
       </h2>
