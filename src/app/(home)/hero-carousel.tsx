@@ -7,8 +7,8 @@ import logoWhite from '@/assets/logos/logo-white.png';
 
 export default function HeroCarousel() {
   return (
-    <div className="h-[75vh] -mt-24 block">
-      <Carousel slideInterval={10000} indicators={false}>
+    <div className="h-[75vh] min-h-[32rem] -mt-24 block">
+      <Carousel slideInterval={1000000} indicators={false}>
         <article className="h-full relative">
           <Image
             src={warwickOpenDay}
@@ -17,19 +17,24 @@ export default function HeroCarousel() {
             priority={true}
           />
           <div className="absolute w-full h-full bg-gradient-to-b from-[#00000033] to-[#000000aa]" />
-          <div className="absolute w-full top-16 bottom-64 flex items-center justify-center drop-shadow-md pt-12">
-            <div className="flex items-center my-16 space-x-2">
-              <div className="text-right">
-                <h1 className="text-4xl text-right mb-3">
+          <div className="absolute w-full top-20 flex items-center justify-center drop-shadow-md py-6 bottom-28 h-sm:bottom-32 h-md:bottom-48 h-lg:bottom-64">
+            <div className="flex items-center space-x-2 flex-col-reverse md:flex-row h-full">
+              <div className="md:text-right mx-8">
+                <h1 className="text-4xl md:text-right mb-3">
                   Welcome to
                   <span className="block font-bold">Your Student Cinema</span>
                 </h1>
                 <LargeButtonLink href="/whats-on">
-                  View Our Schedule
+                  View<span className="hidden sm:inline"> Our</span> Schedule
                 </LargeButtonLink>
               </div>
-              <div className="p-2">
-                <Image src={logoWhite} alt="Warwick Student Cinema Logo" />
+              <div className="p-4">
+                <Image
+                  src={logoWhite}
+                  alt="Warwick Student Cinema Logo"
+                  width={180}
+                  className="w-24 sm:w-32 md:w-44"
+                />
               </div>
             </div>
           </div>
@@ -43,21 +48,26 @@ export default function HeroCarousel() {
             height={1800}
           />
           <div className="absolute w-full h-full bg-gradient-to-b from-[#00000033] to-[#000000aa]" />
-          <div className="absolute w-full top-16 bottom-64 flex items-center justify-center drop-shadow-md pt-12">
-            <div className="flex items-center my-16 space-x-2 uppercase">
-              <div className="text-right">
+          <div className="absolute w-full top-20 flex items-center justify-center drop-shadow-md py-6 bottom-28 h-sm:bottom-32 h-md:bottom-48 h-lg:bottom-64">
+            <div className="flex items-center space-x-2 flex-col-reverse md:flex-row uppercase h-full">
+              <div className="md:text-right mx-6">
                 <p className="text-lg font-bold capitalize">
                   Mon 26th | 6:30pm 9:30pm
                 </p>
-                <p className="text-4xl text-right mb-3">
+                <p className="text-4xl mb-3 font-lexend font-bold">
                   Spider-man: Into the Spiderverse
                 </p>
                 <LargeButtonLink href="/whats-on">
                   Book Tickets Now
                 </LargeButtonLink>
               </div>
-              <div className="p-2">
-                <Image src={logoWhite} alt="Warwick Student Cinema Logo" />
+              <div className="p-4">
+                <Image
+                  src={logoWhite}
+                  alt="Warwick Student Cinema Logo"
+                  width={180}
+                  className="w-24 sm:w-32 md:w-44"
+                />
               </div>
             </div>
           </div>

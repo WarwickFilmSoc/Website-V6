@@ -14,13 +14,13 @@ export default function JoinTheCrew() {
       <h2>
         Join the <span className="text-accent">Crew</span>
       </h2>
-      <div className="flex justify-center  mx-12 mx-auto h-24 space-x-3">
+      <div className="flex justify-center mx-12 mx-auto h-auto md:h-24 space-x-3">
         <Image
           src={makingUpImage}
           alt="Projectionists making up film for a show"
-          className="w-48 max-w-xl grow object-cover"
+          className="w-40 lg:w-48 max-w-xl grow object-cover"
         />
-        <p className="mt-2 max-w-lg">
+        <p className="w-80 md:w-auto mt-2 max-w-lg">
           Come and join our team to make new friends, learn new skills and watch
           free films! With 5 teams to choose from, there’s something for
           everyone!
@@ -28,7 +28,7 @@ export default function JoinTheCrew() {
         <Image
           src={dmsImage}
           alt="Duty managers counting the float after a show"
-          className="w-48 max-w-xl grow object-cover"
+          className="w-40 lg:w-48 max-w-xl grow object-cover"
         />
       </div>
       <div className="flex overflow-hidden justify-center items-start space-x-3 mb-4">
@@ -42,11 +42,11 @@ export default function JoinTheCrew() {
           alt="The 35mm and 70mm projectors in our projection box"
           className="w-56 grow object-cover mt-3"
         />
-        <div className="w-96 max-w-lg grow">
+        <div className="w-96 max-w-lg grow whitespace-nowrap">
           <Image
             src={pizzaSocialImage}
             alt="Some of the Warwick Student Cinema team at a pizza social"
-            className="object-cover mb-4"
+            className="object-cover mb-4 hidden sm:block"
           />
           <LargeButtonLink href="crew">Find Out More</LargeButtonLink>
         </div>

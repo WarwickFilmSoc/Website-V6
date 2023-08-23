@@ -1,5 +1,6 @@
 import { FilmScreeningDay } from '@/types';
 import FilmScreeningDayCard from '@/components/film-screening-day-card';
+import LargeButtonLink from '@/components/large-button-link';
 
 const filmScreeningDays: FilmScreeningDay[] = [
   {
@@ -35,18 +36,21 @@ const filmScreeningDays: FilmScreeningDay[] = [
 ];
 export default function WeekScreeningsList() {
   return (
-    <div className="relative h-80">
-      <section className="absolute w-full -mt-64 z-30 mb-20 drop-shadow-lg">
-        <h2 className="text-3xl mb-4">This Week&#8217;s Screenings</h2>
-        <div className="flex justify-center space-x-6">
-          {filmScreeningDays.map((filmScreeningDay) => (
-            <FilmScreeningDayCard
-              filmScreeningDay={filmScreeningDay}
-              key={filmScreeningDay.id}
-            />
-          ))}
-        </div>
-      </section>
-    </div>
+    <section className="w-full mb-24 z-30 drop-shadow-lg -mt-32 h-sm:-mt-36 h-md:-mt-48 h-lg:-mt-64 pt-2">
+      <h2 className="text-3xl mb-2 hidden xl:block">
+        This Week&#8217;s Screenings
+      </h2>
+      <h2 className="text-2xl mb-1 md:text-3xl md:mb-2 xl:hidden">Coming Up</h2>
+      <div className="flex justify-center space-x-6 mx-4 flex-wrap mb-6">
+        {filmScreeningDays.map((filmScreeningDay) => (
+          <FilmScreeningDayCard
+            filmScreeningDay={filmScreeningDay}
+            key={filmScreeningDay.id}
+          />
+        ))}
+      </div>
+
+      <LargeButtonLink href="/whats-on">View Screenings</LargeButtonLink>
+    </section>
   );
 }

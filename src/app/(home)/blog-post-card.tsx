@@ -8,10 +8,12 @@ export default function BlogPostCard({
   large?: boolean;
 }) {
   return (
-    <a href={post.url} target="_blank" rel="noopener">
+    <a href={post.url} target="_blank" rel="noopener" className="shrink">
       <article
         className={`${
-          large ? 'w-112 h-80' : 'w-96 h-64'
+          large
+            ? 'w-72 sm:w-128 md:w-64 lg:w-96 xl:w-112 h-56 md:h-72 xl:h-80'
+            : 'w-64 sm:w-96 md:w-56 lg:w-72 xl:w-96 h-48 md:h-60 xl:h-64'
         } bg-cover rounded-lg relative overflow-hidden hover:scale-105`}
         style={{ backgroundImage: `url('${post.featureImage}')` }}
       >

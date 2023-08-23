@@ -2,7 +2,7 @@ import LargeButtonLink from '@/components/large-button-link';
 
 export default function TermEvents() {
   return (
-    <section className="mb-20">
+    <section className="mb-20 mx-4">
       <h2 className="mb-2">
         <span className="text-accent">Events</span> This Term
       </h2>

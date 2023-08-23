@@ -3,19 +3,19 @@ import map from '@/assets/home/map.jpg';
 
 export default function WatchAFilm() {
   return (
-    <section className="m-4 px-4 py-2 text-left w-3/5">
-      <h2 className="text-2xl mb-1">
+    <section className="m-4 px-4 py-2 text-left w-3/5 flex-grow">
+      <h2 className="text-2xl mb-1 text-center lg:text-left">
         Watch a <span className="text-accent">Film</span>
       </h2>
-      <div className="flex space-x-4">
+      <div className="flex space-y-2 sm:space-x-4 flex-col sm:flex-row items-center sm:items-start">
         <div>
           <Image
             src={map}
             alt="Map to get to Warwick Student Cinema"
-            className="w-56"
+            className="w-56 h-48 sm:h-auto object-cover"
           />
         </div>
-        <div className="w-96 grow">
+        <div className="sm:w-96 grow text-center sm:text-left">
           <p className="mb-2">
             You don&apos;t need to be a member of the society or University to
             watch our films; everyone is welcome for up to £4.00 per ticket.

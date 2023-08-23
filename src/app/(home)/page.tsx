@@ -16,7 +16,7 @@ export default function Home() {
 
       <TermEvents />
 
-      <div className="flex mb-20 max-w-7xl mx-auto">
+      <div className="flex mb-20 max-w-7xl mx-auto flex-wrap lg:flex-nowrap">
         <AboutUsCard />
         <WatchAFilm />
       </div>
