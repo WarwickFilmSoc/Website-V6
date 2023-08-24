@@ -7,7 +7,7 @@ export default function WatchAFilm() {
       <h2 className="text-2xl mb-1 text-center lg:text-left">
         Watch a <span className="text-accent">Film</span>
       </h2>
-      <div className="flex space-y-2 sm:space-x-4 flex-col sm:flex-row items-center sm:items-start">
+      <div className="flex gap-y-2 sm:gap-x-4 flex-col sm:flex-row items-center sm:items-start">
         <div>
           <Image
             src={map}

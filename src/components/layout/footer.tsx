@@ -8,13 +8,11 @@ import xLogo from '@/assets/logos/social/x.svg';
 import facebookLogo from '@/assets/logos/social/facebook.png';
 import tikTokLogo from '@/assets/logos/social/tiktok.svg';
 
-import warwickUniversityLogo from '@/assets/logos/partners/warwick-university.svg';
 import warwickSuLogo from '@/assets/logos/partners/warwick-su.svg';
 import cinemaForAllLogo from '@/assets/logos/partners/cinema-for-all.png';
-import wscBlueHeader from '@/assets/logos/wsc-header-blue.png';
 import filmHubMidlandsLogo from '@/assets/logos/partners/film-hub-midlands.svg';
 
-const footerLinks: FooterLink[][] = [
+const leftFooterLinks: FooterLink[][] = [
   [{ name: 'Home', href: '/', primary: true }],
   [
     { name: "What's On", href: '/whats-on', primary: true },
@@ -32,6 +30,8 @@ const footerLinks: FooterLink[][] = [
     { name: 'Constitution', href: '/constitution' },
     { name: 'Terms', href: '/terms-and-conditions' },
   ],
+];
+const rightFooterLinks: FooterLink[][] = [
   [
     { name: 'Crew', href: '/crew', primary: true },
     { name: 'Meeting Minutes', href: '/crew/meeting-minutes' },
@@ -71,13 +71,52 @@ type FooterLink = {
   primary?: boolean;
 };
 
+export function FooterLinkGroup({
+  footerLinks,
+}: {
+  footerLinks: FooterLink[];
+}) {
+  return (
+    <div>
+      {footerLinks.map((link) => {
+        if (link.external)
+          return (
+            <a
+              href={link.href}
+              target="noopener"
+              key={link.name}
+              className={`block ${
+                link.primary ? 'font-bold mt-2 mb-1' : 'mb-0.5'
+              }`}
+            >
+              {link.name}
+
+              <FiExternalLink className="mb-1 ml-2 inline" />
+            </a>
+          );
+        return (
+          <Link
+            href={link.href}
+            key={link.name}
+            className={`block ${
+              link.primary ? 'font-bold mt-2 mb-1' : 'mb-0.5'
+            }`}
+          >
+            {link.name}
+          </Link>
+        );
+      })}
+    </div>
+  );
+}
+
 export default function Footer() {
   return (
     <>
       <div className="mt-auto" />
       <footer className="text-center bg-dark p-4 mt-24 justify-self-end">
         <div className="max-w-2xl mx-auto">
-          <div className="mt-4 flex justify-center items-center space-x-4">
+          <div className="mt-4 flex justify-center items-center gap-x-4">
             <a
               href="https://letterboxd.com/wscpog/"
               target="_blank"
@@ -134,59 +173,20 @@ export default function Footer() {
               />
             </a>
           </div>
-          <nav className="flex justify-center mt-6 space-x-2 font-light text-sm">
-            {footerLinks.map((footerLinksGroup, i) => (
-              <div key={i}>
-                {footerLinksGroup.map((link) => {
-                  if (link.external)
-                    return (
-                      <a
-                        href={link.href}
-                        target="noopener"
-                        key={link.name}
-                        className={`block ${
-                          link.primary ? 'font-bold mt-2 mb-1' : 'mb-0.5'
-                        }`}
-                      >
-                        {link.name}
-
-                        <FiExternalLink className="mb-1 ml-2 inline" />
-                      </a>
-                    );
-                  return (
-                    <Link
-                      href={link.href}
-                      key={link.name}
-                      className={`block ${
-                        link.primary ? 'font-bold mt-2 mb-1' : 'mb-0.5'
-                      }`}
-                    >
-                      {link.name}
-                    </Link>
-                  );
-                })}
-              </div>
-            ))}
+          <nav className="flex justify-center mt-6 gap-x-4 sm:gap-x-2 font-light text-sm items-start">
+            <div className="flex justify-center sm:gap-x-2 xs:w-44 sm:w-auto gap-y-2 sm:gap-y-0 flex-col sm:flex-row">
+              {leftFooterLinks.map((footerLinksGroup, i) => (
+                <FooterLinkGroup footerLinks={footerLinksGroup} key={i} />
+              ))}
+            </div>
+            <div className="flex justify-center sm:gap-x-2 xs:w-44 sm:w-auto gap-y-2 sm:gap-y-0 flex-col sm:flex-row">
+              {rightFooterLinks.map((footerLinksGroup, i) => (
+                <FooterLinkGroup footerLinks={footerLinksGroup} key={i} />
+              ))}
+            </div>
           </nav>
           <div className="mt-12 mb-4">
-            <div className="flex items-center justify-center space-x-4">
-              <a href="https://warwick.ac.uk/" target="_blank" rel="noopener">
-                <Image
-                  src={warwickUniversityLogo}
-                  alt="Warwick University Logo"
-                  width={220}
-                />
-              </a>
-              <a
-                href="https://www.warwicksu.com/societies-sports/societies/filmsoc/"
-                target="_blank"
-                rel="noopener"
-              >
-                <Image src={warwickSuLogo} alt="Warwick SU Logo" width={180} />
-              </a>
-              <Link href="/">
-                <Image src={wscBlueHeader} alt="Warwick Student Cinema Logo" />
-              </Link>
+            <div className="flex items-center justify-center gap-x-4">
               <a
                 href="https://cinemaforall.org.uk/advice-and-support/young-film-programmers-network/young-people-in-community-cinema-warwick-student-cinema/"
                 target="_blank"
@@ -195,8 +195,15 @@ export default function Footer() {
                 <Image
                   src={cinemaForAllLogo}
                   alt="Cinema For All Logo"
-                  width={180}
+                  height={40}
                 />
+              </a>
+              <a
+                href="https://www.warwicksu.com/societies-sports/societies/filmsoc/"
+                target="_blank"
+                rel="noopener"
+              >
+                <Image src={warwickSuLogo} alt="Warwick SU Logo" height={40} />
               </a>
               <a
                 href="https://filmhubmidlands.org/"
@@ -206,7 +213,7 @@ export default function Footer() {
                 <Image
                   src={filmHubMidlandsLogo}
                   alt="Film Hub Midlands Logo"
-                  width={220}
+                  height={40}
                 />
               </a>
             </div>

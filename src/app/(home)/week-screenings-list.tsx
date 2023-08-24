@@ -41,11 +41,12 @@ export default function WeekScreeningsList() {
         This Week&#8217;s Screenings
       </h2>
       <h2 className="text-2xl mb-1 md:text-3xl md:mb-2 xl:hidden">Coming Up</h2>
-      <div className="flex justify-center space-x-6 mx-4 flex-wrap mb-6">
-        {filmScreeningDays.map((filmScreeningDay) => (
+      <div className="flex justify-center gap-x-6 mx-4 mb-6 overflow-x-hidden">
+        {filmScreeningDays.map((filmScreeningDay, i) => (
           <FilmScreeningDayCard
             filmScreeningDay={filmScreeningDay}
             key={filmScreeningDay.id}
+            index={i}
           />
         ))}
       </div>

@@ -53,7 +53,7 @@ export default function TheExecutiveTeam() {
               </a>
             </p>
 
-            <div className="h-48 m-2 flex justify-center items-center space-x-4">
+            <div className="h-48 m-2 flex justify-center items-center gap-x-4">
               {position.members.map((member, i) => (
                 <Image
                   key={i}

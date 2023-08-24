@@ -21,7 +21,7 @@ export default function BlogPostCard({
         <div className="absolute left-0 right-0 top-0 bottom-0 flex flex-col justify-end px-4 py-2 drop-shadow-md">
           <h3 className="normal-case font-bold text-lg">{post.title}</h3>
 
-          <div className="flex space-x-2 justify-center">
+          <div className="flex gap-x-2 justify-center">
             <span>{post.publishedAtString}</span>
             <span>|</span>
             {post.primaryTag && (

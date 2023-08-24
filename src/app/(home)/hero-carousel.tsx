@@ -18,7 +18,7 @@ export default function HeroCarousel() {
           />
           <div className="absolute w-full h-full bg-gradient-to-b from-[#00000033] to-[#000000aa]" />
           <div className="absolute w-full top-20 flex items-center justify-center drop-shadow-md py-6 bottom-28 h-sm:bottom-32 h-md:bottom-48 h-lg:bottom-64">
-            <div className="flex items-center space-x-2 flex-col-reverse md:flex-row h-full">
+            <div className="flex items-center gap-x-2 flex-col-reverse md:flex-row h-full">
               <div className="md:text-right mx-8">
                 <h1 className="text-4xl md:text-right mb-3">
                   Welcome to
@@ -49,7 +49,7 @@ export default function HeroCarousel() {
           />
           <div className="absolute w-full h-full bg-gradient-to-b from-[#00000033] to-[#000000aa]" />
           <div className="absolute w-full top-20 flex items-center justify-center drop-shadow-md py-6 bottom-28 h-sm:bottom-32 h-md:bottom-48 h-lg:bottom-64">
-            <div className="flex items-center space-x-2 flex-col-reverse md:flex-row uppercase h-full">
+            <div className="flex items-center gap-x-2 flex-col-reverse md:flex-row uppercase h-full">
               <div className="md:text-right mx-6">
                 <p className="text-lg font-bold capitalize">
                   Mon 26th | 6:30pm 9:30pm

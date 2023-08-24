@@ -12,13 +12,13 @@ export default async function BlogCarousel() {
       </h2>
       {posts ? (
         posts.length === 3 ? (
-          <div className="flex justify-center items-center space-y-4 md:space-y-0 md:space-x-6 mb-6 flex-col md:flex-row">
+          <div className="flex justify-center items-center gap-y-4 md:gap-y-0 md:gap-x-6 mb-6 flex-col md:flex-row">
             <BlogPostCard post={posts[0]} />
             <BlogPostCard post={posts[1]} large />
             <BlogPostCard post={posts[2]} />
           </div>
         ) : (
-          <div className="flex justify-center items-center space-y-4 md:space-y-0 md:space-x-6 mb-4 flex-col md:flex-row">
+          <div className="flex justify-center items-center gap-y-4 md:gap-y-0 md:gap-x-6 mb-4 flex-col md:flex-row">
             {posts?.map((post) => <BlogPostCard post={post} key={post.id} />)}
           </div>
         )
