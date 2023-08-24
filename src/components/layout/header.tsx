@@ -1,7 +1,7 @@
 'use client';
 import Link from 'next/link';
 import Image from 'next/image';
-import wscLogo from '@/assets/logos/logo-white.png';
+import wscLogo from '@/assets/logos/logo-white.svg';
 import { usePathname } from 'next/navigation';
 
 export default function Header() {

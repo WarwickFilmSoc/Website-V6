@@ -3,7 +3,7 @@ import { Carousel } from 'flowbite-react';
 import Image from 'next/image';
 import warwickOpenDay from '@/assets/home/carousel/warwick-open-day.jpg';
 import LargeButtonLink from '@/components/large-button-link';
-import logoWhite from '@/assets/logos/logo-white.png';
+import logoWhite from '@/assets/logos/logo-white.svg';
 
 export default function HeroCarousel() {
   return (

@@ -17,8 +17,17 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: 'Warwick Student Cinema',
+  title: {
+    template: '%s | Warwick Student Cinema',
+    default: 'Warwick Student Cinema',
+  },
   description: 'Welcome to your student cinema.',
+  openGraph: {
+    title: 'Warwick Student Cinema',
+    description: 'Welcome to your student cinema.',
+  },
+  metadataBase: new URL(process.env.URL || 'https://warwick.film'),
+  themeColor: '#006295',
 };
 
 export default function RootLayout({
