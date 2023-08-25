@@ -21,9 +21,14 @@ Then, clone the website through SSH. You'll need to install [Git](https://git-sc
 git clone git@gitlab.warwick.film:WSC/Website-V6.git
 ```
 
-Install npm modules:
+Install npm modules
 ```bash
 npm install
+```
+
+Regenerate the Prisma client after the schema has been changed
+```bash
+npm run prisma:generate
 ```
 
 Copy `.env` to `.env.local` and fill in the required environment variables. Please contact Josh if you need these!
@@ -35,6 +40,22 @@ npm run dev
 
 This will start a live-reloading web server at [http://localhost:3000](http://localhost:3000).
 
+### MySQL
+If you need to connect to the MySQL database, please contact Josh for the Website-V6 credentials. You'll also need to forward port 3306 on a docker swarm node to your local machine.
+
+The `website-v6` user is read-only and should only be added to SELECT new tables as we need them on [phpMyAdmin](***REMOVED***) - this also helps to keep the schema nice and tidy with only stuff we need. 
+
+We're using Prisma to generate the database schema, which uses the following commands:
+
+Pull schema from the db
+```bash
+npm run prisma:db:pull
+```
+
+Generate Prisma client
+```bash
+npm run prisma:generate
+```
 
 ## Code and Commit Style
 ### Git Usage

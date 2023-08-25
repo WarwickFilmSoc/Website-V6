@@ -1,0 +1,25 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model meetings {
+  id           Int           @id @default(autoincrement())
+  type         meetings_type @default(Exec_Meeting)
+  meeting_date DateTime      @default(dbgenerated("'0000-00-00 00:00:00'")) @db.DateTime(0)
+  text         String        @db.MediumText
+  visible      Int?          @default(1)
+}
+
+enum meetings_type {
+  Exec_Meeting           @map("Exec Meeting")
+  DM_Meeting             @map("DM Meeting")
+  Projectionists_Meeting @map("Projectionists Meeting")
+  Publicity_Meeting      @map("Publicity Meeting")
+  IT_Meeting             @map("IT Meeting")
+}
