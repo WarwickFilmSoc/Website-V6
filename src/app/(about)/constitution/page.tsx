@@ -61,7 +61,7 @@ export default function Constitution() {
           <h2>Mission Statement</h2>
           <ul>
             <li>
-              <p>The objectives of WSC shall be to:</p>
+              <span>The objectives of WSC shall be to:</span>
               <ul>
                 <li>
                   Encourage interest in film as an art and a form of
@@ -92,11 +92,11 @@ export default function Constitution() {
           <h2>Accompanying Documents</h2>
           <ul>
             <li>
-              <p>
+              <span>
                 The following documents shall be distributed with the
                 Constitution, and shall be considered to have the equivalent
                 authority of the Constitution:
-              </p>
+              </span>
               <ol>
                 <li>
                   <Link href="/constitution/executive-roles" target="_blank">
@@ -125,7 +125,7 @@ export default function Constitution() {
           <h2>Membership</h2>
           <ul>
             <li>
-              <p>The following will be entitled to be members of WSC:</p>
+              <span>The following will be entitled to be members of WSC:</span>
               <ol>
                 <li>
                   Full members: Current Warwick University Students, who are
@@ -146,7 +146,7 @@ export default function Constitution() {
               vacation for the following academic year.
             </li>
             <li>
-              <p>The rights of a full member of WSC shall include:</p>
+              <span>The rights of a full member of WSC shall include:</span>
               <ol>
                 <li>Standing for a position on the Exec.</li>
                 <li>
@@ -167,7 +167,7 @@ export default function Constitution() {
               </ol>
             </li>
             <li>
-              <p>The rights of a WSC associate member shall include:</p>
+              <span>The rights of a WSC associate member shall include:</span>
               <ol>
                 <li>
                   To participate at a non-decision making level in the
@@ -204,10 +204,10 @@ export default function Constitution() {
               Meeting called as an election.
             </li>
             <li>
-              <p>
+              <span>
                 The Exec positions within WSC shall at all times consist of at
                 least:
-              </p>
+              </span>
               <ol>
                 <li>President</li>
                 <li>Treasurer</li>
@@ -233,11 +233,11 @@ export default function Constitution() {
               .
             </li>
             <li>
-              <p>
+              <span>
                 The Exec may decide upon any matter which has not yet been
                 decided upon by a General Meeting. The Exec shall further be
                 responsible for:
-              </p>
+              </span>
               <ol>
                 <li>
                   Organising the activities of WSC in such a way as to include

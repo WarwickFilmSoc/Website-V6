@@ -31,11 +31,11 @@ main {
 }
 
 .content-style p {
-  @apply mb-1;
+  @apply mb-4;
 }
 
 .content-style h2 {
-  @apply mt-4;
+  @apply mt-6;
 }
 
 .content-style ol {

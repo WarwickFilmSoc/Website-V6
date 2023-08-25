@@ -30,6 +30,9 @@ module.exports = {
       listStyleType: {
         roman: 'lower-roman',
       },
+      blur: {
+        xs: '2px',
+      },
     },
     fontFamily: {
       lexend: ['var(--font-lexend)', 'sans-serif'],
@@ -44,4 +47,5 @@ module.exports = {
       'h-lg': { raw: '(min-height: 1024px)' },
     },
   },
+  important: true,
 };

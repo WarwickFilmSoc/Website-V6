@@ -61,7 +61,7 @@ export default function ExecutiveRoles() {
         <li>Marketing Officer</li>
         <li>Events and Socials Co-ordinator</li>
       </ol>
-      <p>These roles shall have the following responsibilities:</p>
+      <span>These roles shall have the following responsibilities:</span>
       <ol>
         <li>
           <h2>President</h2>
@@ -531,10 +531,10 @@ export default function ExecutiveRoles() {
           </ol>
         </li>
         <li>
-          <p>
+          <span>
             In addition to the above, all exec positions have the following
             responsibilities:
-          </p>
+          </span>
           <ol>
             <li>Attends relevant SU training where necessary.</li>
           </ol>

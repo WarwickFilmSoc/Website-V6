@@ -34,6 +34,7 @@ export type ExecTeam = {
   chiefProjectionist: ExecPosition;
   chiefDutyManager: ExecPosition;
   publicityOfficer: ExecPosition;
+  technicalOfficer: ExecPosition;
   marketingOfficer: ExecPosition;
   itOfficer: ExecPosition;
 
