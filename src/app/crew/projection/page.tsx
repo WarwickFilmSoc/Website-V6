@@ -15,6 +15,7 @@ export default function Projection() {
           src={coverImage}
           alt="Max making up film"
           className="object-cover w-full h-96 blur-xs brightness-50"
+          placeholder="blur"
         />
       </div>
       <main className="content-style -mt-32 sm:-mt-56 lg:-mt-20">
@@ -23,6 +24,7 @@ export default function Projection() {
           alt="Our two film projectors"
           width={350}
           className="lg:float-right relative lg:ml-4 mb-4"
+          placeholder="blur"
         />
         <span className="text-xl font-lexend uppercase drop-shadow-lg -mb-1">
           <Link href="/crew">Crew</Link>
