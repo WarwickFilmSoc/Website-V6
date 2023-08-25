@@ -27,7 +27,7 @@ body {
 }
 
 main {
-  @apply w-full mx-auto max-w-7xl px-8;
+  @apply w-full mx-auto max-w-7xl px-4 xs:px-8;
 }
 
 .content-style p {

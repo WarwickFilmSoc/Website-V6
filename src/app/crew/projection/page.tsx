@@ -5,6 +5,7 @@ import coverImage from '@/assets/crew/teams/projection-cover.jpg';
 import projectorsImage from '@/assets/crew/teams/projection-projectors.jpg';
 import filmImage from '@/assets/crew/teams/projection-film.jpg';
 import meetingImage from '@/assets/crew/teams/projection-meeting.jpg';
+import soundImage from '@/assets/crew/teams/projection-sound.jpg';
 import TeamOfficerCard from '@/app/crew/team-officer-card';
 
 export default function Projection() {
@@ -145,25 +146,37 @@ export default function Projection() {
           </p>
           <TeamOfficerCard position={execTeam.chiefProjectionist} />
         </div>
-        <h2>Technical Team</h2>
-        <p>
-          The technical team, led by the {execTeam.technicalOfficer.name}, is
-          responsible for making sure that our projection equipment is
-          maintained and in full working order. The technical team also oversees
-          upgrades in the equipment WSC possesses and makes recommendations for
-          investments in equipment that would aid the projection team.
-          Membership of the technical team is open to qualified projectionists -
-          this is because their training enables them to have a better
-          understanding and a much greater familiarity with our equipment. Our
-          full list of technical specifications can be&nbsp;
-          <Link href="/technical-specifications">found here</Link>!
-        </p>
-        <p>
-          The technical team has semi-regular sessions where routine maintenance
-          to equipment is carried out. Training is a regular part of these tech
-          sessions as it is important for more experienced members to impart
-          their knowledge to newer members.
-        </p>
+        <div className="flex flex-col md:flex-row">
+          <Image
+            src={soundImage}
+            alt="The WSC sound rack"
+            width={250}
+            className="w-full h-56 md:w-72 sm:h-auto mt-8 md:mb-4 md:mr-4 object-cover"
+          />
+
+          <div>
+            <h2>Technical Team</h2>
+            <p>
+              The technical team, led by the {execTeam.technicalOfficer.name},
+              is responsible for making sure that our projection equipment is
+              maintained and in full working order. The technical team also
+              oversees upgrades in the equipment WSC possesses and makes
+              recommendations for investments in equipment that would aid the
+              projection team. Membership of the technical team is open to
+              qualified projectionists - this is because their training enables
+              them to have a better understanding and a much greater familiarity
+              with our equipment. Our full list of technical specifications can
+              be&nbsp;
+              <Link href="/technical-specifications">found here</Link>!
+            </p>
+            <p>
+              The technical team has semi-regular sessions where routine
+              maintenance to equipment is carried out. Training is a regular
+              part of these tech sessions as it is important for more
+              experienced members to impart their knowledge to newer members.
+            </p>
+          </div>
+        </div>
         <div className="flex items-start gap-x-4 flex-col sm:flex-row">
           <p>
             For more information, or if you wish to get involved in the

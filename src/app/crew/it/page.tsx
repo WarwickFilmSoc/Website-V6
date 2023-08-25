@@ -3,6 +3,7 @@ import { execTeam, getExecPositionNames } from '@/data/exec';
 import Image from 'next/image';
 import coverImage from '@/assets/crew/teams/it-cover.jpg';
 import computersImage from '@/assets/crew/teams/it-computers.jpg';
+import serverRackImage from '@/assets/crew/teams/it-server-rack.jpg';
 import TeamOfficerCard from '@/app/crew/team-officer-card';
 
 export default function It() {
@@ -33,7 +34,7 @@ export default function It() {
           WSC&apos;s IT Team needs you! If you aren&apos;t particularly
           technical, we need individuals who can write content for our website
           or tell us what&apos;s good and what needs to be improved - but
-          we&apos;'re also always happy to train you up.
+          we&apos;re also always happy to train you up.
         </p>
 
         <p>
@@ -74,27 +75,38 @@ export default function It() {
           <TeamOfficerCard position={execTeam.itOfficer} />
         </div>
 
-        <h2>Hardware</h2>
-        <p>
-          We have our own server rack comprising of two Dell Xeon servers
-          running Virtual Machines, a WSC-built storage server and several
-          University hand-me-down machines. The office contains 3 user desktops
-          and several printers and we have 4 EPOS till systems (including card
-          scanners and receipt printers). We also use many Raspberry Pis for
-          slideshow computers around the science concourse and at the start of
-          each screening. Generally we run Ubuntu, Windows Server and Windows
-          10.
-        </p>
+        <div className="flex flex-col sm:flex-row">
+          <Image
+            src={serverRackImage}
+            alt="The WSC server rack"
+            width={300}
+            className="w-48 sm:w-56 h-56 sm:h-auto mt-8 sm:mb-4 sm:mr-4 object-cover"
+          />
+          <div>
+            <h2>Hardware</h2>
+            <p>
+              We have our own server rack comprising of two Dell Xeon servers
+              running Virtual Machines, a WSC-built storage server and several
+              University hand-me-down machines. The office contains 3 user
+              desktops and several printers and we have 4 EPOS till systems
+              (including card scanners and receipt printers). We also use many
+              Raspberry Pis for slideshow computers around the science concourse
+              and at the start of each screening. Generally we run Ubuntu,
+              Windows Server and Windows 10.
+            </p>
 
-        <h2>Websites</h2>
-        <p>
-          Our new public website (which you&apos;re on right now!) was written
-          from scratch this year using NextJS (React) with Tailwind. We also
-          have an older website written in PHP which is used for the crew-only
-          areas such as rotas - however we&apos;re in the slow process of
-          phasing this out too! Our websites provide publicity, crew sign ups
-          (including show rotas), and our own custom EPOS system.
-        </p>
+            <h2>Websites</h2>
+            <p>
+              Our new public website (which you&apos;re on right now!) was
+              written from scratch this year using NextJS (React) with Tailwind.
+              We also have an older website written in PHP which is used for the
+              crew-only areas such as rotas - however we&apos;re in the slow
+              process of phasing this out too! Our websites provide publicity,
+              crew sign ups (including show rotas), and our own custom EPOS
+              system.
+            </p>
+          </div>
+        </div>
       </main>
     </>
   );
