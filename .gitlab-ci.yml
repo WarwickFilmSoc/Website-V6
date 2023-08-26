@@ -74,7 +74,7 @@ build-image:
 deploy-main:
   stage: deploy
   before_script:
-    - 'command -v ssh-agent >/dev/null || ( apk update -y && apk install openssh-client -y )'
+    - 'command -v ssh-agent >/dev/null || ( apk update && apk add openssh-client )'
     - eval $(ssh-agent -s)
     - chmod 400 "$GITLAB_RUNNER_CI_SSH_PRIVATE_KEY"
     - ssh-add "$GITLAB_RUNNER_CI_SSH_PRIVATE_KEY"
@@ -87,9 +87,7 @@ deploy-main:
   variables:
     SERVICE_NAME: website-v6-dev
     IMAGE: website-v6:main
-  when: manual
-  needs:
-    - build-image
+
   only:
     - main
 
@@ -100,3 +98,6 @@ deploy-production:
   variables:
     SERVICE_NAME: website-v6-production
     IMAGE: website-v6:production
+  when: manual
+  needs:
+    - build-image
