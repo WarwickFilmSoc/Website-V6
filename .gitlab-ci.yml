@@ -20,11 +20,12 @@ stages:          # List of stages for jobs, and their order of execution
   - install
   - lint
   - build
+  - release
 
 default:
     image: node:18-alpine
 
-install-deps:       # This job runs in the build stage, which runs first.
+install-deps:
   stage: install
   script:
     - echo "Installing dependencies..."
@@ -42,12 +43,28 @@ run-linter:
     - npm run lint
     - echo "No lint issues found."
 
-build-dist:       # This job runs in the build stage, which runs first.
+build-app:
   stage: build
   script:
-    - echo "Compiling the code..."
+    - echo "Compiling app..."
     - npm run build
     - echo "Compile complete."
   artifacts:
     paths:
-      - dist
+      - .next
+
+build-image:
+  stage: release
+  image:
+    name: gcr.io/kaniko-project/executor:v1.9.0-debug
+    entrypoint: [""]
+  script:
+    - echo "Building Docker image..."
+    - /kaniko/executor
+      --context "${CI_PROJECT_DIR}"
+      --dockerfile "${CI_PROJECT_DIR}/.docker/Dockerfile"
+      --destination "${CI_REGISTRY_IMAGE}:${CI_COMMIT_BRANCH}-${CI_COMMIT_SHORT_SHA}"
+    - echo "Build complete."
+  only:
+    - main
+    - production
