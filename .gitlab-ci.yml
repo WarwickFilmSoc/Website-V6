@@ -83,7 +83,7 @@ deploy-main:
     - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
   script:
     - echo "Updating service ${SERVICE_NAME} on Docker swarm..."
-    - ssh gitlab-runner-ci@host.docker.internal "docker service update --image=swarm:5000/website-v6:${IMAGE} ${SERVICE_NAME} && exit"
+    - ssh gitlab-runner-ci@host.docker.internal "docker service update --image=swarm:5000/${IMAGE} ${SERVICE_NAME} && exit"
     - echo "Deployment complete."
   variables:
     SERVICE_NAME: website-v6-dev
