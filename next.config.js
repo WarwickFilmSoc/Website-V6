@@ -57,7 +57,7 @@ const nextConfig = {
       permanent: true,
     },
   ],
-  output: process.env.NODE_ENV === 'production' ? 'standalone' : undefined,
+  output: 'standalone',
 };
 
 module.exports = nextConfig;

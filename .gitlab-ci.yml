@@ -88,6 +88,8 @@ deploy-main:
     SERVICE_NAME: website-v6-main
     IMAGE: website-v6:main
   when: manual
+  needs:
+    - build-image
   only:
     - main
 
