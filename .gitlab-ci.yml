@@ -63,7 +63,7 @@ build-image:
     - /kaniko/executor
       --context "${CI_PROJECT_DIR}"
       --dockerfile "${CI_PROJECT_DIR}/.docker/Dockerfile"
-      --destination "host.docker.internal:5000/website-v6:${CI_COMMIT_BRANCH}"
+      --destination "http://host.docker.internal:5000/website-v6:${CI_COMMIT_BRANCH}"
     - echo "Build complete."
   only:
     - main
