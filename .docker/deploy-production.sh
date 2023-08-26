@@ -7,4 +7,5 @@ sudo docker service create \
 --hostname "website-v6-production-{{ .Task.Slot }}" \
 --network overlay_a \
 --replicas 4 \
-swarm:5000/websitev6:production
+--env-file /data/website-v6/.env.production \
+swarm:5000/website-v6:production
