@@ -26,7 +26,9 @@ export default function It() {
           placeholder="blur"
         />
         <span className="text-xl font-lexend uppercase drop-shadow-lg -mb-1">
-          <Link href="/crew">Crew</Link>
+          <Link href="/crew" className="text-white">
+            Crew
+          </Link>
         </span>
         <h1 className="mb-4 lg:mb-10 drop-shadow-lg">IT Team</h1>
         <p>
