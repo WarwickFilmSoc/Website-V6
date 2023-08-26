@@ -1,9 +1,9 @@
 import Link from 'next/link';
 import { execTeam, getExecPositionNames } from '@/data/exec';
 import Image from 'next/image';
-import coverImage from '@/assets/crew/teams/foh-cover.jpg';
-import teamImage from '@/assets/crew/teams/foh-team.jpg';
-import dmsImage from '@/assets/crew/teams/foh-dms.jpg';
+import coverImage from '@/assets/crew/foh-cover.jpg';
+import teamImage from '@/assets/crew/foh-team.jpg';
+import dmsImage from '@/assets/crew/foh-dms.jpg';
 import TeamOfficerCard from '@/app/crew/team-officer-card';
 
 export default function FrontOfHouse() {

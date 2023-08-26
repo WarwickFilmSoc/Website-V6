@@ -1,8 +1,8 @@
 import Link from 'next/link';
 import { execTeam, getExecPositionNames } from '@/data/exec';
 import Image from 'next/image';
-import coverImage from '@/assets/crew/teams/marketing-cover.jpg';
-import instagramImage from '@/assets/crew/teams/marketing-instagram.jpg';
+import coverImage from '@/assets/crew/marketing-cover.jpg';
+import instagramImage from '@/assets/crew/marketing-instagram.jpg';
 import TeamOfficerCard from '@/app/crew/team-officer-card';
 
 export default function Marketing() {

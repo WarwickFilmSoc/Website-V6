@@ -1,9 +1,9 @@
 import Link from 'next/link';
 import { execTeam, getExecPositionNames } from '@/data/exec';
 import Image from 'next/image';
-import coverImage from '@/assets/crew/teams/it-cover.jpg';
-import computersImage from '@/assets/crew/teams/it-computers.jpg';
-import serverRackImage from '@/assets/crew/teams/it-server-rack.jpg';
+import coverImage from '@/assets/crew/it-cover.jpg';
+import computersImage from '@/assets/crew/it-computers.jpg';
+import serverRackImage from '@/assets/crew/it-server-rack.jpg';
 import TeamOfficerCard from '@/app/crew/team-officer-card';
 
 export default function It() {

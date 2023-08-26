@@ -1,11 +1,11 @@
 import Link from 'next/link';
 import { execTeam, getExecPositionNames } from '@/data/exec';
 import Image from 'next/image';
-import coverImage from '@/assets/crew/teams/projection-cover.jpg';
-import projectorsImage from '@/assets/crew/teams/projection-projectors.jpg';
-import filmImage from '@/assets/crew/teams/projection-film.jpg';
-import meetingImage from '@/assets/crew/teams/projection-meeting.jpg';
-import soundImage from '@/assets/crew/teams/projection-sound.jpg';
+import coverImage from '@/assets/crew/projection-cover.jpg';
+import projectorsImage from '@/assets/crew/projection-projectors.jpg';
+import filmImage from '@/assets/crew/projection-film.jpg';
+import meetingImage from '@/assets/crew/projection-meeting.jpg';
+import soundImage from '@/assets/crew/projection-sound.jpg';
 import TeamOfficerCard from '@/app/crew/team-officer-card';
 
 export default function Projection() {

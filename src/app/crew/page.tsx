@@ -1,11 +1,11 @@
 import React from 'react';
 import Link from 'next/link';
-import crewImage from '@/assets/crew/teams/crew.jpg';
-import fohImage from '@/assets/crew/teams/foh.jpg';
-import projectionImage from '@/assets/crew/teams/projection.jpg';
-import publicityImage from '@/assets/crew/teams/publicity.jpg';
-import itImage from '@/assets/crew/teams/it.jpg';
-import marketingImage from '@/assets/crew/teams/marketing.jpg';
+import crewImage from '@/assets/crew/crew.jpg';
+import fohImage from '@/assets/crew/foh.jpg';
+import projectionImage from '@/assets/crew/projection.jpg';
+import publicityImage from '@/assets/crew/publicity.jpg';
+import itImage from '@/assets/crew/it.jpg';
+import marketingImage from '@/assets/crew/marketing.jpg';
 import Image from 'next/image';
 import LoginForm from '@/components/login-form';
 

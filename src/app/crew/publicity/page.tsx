@@ -1,8 +1,8 @@
 import Link from 'next/link';
 import { execTeam, getExecPositionNames } from '@/data/exec';
 import Image from 'next/image';
-import coverImage from '@/assets/crew/teams/publicity-cover.jpg';
-import scheduleImage from '@/assets/crew/teams/publicity-schedule.jpg';
+import coverImage from '@/assets/crew/publicity-cover.jpg';
+import scheduleImage from '@/assets/crew/publicity-schedule.jpg';
 import TeamOfficerCard from '@/app/crew/team-officer-card';
 
 export default function Publicity() {
