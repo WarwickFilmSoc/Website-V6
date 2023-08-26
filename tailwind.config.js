@@ -18,6 +18,7 @@ module.exports = {
         accent: '#4EDAB8',
         white: '#FFFFFF',
         dark: '#05050C',
+        modal: '#15193b',
       },
       width: {
         112: '28rem',
@@ -39,6 +40,7 @@ module.exports = {
       poppins: ['var(--font-poppins)', 'sans-serif'],
     },
     screens: {
+      '2xs': '440px',
       xs: '520px',
       ...defaultTheme.screens,
       '3xl': '1800px',
