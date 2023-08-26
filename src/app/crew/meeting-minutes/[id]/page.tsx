@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import prisma from '@/lib/prisma';
+import { meetings } from '@prisma/client';
 import { getMeetingTypeString } from '@/app/crew/meeting-minutes/meetings';
 import LargeButtonLink from '@/components/large-button-link';
 
@@ -14,7 +15,7 @@ export async function generateStaticParams() {
       },
     ],
   });
-  return meetings.map((meeting) => ({ id: meeting.id.toString() }));
+  return meetings.map((meeting: meetings) => ({ id: meeting.id.toString() }));
 }
 
 export default async function MeetingMinutes({
