@@ -1,4 +1,4 @@
-FROM node:16-alpine
+FROM node:18-alpine
 
 ENV NODE_ENV production
 ENV NEXT_TELEMETRY_DISABLED 1
@@ -17,6 +17,7 @@ EXPOSE 3000
 
 ENV PORT 3000
 ENV HOSTNAME "127.0.0.1"
+ENV NODE_TLS_REJECT_UNAUTHORIZED 0
 
 WORKDIR /app
 CMD ["node", "server.js"]
