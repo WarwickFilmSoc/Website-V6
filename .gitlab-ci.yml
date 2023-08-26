@@ -85,7 +85,7 @@ deploy-main:
     - docker service update --image=swarm:5000/website-v6:$IMAGE $SERVICE_NAME
     - echo "Deployment complete."
   variables:
-    SERVICE_NAME: website-v6-main
+    SERVICE_NAME: website-v6-dev
     IMAGE: website-v6:main
   when: manual
   needs:
