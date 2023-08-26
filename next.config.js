@@ -57,7 +57,7 @@ const nextConfig = {
       permanent: true,
     },
   ],
-  // output: 'standalone', # For some reason this breaks stuff. Idk why
+  output: 'standalone', // # For some reason this breaks stuff. Idk why
 };
 
 module.exports = nextConfig;

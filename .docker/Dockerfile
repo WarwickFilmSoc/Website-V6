@@ -1,4 +1,4 @@
-FROM node:18-alpine
+FROM node:16-alpine
 
 ENV NODE_ENV production
 ENV NEXT_TELEMETRY_DISABLED 1
@@ -6,10 +6,10 @@ ENV NEXT_TELEMETRY_DISABLED 1
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
-# COPY ./public /app/public
-# COPY --chown=nextjs:nodejs ./.next/standalone /app
-# COPY --chown=nextjs:nodejs ./.next/static /app/.next/static
-COPY --chown=nextjs:nodejs . /app
+COPY ./public /app/public
+COPY --chown=nextjs:nodejs ./.next/standalone /app
+COPY --chown=nextjs:nodejs ./.next/static /app/.next/static
+# COPY --chown=nextjs:nodejs . /app
 
 USER nextjs
 
@@ -19,5 +19,5 @@ ENV PORT 3000
 ENV HOSTNAME "127.0.0.1"
 
 WORKDIR /app
-#CMD ["node", "server.js"]
-CMD ["npm", "start"]
+CMD ["node", "server.js"]
+# CMD ["npm", "start"]
