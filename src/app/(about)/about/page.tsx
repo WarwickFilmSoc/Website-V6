@@ -108,7 +108,11 @@ export default function About() {
         <Link href="/faq" className="text-accent">
           FAQ
         </Link>
-        &nbsp; or contact the Executive at&nbsp;
+        , contact an&nbsp;
+        <Link href="/executive" className="text-accent">
+          individual Executive Team member
+        </Link>
+        &nbsp;or contact the Executive collectively at&nbsp;
         <a
           href="mailto:info@warwick.film"
           target="_blank"

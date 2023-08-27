@@ -26,7 +26,6 @@ const leftFooterLinks: FooterLink[][] = [
     { name: 'Tech Specs', href: '/technical-specifications' },
     { name: 'Our History', href: '/history' },
     { name: 'FAQ', href: '/faq' },
-    { name: 'Contact Us', href: '/contact' },
     { name: 'Constitution', href: '/constitution' },
     { name: 'Terms', href: '/terms-and-conditions' },
   ],
