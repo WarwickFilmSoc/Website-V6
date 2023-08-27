@@ -30,6 +30,10 @@ main {
   @apply w-full mx-auto max-w-7xl px-4 xs:px-8;
 }
 
+img {
+  @apply bg-modal text-center flex justify-center items-center text-sm;
+}
+
 .content-style p {
   @apply mb-4;
 }

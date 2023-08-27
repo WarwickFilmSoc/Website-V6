@@ -15,6 +15,7 @@ export default function It() {
           alt="The WSC server rack"
           className="object-cover w-full h-96 blur-xs brightness-50"
           placeholder="blur"
+          priority
         />
       </div>
       <main className="content-style -mt-32 sm:-mt-56 lg:-mt-20">
@@ -24,6 +25,7 @@ export default function It() {
           width={350}
           className="lg:float-right relative lg:ml-4 mb-4"
           placeholder="blur"
+          priority
         />
         <span className="text-xl font-lexend uppercase drop-shadow-lg -mb-1">
           <Link href="/crew" className="text-white">

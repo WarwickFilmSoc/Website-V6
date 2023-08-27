@@ -8,13 +8,14 @@ import logoWhite from '@/assets/logos/logo-white.png';
 export default function HeroCarousel() {
   return (
     <div className="h-[75vh] min-h-[32rem] -mt-24 block">
-      <Carousel slideInterval={1000000} indicators={false}>
+      <Carousel slideInterval={10000} indicators={false}>
         <article className="h-full relative">
           <Image
             src={warwickOpenDay}
             alt="Eric and Daniel at a Warwick Open Day"
             className="absolute object-cover h-full"
-            priority={true}
+            priority
+            placeholder="blur"
           />
           <div className="absolute w-full h-full bg-gradient-to-b from-[#00000033] to-[#000000aa]" />
           <div className="absolute w-full top-20 flex items-center justify-center drop-shadow-md py-6 bottom-28 h-sm:bottom-32 h-md:bottom-48 h-lg:bottom-64">
@@ -33,7 +34,9 @@ export default function HeroCarousel() {
                   src={logoWhite}
                   alt="Warwick Student Cinema Logo"
                   width={180}
-                  className="w-24 sm:w-32 md:w-44"
+                  className="w-24 sm:w-32 md:w-44 bg-transparent"
+                  placeholder="blur"
+                  priority
                 />
               </div>
             </div>
@@ -42,10 +45,11 @@ export default function HeroCarousel() {
         <article className="h-full relative">
           <Image
             src="https://m.media-amazon.com/images/M/MV5BMTU4NjYwNzAxN15BMl5BanBnXkFtZTgwMDkyODI4NjM@._V1_.jpg"
-            alt="Eric and Daniel at a Warwick Open Day"
+            alt="A film"
             className="absolute object-cover h-full"
             width={3200}
             height={1800}
+            priority
           />
           <div className="absolute w-full h-full bg-gradient-to-b from-[#00000033] to-[#000000aa]" />
           <div className="absolute w-full top-20 flex items-center justify-center drop-shadow-md py-6 bottom-28 h-sm:bottom-32 h-md:bottom-48 h-lg:bottom-64">
@@ -66,7 +70,9 @@ export default function HeroCarousel() {
                   src={logoWhite}
                   alt="Warwick Student Cinema Logo"
                   width={180}
-                  className="w-24 sm:w-32 md:w-44"
+                  className="w-24 sm:w-32 md:w-44 bg-transparent"
+                  placeholder="blur"
+                  priority
                 />
               </div>
             </div>

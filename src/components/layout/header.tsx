@@ -104,7 +104,9 @@ export default function Header() {
             <Image
               src={wscLogo}
               alt="Warwick Student Cinema logo"
-              className="h-16 w-16 object-contain drop-shadow-md"
+              className="h-16 w-16 object-contain drop-shadow-md bg-transparent"
+              priority
+              placeholder="blur"
             />
           </Link>
           <div

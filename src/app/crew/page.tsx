@@ -39,6 +39,8 @@ export default function Crew() {
             src={crewImage}
             alt="The crew in the WSC office"
             className="object-cover h-36 mb-6"
+            placeholder="blur"
+            priority
           />
           <h1 className="mb-1">Join the Crew</h1>
           <p className="mb-2">
@@ -75,6 +77,7 @@ export default function Crew() {
                 alt={`The ${team.name} team`}
                 width={220}
                 className="w-56 h-36 object-cover group-hover:scale-105"
+                placeholder="blur"
               />
             </div>
 

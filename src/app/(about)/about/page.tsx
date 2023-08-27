@@ -14,6 +14,8 @@ export default function About() {
         alt="Eric writing Warwick Filmsoc Presents on our chalkboard"
         width={400}
         className="md:float-right md:ml-2 mb-2 w-72 lg:w-96"
+        placeholder="blur"
+        priority
       />
       <h1>About Us</h1>
       <p className="mb-2">

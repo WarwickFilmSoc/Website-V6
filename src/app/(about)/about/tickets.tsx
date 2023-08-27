@@ -68,7 +68,7 @@ export default function Tickets({ showTitle }: { showTitle?: boolean }) {
       <table className="table-style">
         <thead>
           <tr>
-            <th>Ticket</th>
+            <th>Term Pass</th>
             <th>Price</th>
           </tr>
         </thead>

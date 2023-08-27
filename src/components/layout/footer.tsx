@@ -126,6 +126,7 @@ export default function Footer() {
                 alt="Letterboxd Logo"
                 height={27}
                 width={27}
+                className="bg-transparent"
               />
             </a>
             <a
@@ -138,6 +139,7 @@ export default function Footer() {
                 alt="Instagram Logo"
                 height={26}
                 width={26}
+                className="bg-transparent"
               />
             </a>
             <a
@@ -145,7 +147,13 @@ export default function Footer() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Image src={xLogo} alt="X Logo" height={23} width={23} />
+              <Image
+                src={xLogo}
+                alt="X Logo"
+                height={23}
+                width={23}
+                className="bg-transparent"
+              />
             </a>
             <a
               href="https://www.facebook.com/wscfilmsoc"
@@ -157,6 +165,7 @@ export default function Footer() {
                 alt="Facebook Logo"
                 height={30}
                 width={30}
+                className="bg-transparent"
               />
             </a>
             <a
@@ -169,6 +178,7 @@ export default function Footer() {
                 alt="TikTok Logo"
                 height={23}
                 width={23}
+                className="bg-transparent"
               />
             </a>
           </div>
@@ -195,6 +205,7 @@ export default function Footer() {
                   src={cinemaForAllLogo}
                   alt="Cinema For All Logo"
                   height={40}
+                  className="bg-transparent"
                 />
               </a>
               <a
@@ -202,7 +213,12 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener"
               >
-                <Image src={warwickSuLogo} alt="Warwick SU Logo" height={40} />
+                <Image
+                  src={warwickSuLogo}
+                  alt="Warwick SU Logo"
+                  height={40}
+                  className="bg-transparent"
+                />
               </a>
               <a
                 href="https://filmhubmidlands.org/"
@@ -213,6 +229,7 @@ export default function Footer() {
                   src={filmHubMidlandsLogo}
                   alt="Film Hub Midlands Logo"
                   height={40}
+                  className="bg-transparent"
                 />
               </a>
             </div>
