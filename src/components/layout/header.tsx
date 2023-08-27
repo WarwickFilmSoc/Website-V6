@@ -26,7 +26,7 @@ function HeaderLink({
     <span className={`sm:relative group ${className}`}>
       <Link
         href={mainLink.href}
-        className={`hover:scale-105 block ${mainLinkClass} ${
+        className={`hover:scale-105 block drop-shadow-md ${mainLinkClass} ${
           pathname === mainLink.href ? 'font-black' : ''
         }`}
       >
@@ -105,7 +105,7 @@ export default function Header() {
             <Image
               src={wscLogo}
               alt="Warwick Student Cinema logo"
-              className="h-16 w-16 object-contain"
+              className="h-16 w-16 object-contain drop-shadow-md"
             />
           </Link>
           <div
@@ -150,7 +150,7 @@ export default function Header() {
               href="https://blog.warwick.film"
               rel="noopener"
               target="_blank"
-              className="hidden sm:block hover:scale-105"
+              className="hidden sm:block hover:scale-105 drop-shadow-md"
             >
               Blog
             </a>

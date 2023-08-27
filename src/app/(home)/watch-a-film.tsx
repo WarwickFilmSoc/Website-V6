@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import map from '@/assets/home/map.jpg';
+import LargeButtonLink from '@/components/large-button-link';
 
 export default function WatchAFilm() {
   return (
@@ -57,6 +58,7 @@ export default function WatchAFilm() {
             . We&apos;re on the 2nd floor of the Science Concourse, directly
             opposite the library.
           </p>
+          <LargeButtonLink href="/about">Find out More</LargeButtonLink>
         </div>
       </div>
     </section>
