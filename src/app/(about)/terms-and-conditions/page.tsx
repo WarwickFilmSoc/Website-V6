@@ -2,13 +2,15 @@ import Link from 'next/link';
 
 export default function TermsAndConditions() {
   return (
-    <main>
+    <main className="content-style">
       <p className="text-xl font-lexend uppercase -mb-1">
-        <Link href="/about">About Us</Link>
+        <Link href="/about" className="text-white">
+          About Us
+        </Link>
       </p>
-      <h1 className="mb-1">Terms and Conditions</h1>
+      <h1>Terms and Conditions</h1>
       <h2>Ticketing Terms and Conditions</h2>
-      <ol className="mb-8 list-decimal">
+      <ol>
         <li>
           WSC tickets are valid only for the date and time specified on the
           ticket.
@@ -50,6 +52,17 @@ export default function TermsAndConditions() {
           but the decision on whether to admit late-comers at all, and if so
           what price to charge them is solely at the discretion of the Duty
           Manager on the night.
+        </li>
+        <li>
+          Transfers and refunds follow the&nbsp;
+          <a
+            href="https://www.warwicksu.com/your-union/tac/purchasing"
+            target="_blank"
+            rel="noopener"
+          >
+            Warwick SU Terms and Conditions of Purchasing policy
+          </a>
+          .
         </li>
       </ol>
 

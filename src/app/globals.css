@@ -65,13 +65,17 @@ main {
   @apply text-accent;
 }
 
-.content-style th {
+.content-style table, table.table-style {
+  @apply table-auto border-2 border-primary;
+}
+
+.content-style th, .table-style th {
   @apply text-left;
   @apply px-2;
   @apply border border-primary;
 }
 
-.content-style td {
+.content-style td, .table-style td {
   @apply text-center;
   @apply px-2;
   @apply border border-primary;

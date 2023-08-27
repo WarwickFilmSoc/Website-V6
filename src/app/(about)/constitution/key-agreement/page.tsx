@@ -52,125 +52,127 @@ export default function KeyAgreement() {
         Executive Committee should it be deemed necessary, in spite of any
         qualifications held by the person in question.
       </p>
-      <table className="table-auto border-2 border-primary mt-2">
-        <tr>
-          <th>Position / Key</th>
-          <th>Corridor</th>
-          <th>Office</th>
-          <th>Dual Proj/Office</th>
-          <th>Corridor Key Box</th>
-          <th>Technical Key Box</th>
-          <th>DM Locker</th>
-        </tr>
-        <tr>
-          <th className="font-normal">President</th>
-          <td>✓</td>
-          <td></td>
-          <td>✓</td>
-          <td>✓</td>
-          <td>✓</td>
-          <td>✓</td>
-        </tr>
-        <tr>
-          <th className="font-normal">Vice-President</th>
-          <td>✓</td>
-          <td>✓</td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
-          <th className="font-normal">Treasurer</th>
-          <td>✓</td>
-          <td>✓</td>
-          <td></td>
-          <td>✓</td>
-          <td></td>
-          <td>✓</td>
-        </tr>
-        <tr>
-          <th className="font-normal">Films Officer</th>
-          <td>✓</td>
-          <td></td>
-          <td>✓</td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
-          <th className="font-normal">Chief Projectionist</th>
-          <td>✓</td>
-          <td></td>
-          <td>✓</td>
-          <td></td>
-          <td>✓</td>
-          <td></td>
-        </tr>
-        <tr>
-          <th className="font-normal">Chief DM</th>
-          <td>✓</td>
-          <td>✓</td>
-          <td></td>
-          <td>✓</td>
-          <td></td>
-          <td>✓</td>
-        </tr>
-        <tr>
-          <th className="font-normal">Publicity Officer</th>
-          <td>✓</td>
-          <td>✓</td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
-          <th className="font-normal">Technical Officer</th>
-          <td>✓</td>
-          <td></td>
-          <td>✓</td>
-          <td></td>
-          <td>✓</td>
-          <td></td>
-        </tr>
-        <tr>
-          <th className="font-normal">IT Officer</th>
-          <td>✓</td>
-          <td></td>
-          <td>✓</td>
-          <td></td>
-          <td></td>
-          <td>✓</td>
-        </tr>
-        <tr>
-          <th className="font-normal">Marketing Officer</th>
-          <td>✓</td>
-          <td>✓</td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
-          <th className="font-normal">Duty Managers</th>
-          <td>✓</td>
-          <td></td>
-          <td></td>
-          <td>✓</td>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
-          <th className="font-normal">Projectionists</th>
-          <td>✓</td>
-          <td></td>
-          <td>✓</td>
-          <td></td>
-          <td>✓</td>
-          <td></td>
-        </tr>
-      </table>
+      <div className="overflow-x-auto max-w-full">
+        <table className="mt-2">
+          <tr>
+            <th>Position / Key</th>
+            <th>Corridor</th>
+            <th>Office</th>
+            <th>Dual Proj/Office</th>
+            <th>Corridor Key Box</th>
+            <th>Technical Key Box</th>
+            <th>DM Locker</th>
+          </tr>
+          <tr>
+            <th className="font-normal">President</th>
+            <td>✓</td>
+            <td></td>
+            <td>✓</td>
+            <td>✓</td>
+            <td>✓</td>
+            <td>✓</td>
+          </tr>
+          <tr>
+            <th className="font-normal">Vice-President</th>
+            <td>✓</td>
+            <td>✓</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <th className="font-normal">Treasurer</th>
+            <td>✓</td>
+            <td>✓</td>
+            <td></td>
+            <td>✓</td>
+            <td></td>
+            <td>✓</td>
+          </tr>
+          <tr>
+            <th className="font-normal">Films Officer</th>
+            <td>✓</td>
+            <td></td>
+            <td>✓</td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <th className="font-normal">Chief Projectionist</th>
+            <td>✓</td>
+            <td></td>
+            <td>✓</td>
+            <td></td>
+            <td>✓</td>
+            <td></td>
+          </tr>
+          <tr>
+            <th className="font-normal">Chief DM</th>
+            <td>✓</td>
+            <td>✓</td>
+            <td></td>
+            <td>✓</td>
+            <td></td>
+            <td>✓</td>
+          </tr>
+          <tr>
+            <th className="font-normal">Publicity Officer</th>
+            <td>✓</td>
+            <td>✓</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <th className="font-normal">Technical Officer</th>
+            <td>✓</td>
+            <td></td>
+            <td>✓</td>
+            <td></td>
+            <td>✓</td>
+            <td></td>
+          </tr>
+          <tr>
+            <th className="font-normal">IT Officer</th>
+            <td>✓</td>
+            <td></td>
+            <td>✓</td>
+            <td></td>
+            <td></td>
+            <td>✓</td>
+          </tr>
+          <tr>
+            <th className="font-normal">Marketing Officer</th>
+            <td>✓</td>
+            <td>✓</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <th className="font-normal">Duty Managers</th>
+            <td>✓</td>
+            <td></td>
+            <td></td>
+            <td>✓</td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <th className="font-normal">Projectionists</th>
+            <td>✓</td>
+            <td></td>
+            <td>✓</td>
+            <td></td>
+            <td>✓</td>
+            <td></td>
+          </tr>
+        </table>
+      </div>
 
       <h2 className="!mt-8">Key Agreement</h2>
       <p className="!mb-4">
