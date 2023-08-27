@@ -24,7 +24,7 @@ stages:          # List of stages for jobs, and their order of execution
   - deploy
 
 default:
-    image: node:18-alpine
+    image: node:18.17.1-alpine
 
 install-deps:
   stage: install
