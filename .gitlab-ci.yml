@@ -30,7 +30,7 @@ install-deps:
   stage: install
   script:
     - echo "Installing dependencies..."
-    - npm ci --cache .npm
+    - npm ci --cache
     - echo "Dependencies installed."
   artifacts:
     paths:

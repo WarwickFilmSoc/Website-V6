@@ -18,5 +18,4 @@ ENV PORT 3000
 ENV HOSTNAME "0.0.0.0"
 
 WORKDIR /app
-RUN npm i sharp
 CMD ["node", "server.js"]
