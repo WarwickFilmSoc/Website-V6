@@ -1,9 +1,9 @@
 import Link from 'next/link';
 
-export default function Tickets() {
+export default function Tickets({ showTitle }: { showTitle?: boolean }) {
   return (
-    <div>
-      <h2>Tickets</h2>
+    <div id="tickets">
+      {showTitle && <h2>Tickets</h2>}
       <p className="mb-1">
         Tickets can either be purchased&nbsp;
         <a

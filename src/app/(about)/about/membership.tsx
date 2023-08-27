@@ -1,7 +1,7 @@
 export default function Membership() {
   return (
     <div>
-      <h2>WSC Membership</h2>
+      <h2 id="membership">WSC Membership</h2>
       <p className="mb-2">
         WSC Members enjoy discounted tickets, the ability to join crew and
         additional benefits such as free, select films throughout the year.
@@ -30,7 +30,15 @@ export default function Membership() {
         .
       </p>
       <p className="mb-1">
-        Membership and the&nbsp;
+        <a
+          href="https://www.warwicksu.com/societies-sports/societies/filmsoc/#org-join"
+          target="_blank"
+          rel="noopener"
+          className="text-accent"
+        >
+          Membership
+        </a>
+        &nbsp;and the&nbsp;
         <a
           href="https://www.warwicksu.com/societies-sports/societies/societies-federation-membership/"
           target="_blank"
@@ -39,8 +47,16 @@ export default function Membership() {
         >
           Societies Federation Fee
         </a>
-        &nbsp;can be purchased online from Warwick SU or in cash from our
-        stewards.
+        &nbsp;can be purchased&nbsp;
+        <a
+          href="https://www.warwicksu.com/societies-sports/societies/filmsoc/#org-join"
+          target="_blank"
+          rel="noopener"
+          className="text-accent"
+        >
+          online from Warwick SU
+        </a>
+        &nbsp;or in cash from our stewards.
       </p>
       <table className="table-style">
         <thead>

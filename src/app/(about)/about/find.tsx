@@ -3,7 +3,7 @@ import map from '@/assets/home/map.jpg';
 
 export default function Find() {
   return (
-    <section>
+    <section id="find">
       <h2>Find Us</h2>
       <div className="flex gap-y-2 lg:gap-x-4 flex-col lg:flex-row items-start">
         <Image

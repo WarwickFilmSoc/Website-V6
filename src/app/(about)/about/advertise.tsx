@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 export default function Advertise() {
   return (
-    <section>
+    <section id="advertise">
       <h2>Advertise With Us</h2>
       <p className="mb-2">
         Warwick Student Cinema offers a variety of advertising opportunities for

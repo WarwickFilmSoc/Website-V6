@@ -120,7 +120,7 @@ export default function About() {
         .
       </p>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
-        <Tickets />
+        <Tickets showTitle />
         <Membership />
         <Find />
         <Advertise />
