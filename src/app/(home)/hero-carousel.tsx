@@ -35,7 +35,6 @@ export default function HeroCarousel() {
                   alt="Warwick Student Cinema Logo"
                   width={180}
                   className="w-24 sm:w-32 md:w-44 bg-transparent"
-                  placeholder="blur"
                   priority
                 />
               </div>
@@ -71,7 +70,6 @@ export default function HeroCarousel() {
                   alt="Warwick Student Cinema Logo"
                   width={180}
                   className="w-24 sm:w-32 md:w-44 bg-transparent"
-                  placeholder="blur"
                   priority
                 />
               </div>
