@@ -24,15 +24,13 @@ stages:          # List of stages for jobs, and their order of execution
   - deploy
 
 default:
-  #image: node:18.17.1-alpine
-  image: node:18.17.1
+  image: node:18.17.1-alpine
 
 install-deps:
   stage: install
   script:
     - echo "Installing dependencies..."
     - npm ci --cache .npm
-    - npm i sharp
     - echo "Dependencies installed."
   artifacts:
     paths:

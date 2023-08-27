@@ -1,5 +1,4 @@
-#FROM node:18.17.1-alpine
-FROM node:18.17.1
+FROM node:18.17.1-alpine
 
 ENV NODE_ENV production
 ENV NEXT_TELEMETRY_DISABLED 1
@@ -10,7 +9,6 @@ RUN adduser --system --uid 1001 nextjs
 COPY ./public /app/public
 COPY --chown=nextjs:nodejs ./.next/standalone /app
 COPY --chown=nextjs:nodejs ./.next/static /app/.next/static
-# COPY --chown=nextjs:nodejs . /app
 
 USER nextjs
 
@@ -18,8 +16,7 @@ EXPOSE 3000
 
 ENV PORT 3000
 ENV HOSTNAME "0.0.0.0"
-# ENV NODE_TLS_REJECT_UNAUTHORIZED 0
 
 WORKDIR /app
+RUN npm i sharp
 CMD ["node", "server.js"]
-# CMD ["npm", "start"]
