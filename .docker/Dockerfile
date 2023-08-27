@@ -1,5 +1,5 @@
 #FROM node:18.17.1-alpine
-FROM node:18.7.1
+FROM node:18.17.1
 
 ENV NODE_ENV production
 ENV NEXT_TELEMETRY_DISABLED 1
