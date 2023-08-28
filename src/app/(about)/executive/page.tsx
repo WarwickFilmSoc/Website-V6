@@ -53,13 +53,13 @@ export default function TheExecutiveTeam() {
               </a>
             </p>
 
-            <div className="h-48 m-2 flex justify-center items-center gap-x-4">
+            <div className="h-auto sm:h-48 m-2 flex justify-center items-center gap-2 sm:gap-4 flex-wrap sm:flex-nowrap">
               {position.members.map((member, i) => (
                 <Image
                   key={i}
                   src={member.image}
                   alt={member.name}
-                  className="h-full object-contain"
+                  className="h-32 sm:h-full object-contain w-auto"
                 />
               ))}
             </div>
