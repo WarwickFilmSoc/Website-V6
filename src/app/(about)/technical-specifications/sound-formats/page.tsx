@@ -7,6 +7,7 @@ import dts from '@/assets/about/technical/sound-dts.svg';
 import sdds from '@/assets/about/technical/sound-sdds.svg';
 import sdds8 from '@/assets/about/technical/sound-sdds-8.svg';
 import datasatDigitalSound from '@/assets/about/technical/sound-datasat-digital-sound.svg';
+import dolbyStereo70 from '@/assets/about/technical/sound-dolby-stereo-70.svg';
 
 export default function SoundFormats() {
   return (
@@ -143,8 +144,8 @@ export default function SoundFormats() {
       </p>
       <h2 id="dolby-stereo-70">Dolby Stereo 70mm Six Track</h2>
       <Image
-        src={dolbyStereo}
-        alt="Dolby Stereo"
+        src={dolbyStereo70}
+        alt="Dolby Stereo 70mm Six Track"
         className="mt-1 sm:float-right sm:ml-4 w-64 md:w-72 mb-2 bg-transparent"
         width={300}
       />
