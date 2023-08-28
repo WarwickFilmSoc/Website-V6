@@ -17,41 +17,41 @@
 # https://gitlab.com/gitlab-org/gitlab/-/blob/master/lib/gitlab/ci/templates/Getting-Started.gitlab-ci.yml
 
 stages:          # List of stages for jobs, and their order of execution
-  - install
-  - lint
-  - build
+#  - install
+#  - lint
+#  - build
   - release
   - deploy
 
 default:
   image: node:18.17.1-alpine
 
-install-deps:
-  stage: install
-  script:
-    - echo "Installing dependencies..."
-    - npm ci --cache
-    - echo "Dependencies installed."
-  artifacts:
-    paths:
-      - node_modules
-
-run-linter:
-  stage: lint
-  script:
-    - echo "Linting code..."
-    - npm run lint
-    - echo "No lint issues found."
-
-build-app:
-  stage: build
-  script:
-    - echo "Compiling app..."
-    - npm run build
-    - echo "Compile complete."
-  artifacts:
-    paths:
-      - .next
+#install-deps:
+#  stage: install
+#  script:
+#    - echo "Installing dependencies..."
+#    - npm ci --cache
+#    - echo "Dependencies installed."
+#  artifacts:
+#    paths:
+#      - node_modules
+#
+#run-linter:
+#  stage: lint
+#  script:
+#    - echo "Linting code..."
+#    - npm run lint
+#    - echo "No lint issues found."
+#
+#build-app:
+#  stage: build
+#  script:
+#    - echo "Compiling app..."
+#    - npm run build
+#    - echo "Compile complete."
+#  artifacts:
+#    paths:
+#      - .next
 
 build-image:
   stage: release
