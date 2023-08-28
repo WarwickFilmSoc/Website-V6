@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import FilmSearch from '@/app/(whats-on)/film-archive/film-search';
 
 export default function FilmArchive() {
   return (
@@ -7,7 +8,8 @@ export default function FilmArchive() {
         <Link href="/whats-on">What&apos;s On</Link>
       </p>
       <h1 className="mb-1">Film Archive</h1>
-      <p className="mb-2">Page Content</p>
+
+      <FilmSearch />
     </main>
   );
 }

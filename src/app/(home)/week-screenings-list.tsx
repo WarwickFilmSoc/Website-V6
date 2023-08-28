@@ -1,51 +1,37 @@
-import { FilmScreeningDay } from '@/types';
-import FilmScreeningDayCard from '@/components/film-screening-day-card';
+import FilmScreeningDayCard from './film-screening-day-card';
 import LargeButtonLink from '@/components/large-button-link';
+import prisma from '@/lib/prisma';
+import { getStartOfDaySecondTimestamp } from '@/lib/date';
+import { groupScreeningsByFilmScreeningDay } from '@/lib/film';
 
-const filmScreeningDays: FilmScreeningDay[] = [
-  {
-    id: 1,
-    film: { name: 'Everything Everywhere All At Once' },
-    screeningDates: [123, 123],
-  },
-  {
-    id: 2,
-    film: { name: 'Everything Everywhere All At Once' },
-    screeningDates: [123, 123],
-  },
-  {
-    id: 3,
-    film: { name: 'Everything Everywhere All At Once' },
-    screeningDates: [123, 123],
-  },
-  {
-    id: 4,
-    film: { name: 'Everything Everywhere All At Once' },
-    screeningDates: [123, 123],
-  },
-  {
-    id: 5,
-    film: { name: 'Everything Everywhere All At Once' },
-    screeningDates: [123, 123],
-  },
-  {
-    id: 6,
-    film: { name: 'Everything Everywhere All At Once' },
-    screeningDates: [123, 123],
-  },
-];
-export default function WeekScreeningsList() {
+export default async function WeekScreeningsList() {
+  const upcomingScreenings = await prisma.screening.findMany({
+    where: {
+      timestamp: {
+        gte: getStartOfDaySecondTimestamp(),
+      },
+    },
+    orderBy: {
+      timestamp: 'asc',
+    },
+    select: {
+      scr_id: true,
+      timestamp: true,
+      film: true,
+    },
+    take: 12, // 6 * 2 times for each screening
+  });
+  const upcomingFilmScreeningDays =
+    groupScreeningsByFilmScreeningDay(upcomingScreenings);
+
   return (
     <section className="w-full mb-24 z-30 drop-shadow-lg -mt-32 h-sm:-mt-36 h-md:-mt-48 h-lg:-mt-64 pt-2">
-      <h2 className="text-3xl mb-2 hidden xl:block">
-        This Week&#8217;s Screenings
-      </h2>
-      <h2 className="text-2xl mb-1 md:text-3xl md:mb-2 xl:hidden">Coming Up</h2>
+      <h2 className="text-3xl mb-2">Upcoming Screenings</h2>
       <div className="flex justify-center gap-x-6 mx-4 mb-6 overflow-x-hidden">
-        {filmScreeningDays.map((filmScreeningDay, i) => (
+        {upcomingFilmScreeningDays.map((filmScreeningDay, i) => (
           <FilmScreeningDayCard
             filmScreeningDay={filmScreeningDay}
-            key={filmScreeningDay.id}
+            key={filmScreeningDay.dayTime}
             index={i}
           />
         ))}

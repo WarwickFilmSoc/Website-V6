@@ -42,3 +42,22 @@ export function getRelativeTimeString(dateString: string) {
   });
   return rtf.format(Math.floor(deltaSeconds / divisor), units[unitIndex]);
 }
+
+export function formatSecondsTimestamp(timestamp: bigint) {
+  const date = new Date(Number(timestamp) * 1000);
+  return date.toLocaleString(undefined, {
+    weekday: 'short',
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+    hour12: true,
+  });
+}
+
+export function getStartOfDaySecondTimestamp(): number {
+  const date = new Date();
+  date.setHours(0, 0);
+  return Math.floor(date.getTime() / 1000);
+}

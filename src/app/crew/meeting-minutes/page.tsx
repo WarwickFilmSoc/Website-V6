@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import prisma from '@/lib/prisma';
-import { meetings } from '@prisma/client';
+import { Meeting } from '@prisma/client';
 import { getTabulaTermName } from '@/lib/tabula';
 import {
   getMeetingTypeIcon,
@@ -17,7 +17,7 @@ export default async function MeetingMinutes({
   pageNumber =
     pageNumber && !isNaN(pageNumber) && pageNumber > 0 ? pageNumber : 0;
 
-  const meetings = await prisma.meetings.findMany({
+  const meetings = await prisma.meeting.findMany({
     where: {
       visible: 1,
     },
@@ -30,8 +30,8 @@ export default async function MeetingMinutes({
     take: 25,
   });
 
-  let terms: { name: string; meetings: meetings[] }[] = [];
-  let currentTerm: { name: string; meetings: meetings[] } | null = null;
+  let terms: { name: string; meetings: Meeting[] }[] = [];
+  let currentTerm: { name: string; meetings: Meeting[] } | null = null;
   for (const meeting of meetings) {
     let meetingTerm = await getTabulaTermName(meeting.meeting_date);
     if (!currentTerm || meetingTerm !== currentTerm.name) {

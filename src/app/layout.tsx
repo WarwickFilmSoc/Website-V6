@@ -3,6 +3,8 @@ import type { Metadata } from 'next';
 import { Lexend, Poppins } from 'next/font/google';
 import Footer from '@/components/layout/footer';
 import Header from '@/components/layout/header';
+import Providers from '@/app/providers';
+import { ReactNode } from 'react';
 
 const lexend = Lexend({
   subsets: ['latin'],
@@ -34,18 +36,20 @@ export default function RootLayout({
   children,
   ticketsModal,
 }: {
-  children: React.ReactNode;
-  ticketsModal: React.ReactNode;
+  children: ReactNode;
+  ticketsModal: ReactNode;
 }) {
   return (
     <html lang="en">
       <body
         className={`${lexend.variable} ${poppins.variable} flex flex-col min-h-screen`}
       >
-        <Header />
-        {children}
-        <Footer />
-        {ticketsModal}
+        <Providers>
+          <Header />
+          {children}
+          <Footer />
+          {ticketsModal}
+        </Providers>
       </body>
     </html>
   );

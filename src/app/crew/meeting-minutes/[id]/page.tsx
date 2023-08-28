@@ -1,11 +1,11 @@
 import Link from 'next/link';
 import prisma from '@/lib/prisma';
-import { meetings } from '@prisma/client';
+import { Meeting } from '@prisma/client';
 import { getMeetingTypeString } from '@/app/crew/meeting-minutes/meetings';
 import LargeButtonLink from '@/components/large-button-link';
 
 export async function generateStaticParams() {
-  const meetings = await prisma.meetings.findMany({
+  const meetings = await prisma.meeting.findMany({
     where: {
       visible: 1,
     },
@@ -15,7 +15,7 @@ export async function generateStaticParams() {
       },
     ],
   });
-  return meetings.map((meeting: meetings) => ({ id: meeting.id.toString() }));
+  return meetings.map((meeting: Meeting) => ({ id: meeting.id.toString() }));
 }
 
 export default async function MeetingMinutes({
@@ -27,7 +27,7 @@ export default async function MeetingMinutes({
   let meeting;
 
   if (!Number.isNaN(numericId)) {
-    meeting = await prisma.meetings.findFirst({
+    meeting = await prisma.meeting.findFirst({
       where: {
         id: numericId,
         visible: 1,

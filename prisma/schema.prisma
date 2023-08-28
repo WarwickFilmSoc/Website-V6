@@ -8,12 +8,98 @@ datasource db {
 }
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
-model meetings {
+model Meeting {
   id           Int         @id @default(autoincrement())
   type         MeetingType @default(EXEC_MEETING)
   meeting_date DateTime    @default(dbgenerated("'0000-00-00 00:00:00'")) @db.DateTime(0)
   text         String      @db.MediumText
   visible      Int?        @default(1)
+
+  @@map("meetings")
+}
+
+model AspectCode {
+  code        Int     @id @default(0)
+  description String? @db.VarChar(50)
+
+  @@map("aspectcodes")
+}
+
+model CertCode {
+  code        Int     @id @default(0)
+  name        String  @default("") @db.VarChar(4)
+  description String? @db.VarChar(50)
+
+  @@map("certcodes")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model Film {
+  film_id         Int           @id @default(autoincrement()) @db.UnsignedInt
+  title           String        @default("") @db.VarChar(75)
+  year            Int?
+  runtime         Int           @default(0)
+  director        String        @db.VarChar(75)
+  starring        String        @db.VarChar(255)
+  synopsis        String        @db.MediumText
+  tagline         String?       @db.Text
+  review          String        @db.MediumText
+  reviewer        String        @default("Archive") @db.VarChar(50)
+  aspect          Int           @default(0)
+  cert            Int           @default(0)
+  imdb_url        String?       @db.VarChar(50)
+  imdb_id         String?       @db.VarChar(9)
+  tmdb_id         Int?
+  ticket_title    Bytes?        @db.MediumBlob
+  ticket_title_ct String        @db.Text
+  review_image    Int?
+  web_title       Int?
+  subtitles       FilmSubtitles @default(UNKNOWN)
+  screenings      Screening[]
+
+  // Length stuff may be incorrect but is required for Prisma to be happy
+  @@index([synopsis(length: 100), review(length: 100)], map: "synopsis")
+  @@map("films")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model Screening {
+  scr_id          Int                     @id @default(autoincrement()) @db.UnsignedInt
+  film_id         Int                     @default(0) @db.UnsignedInt
+  time            DateTime                @default(dbgenerated("'20:00:00'")) @db.Time(0)
+  date            DateTime                @default(dbgenerated("'0000-00-00'")) @db.Date
+  timestamp       BigInt?
+  location_id     Int                     @default(1)
+  gauge           ScreeningGauge          @default(DIGITAL)
+  graphics_status ScreeningGraphicsStatus @default(PENDING)
+  titles_status   ScreeningTitlesStatus   @default(PENDING)
+  editing_status  ScreeningEditingStatus  @default(PENDING)
+  union_event_id  Int?                    @unique(map: "union_event_id") @db.UnsignedInt
+  hidden          Boolean                 @default(false)
+  film            Film                    @relation(fields: [film_id], references: [film_id], onUpdate: Restrict, map: "film_id")
+
+  @@unique([film_id, scr_id], map: "epos")
+  @@index([film_id], map: "film_id")
+  @@index([location_id], map: "location_id")
+  @@index([timestamp], map: "timestamp")
+  @@map("screenings")
+}
+
+model SubtitleCode {
+  id          Int    @id @default(autoincrement())
+  name        String @default("") @db.VarChar(50)
+  description String @default("") @db.VarChar(255)
+
+  @@map("subtitle_codes")
+}
+
+model TermDate {
+  timestamp Int @id @default(0) @db.UnsignedInt
+  year      Int @db.Year
+  term      Int @default(0) @db.UnsignedTinyInt
+
+  @@index([term, year], map: "term_year")
+  @@map("term_dates")
 }
 
 enum MeetingType {
@@ -22,4 +108,40 @@ enum MeetingType {
   PROJECTIONIST_MEETING @map("Projectionists Meeting")
   PUBLICITY_MEETING     @map("Publicity Meeting")
   IT_MEETING            @map("IT Meeting")
+}
+
+enum ScreeningGauge {
+  MM_35        @map("35mm")
+  MM_70        @map("70mm")
+  MM_16        @map("16mm")
+  DIGITAL      @map("digital")
+  DIGITAL_35MM @map("35mm/digital")
+}
+
+enum ScreeningGraphicsStatus {
+  UNKNOWN @map("unknown")
+  N_A     @map("N/A")
+  PENDING @map("pending")
+  DONE    @map("done")
+}
+
+enum ScreeningTitlesStatus {
+  UNKNOWN @map("unknown")
+  N_A     @map("N/A")
+  PENDING @map("pending")
+  DONE    @map("done")
+}
+
+enum ScreeningEditingStatus {
+  UNKNOWN @map("unknown")
+  N_A     @map("N/A")
+  PENDING @map("pending")
+  DONE    @map("done")
+}
+
+enum FilmSubtitles {
+  NONE      @map("none")
+  UNKNOWN   @map("unknown")
+  EXPECTED  @map("expected")
+  PARTIALLY @map("partially")
 }
