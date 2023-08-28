@@ -8,7 +8,7 @@ export default function AboutUsCard() {
     <section className="w-2/5 flex-grow">
       <Link
         href="/about"
-        className="block bg-primary m-4 px-4 py-2 text-left text-center lg:text-left w-full h-full group hover:-translate-y-1 hover:drop-shadow-sm"
+        className="block bg-primary m-4 px-4 py-2 text-left text-center lg:text-left lg:w-full h-full group hover:-translate-y-1 hover:drop-shadow-sm"
       >
         <h2 className="text-2xl mb-1">About Us</h2>
         <div className="overflow-hidden">
