@@ -1,6 +1,6 @@
 stages:
   - install
-#  - lint
+  - lint
   - build
   - release
   - deploy
@@ -18,12 +18,12 @@ install-deps:
     paths:
       - node_modules
 
-#run-linter:
-#  stage: lint
-#  script:
-#    - echo "Linting code..."
-#    - npm run lint
-#    - echo "No lint issues found."
+run-linter:
+  stage: lint
+  script:
+    - echo "Linting code..."
+    - npm run lint
+    - echo "No lint issues found."
 
 build-app:
   stage: build
