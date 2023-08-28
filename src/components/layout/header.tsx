@@ -34,8 +34,8 @@ function HeaderLink({
       </Link>
       {dropdownLinks && dropdownLinks.length > 0 && (
         <div className="max-h-0 group-hover:max-h-96 group-hover:p-2 group-hover:pt-4 absolute opacity-50 group-hover:opacity-100 left-1/2 -translate-x-1/2 transition-[opacity,max-height,padding] duration-100 overflow-hidden content-border">
-          <div className="hidden sm:block absolute bg-white h-4 w-4 rotate-45 left-1/2 top-3 rounded-sm" />
-          <div className="bg-modal relative px-8 py-2 border-white border-2 text-center flex flex-col gap-2 w-max max-w-full overflow-hidden max-h-0 group-hover:max-h-96 transition-[max-height] duration-500 ease-in-out">
+          <div className="hidden sm:block absolute bg-white h-4 w-4 rotate-45 left-1/2 -ml-2 mr-4 top-3 rounded-sm" />
+          <div className="bg-modal relative px-8 py-2 border-white border-2 text-center flex flex-col gap-2 w-max max-w-full overflow-hidden max-h-0 group-hover:max-h-96 transition-[max-height] duration-300 ease-in-out">
             {dropdownLinks.map((link) => (
               <Link
                 href={link.href}
