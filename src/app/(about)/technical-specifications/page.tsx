@@ -213,7 +213,11 @@ export default function TechnicalSpecifications() {
           DTS digital sound
         </Link>
         . Magnetic sound on 35mm is rare &ndash; but we can play it if the need
-        arises!
+        arises! You can find all our supported sound formats on the&nbsp;
+        <Link href="/technical-specifications/sound-formats">
+          Sound Formats
+        </Link>
+        &nbsp;page.
       </p>
 
       <div className="flex gap-x-4 flex-col sm:flex-row">

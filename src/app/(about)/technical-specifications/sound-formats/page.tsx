@@ -6,8 +6,6 @@ import dolbyDigital from '@/assets/about/technical/sound-dolby-digital.svg';
 import dts from '@/assets/about/technical/sound-dts.svg';
 import sdds from '@/assets/about/technical/sound-sdds.svg';
 import sdds8 from '@/assets/about/technical/sound-sdds-8.svg';
-import dolbyDigitalSurroundEx from '@/assets/about/technical/sound-dolby-digital-surround-ex.svg';
-import dtsEs from '@/assets/about/technical/sound-dts-es.svg';
 import datasatDigitalSound from '@/assets/about/technical/sound-datasat-digital-sound.svg';
 
 export default function SoundFormats() {
@@ -130,34 +128,6 @@ export default function SoundFormats() {
         films being mixed for this. We sadly do not have Left Centre and Right
         Centre channels here at WSC so we mix these down when playing films in 8
         channels.
-      </p>
-      <h2 id="dds-ex">Dolby Digital Surround EX</h2>
-      <Image
-        src={dolbyDigitalSurroundEx}
-        alt="Dolby Digital Surround EX"
-        className="mt-1 sm:float-right sm:ml-4 w-48 md:w-36 mb-2 bg-transparent"
-        width={300}
-      />
-      <p>
-        As the name might suggest, this was a modification to the Dolby Digital
-        sound format released in 1999. This used matrix encoding on the surround
-        channels to recover a single rear surround, creating 6.1 audio. This was
-        not as common as Dolby Digital and was used mainly for action films with
-        larger budgets.
-      </p>
-      <h2 id="dts-es">Digital Theatre Systems - Extended Surround (DTS-ES)</h2>
-      <Image
-        src={dtsEs}
-        alt="Digital Theatre Systems - Extended Surround (DTS-ES)"
-        className="mt-1 sm:float-right sm:ml-4 w-64 md:w-72 mb-2 bg-transparent"
-        width={300}
-      />
-      <p>
-        This is a modification to the DTS sound format in the same way as
-        Surround EX is. This was released in 1999 and uses the same matrix
-        encoding as Dolby Digital Surround EX. In fact, the exact same sound mix
-        could be used to create both formats. This also produces a 6.1 surround
-        sound with a mono rear surround.
       </p>
       <h2 id="datasat-digital-sound">Datasat Digital Sound</h2>
       <Image
