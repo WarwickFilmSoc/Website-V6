@@ -13,7 +13,7 @@ export default function FrequentlyAskedQuestions() {
         Here&apos;s some of our frequently asked questions. If you have any
         questions that aren&apos;t covered in the list, please don&apos;t
         hesitate to&nbsp;
-        <Link href="/contact" className="text-accent">
+        <Link href="/executive" className="text-accent">
           get in touch
         </Link>
         &nbsp;or&nbsp;

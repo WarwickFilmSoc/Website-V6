@@ -42,6 +42,11 @@ img {
   @apply mt-6;
 }
 
+.content-style h3 {
+  @apply font-lexend font-bold text-2xl;
+  @apply mt-4;
+}
+
 .content-style ol {
   @apply list-decimal;
   @apply mb-2;
@@ -83,4 +88,16 @@ img {
   @apply text-center;
   @apply px-2;
   @apply border border-primary;
+}
+
+figure {
+  @apply flex flex-col w-max max-w-full;
+}
+
+figure img {
+  @apply flex-grow;
+}
+
+figure figcaption {
+  @apply text-xs m-2 text-center;
 }
