@@ -106,17 +106,19 @@ export default function TechnicalSpecifications() {
           Warwick Student Cinema is also able to operate with a long play
           system. This involves, in our case, a platter which was kindly given
           to us on permanent loan by the&nbsp;
-          <a href="http://www.ppttrust.org/">Projected Picture Trust</a> in
-          2002. The platter consists of three giant plates, each approximately
-          54 inches in diameter. The entire film is spliced together and placed
-          on one of the plates. The film then makes its way to one of our
-          Victoria 8 projectors (from which it is projected on screen) via a
-          circuitous route using a series of rollers, before going back to one
-          of the other plates. This is particularly useful in the event of one
-          of the projectors failing, an event which previously would have
-          resulted in the cancellation of the film. Also, unlike any other
-          playing system, films can immediately be shown again due to the fact
-          that the film uptake is from the inside of the reel.
+          <a href="http://www.ppttrust.org/" target="_blank" rel="noopener">
+            Projected Picture Trust
+          </a>
+          &nbsp;in 2002. The platter consists of three giant plates, each
+          approximately 54 inches in diameter. The entire film is spliced
+          together and placed on one of the plates. The film then makes its way
+          to one of our Victoria 8 projectors (from which it is projected on
+          screen) via a circuitous route using a series of rollers, before going
+          back to one of the other plates. This is particularly useful in the
+          event of one of the projectors failing, an event which previously
+          would have resulted in the cancellation of the film. Also, unlike any
+          other playing system, films can immediately be shown again due to the
+          fact that the film uptake is from the inside of the reel.
         </p>
       </div>
 
