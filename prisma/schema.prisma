@@ -57,8 +57,7 @@ model Film {
   subtitles       FilmSubtitles @default(UNKNOWN)
   screenings      Screening[]
 
-  // Length stuff may be incorrect but is required for Prisma to be happy
-  @@index([synopsis(length: 100), review(length: 100)], map: "synopsis")
+  @@index([synopsis, review], map: "synopsis")
   @@map("films")
 }
 
@@ -70,7 +69,7 @@ model Screening {
   date            DateTime                @default(dbgenerated("'0000-00-00'")) @db.Date
   timestamp       BigInt?
   location_id     Int                     @default(1)
-  gauge           ScreeningGauge          @default(DIGITAL)
+  gauge           ScreeningGauge          @default(MM_35)
   graphics_status ScreeningGraphicsStatus @default(PENDING)
   titles_status   ScreeningTitlesStatus   @default(PENDING)
   editing_status  ScreeningEditingStatus  @default(PENDING)
