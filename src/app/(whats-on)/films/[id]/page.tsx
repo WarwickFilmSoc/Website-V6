@@ -25,6 +25,8 @@ import {
 import Image from 'next/image';
 import { getCertSvg, getFilmAspectRatio } from '@/lib/film-server';
 
+export const revalidate = 3600; // Revalidate every hour
+
 export async function generateStaticParams() {
   const films = await prisma.film.findMany();
   return films.map((film: Film) => ({ id: film.film_id.toString() }));

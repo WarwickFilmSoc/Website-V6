@@ -4,6 +4,8 @@ import { Meeting } from '@prisma/client';
 import { getMeetingTypeString } from '@/app/crew/meeting-minutes/meetings';
 import LargeButtonLink from '@/components/large-button-link';
 
+export const revalidate = 3600; // Revalidate every hour
+
 export async function generateStaticParams() {
   const meetings = await prisma.meeting.findMany({
     where: {

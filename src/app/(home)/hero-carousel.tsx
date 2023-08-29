@@ -4,7 +4,6 @@ import Image from 'next/image';
 import warwickOpenDay from '@/assets/home/carousel/warwick-open-day.jpg';
 import LargeButtonLink from '@/components/large-button-link';
 import logoWhite from '@/assets/logos/logo-white.png';
-import dayjs from 'dayjs';
 
 export default function HeroCarousel() {
   return (
@@ -24,19 +23,7 @@ export default function HeroCarousel() {
               <div className="md:text-right mx-8">
                 <h1 className="text-4xl md:text-right mb-3">
                   Welcome to
-                  <span className="block font-bold">
-                    Your Student Cinema {new Date().toLocaleTimeString()}
-                    {'||'}
-                    {new Date().getTimezoneOffset()}
-                    {'||'}
-                    {dayjs(new Date()).format('hh:mma')}
-                    {'||'}
-                    {dayjs(new Date(1696179600 * 1000)).format('hh:mma')}
-                    {'||'}
-                    {new Date(1696179600 * 1000).toString()}
-                    {'||'}
-                    {new Date(1696179600 * 1000).getTimezoneOffset()}
-                  </span>
+                  <span className="block font-bold">Your Student Cinema</span>
                 </h1>
                 <LargeButtonLink href="/whats-on">
                   View<span className="hidden sm:inline"> Our</span> Schedule
