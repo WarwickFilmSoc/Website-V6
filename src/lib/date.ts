@@ -69,6 +69,7 @@ export enum DateTimeFormat {
   TIME,
   WEEKDAY_DATE,
   DATE_MEDIUM,
+  DATE_LONG,
 }
 export function formatDateTime(date: Date, format: DateTimeFormat): string {
   const dayjsDate = dayjs(date);
@@ -80,5 +81,7 @@ export function formatDateTime(date: Date, format: DateTimeFormat): string {
       return dayjsDate.format('ddd Do');
     case DateTimeFormat.DATE_MEDIUM:
       return dayjsDate.format('D MMM YYYY');
+    case DateTimeFormat.DATE_LONG:
+      return dayjsDate.format('ddd Do MMM YYYY');
   }
 }

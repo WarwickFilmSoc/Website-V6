@@ -57,16 +57,22 @@ export default async function FilmScreeningDayCard({
         </div>
         <div className="mt-1 flex flex-col gap-y-1 xl:flex-row xl:gap-x-2 xl:space-y-0 flex-wrap">
           <p className="text-sm 3xl:text-base flex-grow flex-shrink-0">
-            {formatDateTime(filmScreeningDay.day, DateTimeFormat.WEEKDAY_DATE)}
+            <time dateTime={filmScreeningDay.day.toISOString()}>
+              {formatDateTime(
+                filmScreeningDay.day,
+                DateTimeFormat.WEEKDAY_DATE,
+              )}
+            </time>
           </p>
           <div className="flex text-xs 2xl:text-sm gap-1 2xl:gap-2 justify-start flex-wrap">
             {filmScreeningDay.screenings.map((screening) => (
-              <span
-                className="bg-primary rounded-md px-1 py-0.5"
+              <time
+                dateTime={screening.date.toISOString()}
+                className="bg-primary rounded-md px-1 py-0.5 group-hover:scale-105"
                 key={screening.id}
               >
                 {formatDateTime(screening.date, DateTimeFormat.TIME)}
-              </span>
+              </time>
             ))}
           </div>
         </div>

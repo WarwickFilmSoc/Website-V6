@@ -62,6 +62,51 @@ export function groupScreeningsByFilmScreeningDay(
   return filmScreeningDays;
 }
 
+export type ScreeningDay = {
+  dayTime: number;
+  day: Date;
+  screenings: { id: number; date: Date; union_event_id: number | null }[];
+};
+
+export function groupScreeningsByDay(
+  screenings: {
+    scr_id: number;
+    timestamp: bigint | null;
+    union_event_id: number | null;
+  }[],
+) {
+  const screeningDays: ScreeningDay[] = [];
+
+  let currentDay: ScreeningDay | null = null;
+  for (const screening of screenings) {
+    if (!screening.timestamp) continue;
+
+    const date = new Date(Number(screening.timestamp) * 1000);
+    const transformedScreening = {
+      date,
+      id: screening.scr_id,
+      union_event_id: screening.union_event_id,
+    };
+
+    const dayStart = new Date(date.getTime());
+    dayStart.setHours(0, 0, 0, 0);
+
+    if (currentDay && currentDay?.day.getTime() === dayStart.getTime())
+      currentDay.screenings.push(transformedScreening);
+    else {
+      if (currentDay) screeningDays.push(currentDay);
+      currentDay = {
+        dayTime: dayStart.getTime(),
+        day: dayStart,
+        screenings: [transformedScreening],
+      };
+    }
+  }
+
+  if (currentDay) screeningDays.push(currentDay);
+  return screeningDays;
+}
+
 export function formatFilmRuntime(runtime: number) {
   if (runtime >= 60) {
     const hours = Math.floor(runtime / 60);
@@ -105,4 +150,8 @@ export function formatCert(cert: Cert): string {
     default:
       return '';
   }
+}
+
+export function getTicketLink(id: number): string {
+  return `https://www.warwicksu.com/venues-events/events/4273/${id}`;
 }
