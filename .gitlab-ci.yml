@@ -8,6 +8,9 @@ stages:
 default:
   image: node:18.17.1-alpine
 
+variables:
+  npm_config_cache: "$CI_PROJECT_DIR/.npm"
+
 install-deps:
   stage: install
   script:
@@ -15,8 +18,15 @@ install-deps:
     - npm ci --cache
     - echo "Dependencies installed."
   artifacts:
+    expire_in: 1h
     paths:
       - node_modules
+  cache:
+    key:
+      files:
+        - package-lock.json
+    paths:
+      - .npm
 
 run-linter:
   stage: lint
@@ -35,6 +45,10 @@ build-app:
   artifacts:
     paths:
       - .next
+  cache:
+    key: ${CI_COMMIT_REF_SLUG}
+    paths:
+      - .next/cache/
 
 build-image:
   stage: release
