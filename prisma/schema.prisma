@@ -57,7 +57,8 @@ model Film {
   subtitles       FilmSubtitles @default(UNKNOWN)
   screenings      Screening[]
 
-  @@index([synopsis, review], map: "synopsis")
+  // Length is required to make Prisma happy
+  @@index([synopsis(length: 100), review(length: 100)], map: "synopsis")
   @@map("films")
 }
 
