@@ -1,5 +1,12 @@
 import React from 'react';
 import Link from 'next/link';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Committees - Constitution',
+  description:
+    'The list of Committees as part of the Warwick Student Cinema constitution.',
+};
 
 export default function Committees() {
   return (

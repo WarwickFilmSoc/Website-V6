@@ -5,6 +5,13 @@ import Advertise from './advertise';
 import Find from './find';
 import Membership from './membership';
 import Tickets from './tickets';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'About',
+  description:
+    'Warwick Student Cinema is a nationally acclaimed, student run, professional standard cinema presented by the Warwick Film Society (aka FilmSoc). We run screenings six days a week during term time, which are open to both University members and the general public.',
+};
 
 export default function About() {
   return (

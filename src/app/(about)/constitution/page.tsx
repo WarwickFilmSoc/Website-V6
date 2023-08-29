@@ -1,5 +1,12 @@
 import React from 'react';
 import Link from 'next/link';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Constitution',
+  description:
+    "The constitution for Warwick Students' Union Film Society, also known as WSC or Warwick Student Cinema.",
+};
 
 export default function Constitution() {
   return (

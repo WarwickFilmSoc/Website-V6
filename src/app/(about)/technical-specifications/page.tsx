@@ -8,6 +8,13 @@ import dolbyDigitalImage from '@/assets/about/technical/dolby-digital.jpg';
 import ap20Image from '@/assets/about/technical/ap20.jpg';
 import maxImage from '@/assets/about/technical/max.jpg';
 import Image from 'next/image';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Technical Specifications',
+  description:
+    'All about the tech at Warwick Student Cinema. The first thing you should know is that we do not show DVDs, Blu-rays or any other home cinema format media to our audience in L3. Only industry standard equipment is used; this means either showing either real film - both 35mm and 70mm - or DCI compliant digitally-projected movies.',
+};
 
 export default function TechnicalSpecifications() {
   return (

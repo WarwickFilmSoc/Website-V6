@@ -8,6 +8,13 @@ import sdds from '@/assets/about/technical/sound-sdds.svg';
 import sdds8 from '@/assets/about/technical/sound-sdds-8.svg';
 import datasatDigitalSound from '@/assets/about/technical/sound-datasat-digital-sound.svg';
 import dolbyStereo70 from '@/assets/about/technical/sound-dolby-stereo-70.svg';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Sound Formats - Technical Specifications',
+  description:
+    'Here at Warwick Student Cinema, we are very proud of our projecting capabilities, being able to project nearly every sound format ever made for both 35mm and 70mm film.',
+};
 
 export default function SoundFormats() {
   return (

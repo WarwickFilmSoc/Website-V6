@@ -1,6 +1,12 @@
 import React from 'react';
 import Link from 'next/link';
+import { Metadata } from 'next';
 
+export const metadata: Metadata = {
+  title: 'Key Allowances and Agreement - Constitution',
+  description:
+    'The list of key allowances and Key Agreement as part of the Warwick Student Cinema constitution.',
+};
 export default function KeyAgreement() {
   return (
     <main className="content-style">

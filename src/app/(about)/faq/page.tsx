@@ -1,6 +1,13 @@
 import React from 'react';
 import Link from 'next/link';
 import FaqAccordion from '@/app/(about)/faq/faq-accordion';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Frequently Asked Questions',
+  description:
+    "Here's some of our frequently asked questions. If you have any questions that aren't covered in the list, please don't hesitate to get in touch or email the Exec!",
+};
 
 export default function FrequentlyAskedQuestions() {
   return (

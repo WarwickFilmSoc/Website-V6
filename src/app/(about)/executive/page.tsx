@@ -1,6 +1,13 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { ExecPosition, execTeam } from '@/data/exec';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'The Executive Team',
+  description:
+    'The Executive Committee, or Exec, are a team of students elected at the end of Term 2 to oversee the society. There are currently 11 roles.',
+};
 
 export default function TheExecutiveTeam() {
   return (

@@ -1,5 +1,12 @@
 import React from 'react';
 import Link from 'next/link';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Executive Roles - Constitution',
+  description:
+    'The list of Executive Roles and Responsibilities as part of the Warwick Student Cinema constitution.',
+};
 
 export default function ExecutiveRoles() {
   return (

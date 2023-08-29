@@ -1,4 +1,11 @@
 import Link from 'next/link';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Terms and Conditions',
+  description:
+    'Terms and conditions for all Warwick Student Cinema sales and screenings.',
+};
 
 export default function TermsAndConditions() {
   return (
