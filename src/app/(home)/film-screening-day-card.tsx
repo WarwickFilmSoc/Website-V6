@@ -1,9 +1,10 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import styles from './film-screening-day-card.module.css';
-import { FilmScreeningDay } from '@/lib/film';
+import { FilmScreeningDay, getFilmPrettyUrl } from '@/lib/film';
+import { getTmdbImageUrl, getTmdbMovie } from '@/lib/tmdb';
 
-export default function FilmScreeningDayCard({
+export default async function FilmScreeningDayCard({
   filmScreeningDay,
   index,
 }: {
@@ -20,16 +21,24 @@ export default function FilmScreeningDayCard({
   ];
   if (index > 5) return null;
 
+  const tmdbMovie = await getTmdbMovie(filmScreeningDay.film);
+  const posterUrl = tmdbMovie?.poster_path
+    ? getTmdbImageUrl(tmdbMovie.poster_path)
+    : 'https://m.media-amazon.com/images/M/MV5BYTdiOTIyZTQtNmQ1OS00NjZlLWIyMTgtYzk5Y2M3ZDVmMDk1XkEyXkFqcGdeQXVyMTAzMDg4NzU0._V1_.jpg';
+
   return (
-    <Link href="/" className={`group ${responsiveClasses[index] || ''}`}>
+    <Link
+      href={getFilmPrettyUrl(filmScreeningDay.film)}
+      className={`group ${responsiveClasses[index] || ''}`}
+    >
       <article className="w-40 xl:w-[11.5rem] 2xl:w-52 3xl:w-60 text-left">
         <div className="overflow-hidden">
           <Image
-            src="https://m.media-amazon.com/images/M/MV5BYTdiOTIyZTQtNmQ1OS00NjZlLWIyMTgtYzk5Y2M3ZDVmMDk1XkEyXkFqcGdeQXVyMTAzMDg4NzU0._V1_.jpg"
+            src={posterUrl}
             width={183}
             height={276}
             alt={filmScreeningDay.film.title}
-            className="mx-auto w-full bg-black text-black group-hover:scale-105 transition-transform"
+            className="mx-auto w-full bg-black text-black group-hover:scale-105 transition-transform box-shadow-lg"
           />
         </div>
         <h3 className="mt-2 text-md font-bold leading-5">

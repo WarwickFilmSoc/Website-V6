@@ -1,6 +1,7 @@
 import { Film } from '@prisma/client';
+import prisma from '@/lib/prisma';
 
-export function getFilmPrettySlug(film: { title: string; film_id: number }) {
+export function getFilmPrettyUrl(film: { title: string; film_id: number }) {
   return `/film/${film.film_id}?film=${film.title
     .toLowerCase()
     .trim()
@@ -60,4 +61,21 @@ export function groupScreeningsByFilmScreeningDay(
 
   if (currentDay) filmScreeningDays.push(currentDay);
   return filmScreeningDays;
+}
+
+export function formatFilmRuntime(runtime: number) {
+  if (runtime >= 60) {
+    const hours = Math.floor(runtime / 60);
+    return `${hours}h ${runtime - hours * 60}m`;
+  } else return `${runtime}m`;
+}
+
+export async function getFilmAspectRatio(
+  aspectCode: number,
+): Promise<string | null> {
+  const ratio = await prisma.aspectCode.findUnique({
+    where: { code: aspectCode },
+  });
+  if (ratio) return ratio.description;
+  return null;
 }

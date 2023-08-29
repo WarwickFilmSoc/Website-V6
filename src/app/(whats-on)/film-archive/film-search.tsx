@@ -5,13 +5,13 @@ import { useState } from 'react';
 import { TextInput } from 'flowbite-react';
 import { useDebounce } from 'use-debounce';
 import Link from 'next/link';
-import { getFilmPrettySlug, getFilmTitle } from '@/lib/film';
+import { getFilmPrettyUrl, getFilmTitle } from '@/lib/film';
 import { formatSecondsTimestamp } from '@/lib/date';
 
 export function Film({ film }: { film: FilmSearchResult }) {
   return (
     <article>
-      <Link href={getFilmPrettySlug(film)} className="block bg-primary p-4">
+      <Link href={getFilmPrettyUrl(film)} className="block bg-primary p-4">
         <p className="font-lexend font-bold text-xl">{getFilmTitle(film)}</p>
         <p>
           Last Screening:&nbsp;
