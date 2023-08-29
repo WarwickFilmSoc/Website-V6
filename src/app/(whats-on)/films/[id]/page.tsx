@@ -44,7 +44,7 @@ export default async function Film({
     return (
       <main>
         <p className="text-xl font-lexend uppercase -mb-1">
-          <Link href="/film-archive">Film Archive</Link>
+          <Link href="/films">Film Search</Link>
         </p>
         <h1 className="mb-1">Film Not Found</h1>
 
@@ -62,9 +62,7 @@ export default async function Film({
           .
         </p>
 
-        <LargeButtonLink href="/film-archive">
-          Back to Film Archive
-        </LargeButtonLink>
+        <LargeButtonLink href="/films">Back to Film Search</LargeButtonLink>
       </main>
     );
 
@@ -124,7 +122,7 @@ export default async function Film({
         </div>
         <div>
           <p className="text-xl font-lexend uppercase -mb-1">
-            <Link href="/film-archive">Film</Link>
+            <Link href="/films">Film</Link>
           </p>
           <h1>{getFilmTitle(film)}</h1>
           <div className="font-lexend text-lg mb-2">

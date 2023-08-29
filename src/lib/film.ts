@@ -1,7 +1,7 @@
 import { Film } from '@prisma/client';
 
 export function getFilmPrettyUrl(film: { title: string; film_id: number }) {
-  return `/film/${film.film_id}?film=${film.title
+  return `/films/${film.film_id}?film=${film.title
     .toLowerCase()
     .trim()
     .replace(/[^a-z0-9- ]/gi, '')

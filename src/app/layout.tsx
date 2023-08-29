@@ -5,6 +5,7 @@ import Footer from '@/components/layout/footer';
 import Header from '@/components/layout/header';
 import Providers from '@/app/providers';
 import { ReactNode } from 'react';
+import FlowbiteTheme from './flowbite-theme';
 
 const lexend = Lexend({
   subsets: ['latin'],
@@ -44,12 +45,14 @@ export default function RootLayout({
       <body
         className={`${lexend.variable} ${poppins.variable} flex flex-col min-h-screen`}
       >
-        <Providers>
-          <Header />
-          {children}
-          <Footer />
-          {ticketsModal}
-        </Providers>
+        <FlowbiteTheme>
+          <Providers>
+            <Header />
+            {children}
+            <Footer />
+            {ticketsModal}
+          </Providers>
+        </FlowbiteTheme>
       </body>
     </html>
   );

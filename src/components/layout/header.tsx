@@ -2,7 +2,10 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import wscLogo from '@/assets/logos/logo-white.png';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
+import { TextInput } from 'flowbite-react';
+import { FormEvent, useState } from 'react';
+import { FiSearch } from 'react-icons/fi';
 
 type HeaderLink = {
   name: string;
@@ -54,13 +57,47 @@ function HeaderLink({
   );
 }
 
+function FilmSearchBar() {
+  const router = useRouter();
+  const [search, setSearch] = useState('');
+
+  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (search)
+      router.push(`/films?search=${encodeURIComponent(search.trim())}`);
+    else router.push(`/films`);
+
+    return false;
+  };
+
+  return (
+    <div className="absolute right-0">
+      <form onSubmit={onSubmit} className="w-40 xl:w-72 hidden lg:block">
+        <TextInput
+          rightIcon={FiSearch}
+          placeholder="Search a film"
+          required
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
+      </form>
+      <Link
+        href="/films"
+        className="lg:hidden flex items-center justify-center text-lg bg-primary p-2 rounded-sm mr-2 hover:bg-primary-darker"
+      >
+        <FiSearch />
+      </Link>
+    </div>
+  );
+}
+
 export default function Header() {
   const pathname = usePathname();
 
   return (
     <header className="h-24">
       <div className="absolute left-0 right-0 z-20 p-4 mb-8">
-        <nav className="flex items-center justify-center uppercase font-lexend text-lg gap-x-4">
+        <nav className="flex items-center justify-center uppercase font-lexend text-lg gap-x-4 relative">
           <div
             className={`justify-right gap-x-4 sm:gap-x-2 md:gap-x-4 py-2 items-center ${
               pathname === '/' ? 'flex' : 'hidden'
@@ -70,7 +107,7 @@ export default function Header() {
               mainLinkClass="border-white px-2 border-2"
               mainLink={{ name: "What's On", href: '/whats-on' }}
               dropdownLinks={[
-                { name: 'Film Archive', href: '/film-archive' },
+                { name: 'Film Search', href: '/films' },
                 { name: 'Publicity', href: '/publicity' },
                 { name: 'Suggestions', href: '/suggestions' },
               ]}
@@ -149,11 +186,12 @@ export default function Header() {
               href="https://blog.warwick.film"
               rel="noopener"
               target="_blank"
-              className="hidden sm:block hover:scale-105 drop-shadow-md"
+              className="hidden md:block hover:scale-105 drop-shadow-md"
             >
               Blog
             </a>
           </div>
+          <FilmSearchBar />
         </nav>
       </div>
     </header>

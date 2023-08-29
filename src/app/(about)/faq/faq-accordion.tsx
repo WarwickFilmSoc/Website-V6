@@ -1,11 +1,10 @@
 'use client';
 import { Accordion } from 'flowbite-react';
-import WscAccordion from '@/components/wsc-accordion';
 
 export default function FaqAccordion() {
   /* TODO */
   return (
-    <WscAccordion>
+    <Accordion collapseAll>
       <Accordion.Panel>
         <Accordion.Title>Who are Warwick Student Cinema?</Accordion.Title>
         <Accordion.Content>
@@ -123,6 +122,6 @@ export default function FaqAccordion() {
         </Accordion.Title>
         <Accordion.Content></Accordion.Content>
       </Accordion.Panel>
-    </WscAccordion>
+    </Accordion>
   );
 }

@@ -1,12 +1,13 @@
 'use client';
 import { useQuery } from '@tanstack/react-query';
 import { FilmSearchResult } from '@/app/api/films/types';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { TextInput } from 'flowbite-react';
 import { useDebounce } from 'use-debounce';
 import Link from 'next/link';
 import { getFilmPrettyUrl, getFilmTitle } from '@/lib/film';
 import { formatSecondsTimestamp } from '@/lib/date';
+import { useSearchParams } from 'next/navigation';
 
 export function Film({ film }: { film: FilmSearchResult }) {
   return (
@@ -25,7 +26,9 @@ export function Film({ film }: { film: FilmSearchResult }) {
 }
 
 export default function FilmSearch() {
-  const [search, setSearch] = useState('');
+  const searchParams = useSearchParams();
+  const searchSearchParam = searchParams.get('search') || '';
+  const [search, setSearch] = useState(searchSearchParam);
   const [debouncedSearch] = useDebounce(search, 200, {
     maxWait: 1000,
   });
@@ -33,6 +36,7 @@ export default function FilmSearch() {
     [`/api/films?search=${debouncedSearch}`],
     { enabled: !!debouncedSearch },
   );
+  useEffect(() => setSearch(searchSearchParam || ''), [searchSearchParam]);
 
   return (
     <div>
