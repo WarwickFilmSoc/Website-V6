@@ -49,7 +49,7 @@ export default async function FilmScreeningDayCard({
           <p className="text-sm 3xl:text-base flex-grow flex-shrink-0">
             {formatDateTime(filmScreeningDay.day, DateTimeFormat.WEEKDAY_DATE)}
           </p>
-          <div className="flex text-xs 2xl:text-sm gap-1 2xl:gap-2 justify-end flex-wrap">
+          <div className="flex text-xs 2xl:text-sm gap-1 2xl:gap-2 justify-start flex-wrap">
             {filmScreeningDay.screenings.map((screening) => (
               <span
                 className="bg-primary rounded-md px-1 py-0.5"
