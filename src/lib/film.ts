@@ -1,5 +1,4 @@
 import { Film } from '@prisma/client';
-import prisma from '@/lib/prisma';
 
 export function getFilmPrettyUrl(film: { title: string; film_id: number }) {
   return `/film/${film.film_id}?film=${film.title
@@ -68,14 +67,4 @@ export function formatFilmRuntime(runtime: number) {
     const hours = Math.floor(runtime / 60);
     return `${hours}h ${runtime - hours * 60}m`;
   } else return `${runtime}m`;
-}
-
-export async function getFilmAspectRatio(
-  aspectCode: number,
-): Promise<string | null> {
-  const ratio = await prisma.aspectCode.findUnique({
-    where: { code: aspectCode },
-  });
-  if (ratio) return ratio.description;
-  return null;
 }

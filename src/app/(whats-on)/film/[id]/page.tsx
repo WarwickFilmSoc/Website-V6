@@ -2,17 +2,14 @@ import prisma from '@/lib/prisma';
 import { Film } from '@prisma/client';
 import Link from 'next/link';
 import LargeButtonLink from '@/components/large-button-link';
-import {
-  formatFilmRuntime,
-  getFilmAspectRatio,
-  getFilmTitle,
-} from '@/lib/film';
+import { formatFilmRuntime, getFilmTitle } from '@/lib/film';
 import {
   formatSecondsTimestamp,
   getStartOfDaySecondTimestamp,
 } from '@/lib/date';
 import { getTmdbImageUrl, getTmdbMovie } from '@/lib/tmdb';
 import Image from 'next/image';
+import { getFilmAspectRatio } from '@/lib/film-server';
 
 export async function generateStaticParams() {
   const films = await prisma.film.findMany();

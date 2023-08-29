@@ -29,7 +29,7 @@ export default function Crew() {
           <LoginForm />
           <p className="mt-8">
             Not got an account?&nbsp;
-            <Link href="/register" className="text-accent">
+            <Link href="#register" className="text-accent">
               Register Account
             </Link>
           </p>
