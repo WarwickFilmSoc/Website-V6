@@ -4,7 +4,6 @@ RUN apk add tzdata
 RUN cp /usr/share/zoneinfo/Europe/London /etc/localtime
 RUN echo "Europe/London" > /etc/timezone
 ENV TZ=Europe/London
-RUN apk del tzdata
 
 ENV NODE_ENV production
 
