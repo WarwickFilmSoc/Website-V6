@@ -35,6 +35,7 @@ const tmdbCache: { [imdbId: string]: TmdbMovie | null } = {};
 async function getTmdbMovieFromImdbId(
   imdbId: string,
 ): Promise<TmdbMovie | null> {
+  await getTmdbGenres();
   if (tmdbCache[imdbId] !== undefined) return tmdbCache[imdbId];
 
   const response = await fetch(
@@ -51,6 +52,42 @@ async function getTmdbMovieFromImdbId(
   const data = (await response.json()) as TmdbFindMovieResponse;
   tmdbCache[imdbId] = data.movie_results[0] || null;
   return tmdbCache[imdbId];
+}
+
+type TmdbGenre = {
+  id: number;
+  name: string;
+};
+
+type TmdbListGenreResponse = {
+  genres: TmdbGenre[];
+};
+
+let tmdbGenres: { [id: number]: string } | null = null;
+async function getTmdbGenres(): Promise<{ [id: number]: string }> {
+  if (tmdbGenres) return tmdbGenres;
+
+  const response = await fetch(
+    `https://api.themoviedb.org/3/genre/movie/list?lang=en`,
+    {
+      headers: {
+        Authorization: `Bearer ${process.env.TMDB_API_KEY}`,
+        accept: 'application/json',
+      },
+    },
+  );
+  if (!response.ok) return {};
+
+  const data = (await response.json()) as TmdbListGenreResponse;
+  tmdbGenres = {};
+  for (const genre of data.genres) {
+    tmdbGenres[genre.id] = genre.name;
+  }
+  return tmdbGenres;
+}
+
+export function getGenreName(id: number): string | null {
+  return tmdbGenres?.[id] || null;
 }
 
 export function getTmdbImageUrl(url: string): string {

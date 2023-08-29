@@ -4,16 +4,41 @@ import Link from 'next/link';
 import LargeButtonLink from '@/components/large-button-link';
 import { formatFilmRuntime, getFilmTitle } from '@/lib/film';
 import {
+  DateTimeFormat,
+  formatDateTime,
   formatSecondsTimestamp,
   getStartOfDaySecondTimestamp,
 } from '@/lib/date';
-import { getTmdbImageUrl, getTmdbMovie } from '@/lib/tmdb';
+import { getGenreName, getTmdbImageUrl, getTmdbMovie } from '@/lib/tmdb';
 import Image from 'next/image';
 import { getFilmAspectRatio } from '@/lib/film-server';
 
 export async function generateStaticParams() {
   const films = await prisma.film.findMany();
   return films.map((film: Film) => ({ id: film.film_id.toString() }));
+}
+
+function GenreList({
+  genres,
+  className,
+}: {
+  genres: number[];
+  className?: string;
+}) {
+  return (
+    <div
+      className={`flex flex-wrap gap-2 text-xs uppercase font-lexend ${className}`}
+    >
+      {genres
+        .map((genre) => getGenreName(genre))
+        .filter((genre) => genre)
+        .map((genre) => (
+          <span key={genre} className="block px-1.5 py-0.5 bg-primary">
+            {genre}
+          </span>
+        ))}
+    </div>
+  );
 }
 
 export default async function Film({
@@ -88,81 +113,121 @@ export default async function Film({
   const aspectRatio = await getFilmAspectRatio(film.aspect);
 
   return (
-    <>
-      <div className="-mt-24 h-[30rem] overflow-hidden">
-        <Image
-          src={backdropUrl}
-          alt={`${film.title} Backdrop`}
-          className="object-cover w-full h-[30rem] blur-md brightness-50"
-          width={4000}
-          height={480}
-          priority
-        />
-      </div>
-      <main className="flex gap-4 -mt-72 z-10">
-        <div className="w-64 flex-shrink-0">
-          <Image
-            src={posterUrl}
-            width={256}
-            height={584}
-            alt={`${film.title} Poster`}
-            className="w-64 box-shadow-lg"
-          />
-
-          <div className="mt-3 text-sm">
-            <p className="mb-1">
-              <strong>Director: </strong>
-              {film.director}
-            </p>
-            <p>
-              <strong>Starring: </strong>
-              {film.starring}
-            </p>
-          </div>
-        </div>
-        <div>
-          <p className="text-xl font-lexend uppercase -mb-1">
-            <Link href="/films">Film</Link>
-          </p>
-          <h1>{getFilmTitle(film)}</h1>
-          <div className="font-lexend text-lg mb-2">
-            <span>Runtime: {formatFilmRuntime(film.runtime)}</span> |&nbsp;
-            {aspectRatio && (
-              <>
-                &nbsp;|&nbsp;
-                <span>
-                  Aspect Ratio:&nbsp;
-                  {aspectRatio}
-                </span>
-              </>
-            )}
-            {tmdbMovie?.release_date && (
-              <>
-                &nbsp;|&nbsp;
-                <span>
-                  Release:&nbsp;
-                  {tmdbMovie?.release_date}
-                </span>
-              </>
-            )}
-          </div>
-
+    <main className="-mt-24 max-w-full px-0">
+      <div className="relative">
+        <div className="absolute left-0 right-0 bottom-0 top-0 overflow-hidden">
           <Image
             src={backdropUrl}
-            width={300}
-            height={300}
             alt={`${film.title} Backdrop`}
-            className="float-right ml-2"
+            className="object-cover w-full h-full blur-md brightness-50"
+            width={4000}
+            height={480}
+            priority
           />
-          <p>{film.synopsis || tmdbMovie?.overview}</p>
+        </div>
+        <div className="mx-auto max-w-7xl px-4 xs:px-8 relative pt-24 md:pt-40 pb-24">
+          <div className="my-2 xs:my-0 xs:absolute w-36 sm:w-56 md:w-64 flex-shrink-0">
+            <Image
+              src={posterUrl}
+              width={256}
+              height={384}
+              alt={`${film.title} Poster`}
+              className="w-36 sm:w-56 md:w-64 box-shadow-lg"
+            />
 
-          <h2 className="mt-4">Upcoming Screenings</h2>
-          {upcomingScreenings.length === 0 && <p>None</p>}
-          {upcomingScreenings.map((screening) => (
-            <article key={screening.scr_id as number}>
-              {formatSecondsTimestamp(screening.timestamp as bigint)}
-            </article>
-          ))}
+            {tmdbMovie?.genre_ids && tmdbMovie.genre_ids.length > 0 && (
+              <GenreList genres={tmdbMovie?.genre_ids} className="mt-3" />
+            )}
+
+            <div className="mt-3 text-sm hidden xs:block">
+              <p className="mb-1">
+                <strong>Director: </strong>
+                {film.director}
+              </p>
+              <p>
+                <strong>Starring: </strong>
+                {film.starring}
+              </p>
+            </div>
+          </div>
+          <div className="xs:ml-36 sm:ml-56 md:ml-64 xs:pl-4">
+            <p className="text-xl font-lexend uppercase -mb-1">
+              <Link href="/films">Film</Link>
+            </p>
+            <h1>{getFilmTitle(film)}</h1>
+            <div className="md:text-lg mb-2 flex flex-wrap flex-col md:flex-row">
+              <span>
+                <span className="font-lexend font-bold">Runtime:&nbsp;</span>
+                {formatFilmRuntime(film.runtime)}
+              </span>
+              {aspectRatio && (
+                <>
+                  <span className="hidden md:inline">&nbsp;|&nbsp;</span>
+                  <span>
+                    <span className="font-lexend font-bold">
+                      Aspect Ratio:&nbsp;
+                    </span>
+                    {aspectRatio}
+                  </span>
+                </>
+              )}
+              {tmdbMovie?.release_date && (
+                <>
+                  <span className="hidden md:inline">&nbsp;|&nbsp;</span>
+                  <span>
+                    <span className="font-lexend font-bold">
+                      Release:&nbsp;
+                    </span>
+                    {formatDateTime(
+                      new Date(tmdbMovie.release_date),
+                      DateTimeFormat.DATE_MEDIUM,
+                    )}
+                  </span>
+                </>
+              )}
+              <span className="xs:hidden">
+                <span className="font-lexend font-bold">Director:&nbsp;</span>
+                {film.director}
+              </span>
+              <span className="xs:hidden">
+                <span className="font-lexend font-bold">Starring:&nbsp;</span>
+                {film.starring}
+              </span>
+            </div>
+
+            <Image
+              src={backdropUrl}
+              width={300}
+              height={300}
+              alt={`${film.title} Backdrop`}
+              className="w-48 lg:w-72 float-right ml-2 hidden md:block"
+            />
+            <p>{film.synopsis || tmdbMovie?.overview}</p>
+          </div>
+        </div>
+      </div>
+      <div className="mx-auto max-w-7xl px-4 xs:px-8 -mt-24 z-10 relative">
+        <div className="xs:ml-36 sm:ml-56 md:ml-64 xs:pl-4">
+          <div className="lg:mr-72 lg:pr-4">
+            <h2 className="mt-4">Upcoming Screenings</h2>
+            {upcomingScreenings.length === 0 && (
+              <div className="mt-2 bg-primary p-4 box-shadow-lg">
+                There are no upcoming screenings scheduled for this film.
+                Interested in watching it at Warwick Student Cinema?&nbsp;
+                <Link href="/suggestions" className="text-accent">
+                  Make a suggestion!
+                </Link>
+              </div>
+            )}
+            {upcomingScreenings.map((screening) => (
+              <article
+                key={screening.scr_id as number}
+                className="mt-2 bg-primary p-4 box-shadow-lg"
+              >
+                {formatSecondsTimestamp(screening.timestamp as bigint)}
+              </article>
+            ))}
+          </div>
 
           <h2 className="mt-4">Past Screenings</h2>
           {pastScreenings.length === 0 && <p>None</p>}
@@ -182,7 +247,7 @@ export default async function Film({
             </>
           )}
         </div>
-      </main>
-    </>
+      </div>
+    </main>
   );
 }

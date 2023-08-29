@@ -68,6 +68,7 @@ export function getStartOfDaySecondTimestamp(): number {
 export enum DateTimeFormat {
   TIME,
   WEEKDAY_DATE,
+  DATE_MEDIUM,
 }
 export function formatDateTime(date: Date, format: DateTimeFormat): string {
   const dayjsDate = dayjs(date);
@@ -77,5 +78,7 @@ export function formatDateTime(date: Date, format: DateTimeFormat): string {
       return dayjsDate.format('h:mma');
     case DateTimeFormat.WEEKDAY_DATE:
       return dayjsDate.format('ddd Do');
+    case DateTimeFormat.DATE_MEDIUM:
+      return dayjsDate.format('D MMM YYYY');
   }
 }
