@@ -3,6 +3,7 @@ import Link from 'next/link';
 import styles from './film-screening-day-card.module.css';
 import { FilmScreeningDay, getFilmPrettyUrl } from '@/lib/film';
 import { getTmdbImageUrl, getTmdbMovie } from '@/lib/tmdb';
+import { DateTimeFormat, formatDateTime } from '@/lib/date';
 
 export default async function FilmScreeningDayCard({
   filmScreeningDay,
@@ -44,28 +45,19 @@ export default async function FilmScreeningDayCard({
         <h3 className="mt-2 text-md font-bold leading-5">
           {filmScreeningDay.film.title}
         </h3>
-        <div className="mt-1 flex flex-col gap-y-1 xl:flex-row xl:gap-x-2 xl:space-y-0">
+        <div className="mt-1 flex flex-col gap-y-1 xl:flex-row xl:gap-x-2 xl:space-y-0 flex-wrap">
           <p className="text-sm 3xl:text-base flex-grow flex-shrink-0">
-            {filmScreeningDay.day.toLocaleDateString(undefined, {
-              weekday: 'short',
-              day: 'numeric',
-            })}
+            {formatDateTime(filmScreeningDay.day, DateTimeFormat.WEEKDAY_DATE)}
           </p>
-          <div className="flex text-xs 2xl:text-sm gap-1 2xl:gap-2 flex-wrap justify-end">
+          <div className="flex text-xs 2xl:text-sm gap-1 2xl:gap-2 justify-end flex-wrap">
             {filmScreeningDay.screenings.map((screening) => (
               <span
                 className="bg-primary rounded-md px-1 py-0.5"
                 key={screening.id}
               >
-                {screening.date.toLocaleTimeString(undefined, {
-                  hour: 'numeric',
-                  hour12: true,
-                  minute: '2-digit',
-                })}
+                {formatDateTime(screening.date, DateTimeFormat.TIME)}
               </span>
             ))}
-
-            <span className="bg-primary rounded-md px-1 py-0.5">9:30pm</span>
           </div>
         </div>
       </article>

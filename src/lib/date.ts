@@ -1,3 +1,7 @@
+import dayjs from 'dayjs';
+import advancedFormat from 'dayjs/plugin/advancedFormat';
+dayjs.extend(advancedFormat);
+
 export function getRelativeTimeString(dateString: string) {
   // https://gist.github.com/LewisJEllis/9ad1f35d102de8eee78f6bd081d486ad
   const timeMs = new Date(dateString).getTime();
@@ -60,4 +64,18 @@ export function getStartOfDaySecondTimestamp(): number {
   const date = new Date();
   date.setHours(0, 0);
   return Math.floor(date.getTime() / 1000);
+}
+export enum DateTimeFormat {
+  TIME,
+  WEEKDAY_DATE,
+}
+export function formatDateTime(date: Date, format: DateTimeFormat): string {
+  const dayjsDate = dayjs(date);
+
+  switch (format) {
+    case DateTimeFormat.TIME:
+      return dayjsDate.format('h:mma');
+    case DateTimeFormat.WEEKDAY_DATE:
+      return dayjsDate.format('ddd Do');
+  }
 }
