@@ -68,3 +68,41 @@ export function formatFilmRuntime(runtime: number) {
     return `${hours}h ${runtime - hours * 60}m`;
   } else return `${runtime}m`;
 }
+
+export enum Cert {
+  UNKNOWN = 0,
+  CERT_U = 1002,
+  CERT_PG = 1003,
+  CERT_12A = 1004,
+  CERT_15 = 1005,
+  CERT_18 = 1006,
+  CERT_X = 1007,
+  CERT_12 = 1008,
+  CERT_AA = 1009,
+  CERT_A = 1010,
+}
+
+export function formatCert(cert: Cert): string {
+  switch (cert) {
+    case Cert.CERT_U:
+      return 'U';
+    case Cert.CERT_PG:
+      return 'PG';
+    case Cert.CERT_12A:
+      return '12A';
+    case Cert.CERT_15:
+      return '15';
+    case Cert.CERT_18:
+      return '18';
+    case Cert.CERT_X:
+      return 'X';
+    case Cert.CERT_12:
+      return '12';
+    case Cert.CERT_AA:
+      return 'AA';
+    case Cert.CERT_A:
+      return 'A';
+    default:
+      return '';
+  }
+}

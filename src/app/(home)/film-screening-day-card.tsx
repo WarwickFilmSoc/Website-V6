@@ -1,7 +1,12 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import styles from './film-screening-day-card.module.css';
-import { FilmScreeningDay, getFilmPrettyUrl } from '@/lib/film';
+import {
+  Cert,
+  FilmScreeningDay,
+  formatCert,
+  getFilmPrettyUrl,
+} from '@/lib/film';
 import { getTmdbImageUrl, getTmdbMovie } from '@/lib/tmdb';
 import { DateTimeFormat, formatDateTime } from '@/lib/date';
 
@@ -42,9 +47,14 @@ export default async function FilmScreeningDayCard({
             className="mx-auto w-full bg-black text-black group-hover:scale-105 transition-transform box-shadow-lg"
           />
         </div>
-        <h3 className="mt-2 text-md font-bold leading-5">
-          {filmScreeningDay.film.title}
-        </h3>
+        <div className="mt-2">
+          <h3 className=" text-md font-bold leading-5 inline">
+            {filmScreeningDay.film.title}
+          </h3>
+          {filmScreeningDay.film.cert !== Cert.UNKNOWN && (
+            <span> • {formatCert(filmScreeningDay.film.cert)}</span>
+          )}
+        </div>
         <div className="mt-1 flex flex-col gap-y-1 xl:flex-row xl:gap-x-2 xl:space-y-0 flex-wrap">
           <p className="text-sm 3xl:text-base flex-grow flex-shrink-0">
             {formatDateTime(filmScreeningDay.day, DateTimeFormat.WEEKDAY_DATE)}

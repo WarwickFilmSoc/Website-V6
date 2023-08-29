@@ -2,7 +2,7 @@ import prisma from '@/lib/prisma';
 import { Film } from '@prisma/client';
 import Link from 'next/link';
 import LargeButtonLink from '@/components/large-button-link';
-import { formatFilmRuntime, getFilmTitle } from '@/lib/film';
+import { Cert, formatCert, formatFilmRuntime, getFilmTitle } from '@/lib/film';
 import {
   DateTimeFormat,
   formatDateTime,
@@ -11,7 +11,7 @@ import {
 } from '@/lib/date';
 import { getGenreName, getTmdbImageUrl, getTmdbMovie } from '@/lib/tmdb';
 import Image from 'next/image';
-import { getFilmAspectRatio } from '@/lib/film-server';
+import { getCertSvg, getFilmAspectRatio } from '@/lib/film-server';
 
 export async function generateStaticParams() {
   const films = await prisma.film.findMany();
@@ -112,6 +112,11 @@ export default async function Film({
 
   const aspectRatio = await getFilmAspectRatio(film.aspect);
 
+  const certSvg = getCertSvg(film.cert);
+  const bbfcLink = `https://www.bbfc.co.uk/search?q=${encodeURIComponent(
+    film.title,
+  )}`;
+
   return (
     <main className="-mt-24 max-w-full px-0">
       <div className="relative">
@@ -151,16 +156,40 @@ export default async function Film({
             </div>
           </div>
           <div className="xs:ml-36 sm:ml-56 md:ml-64 xs:pl-4">
-            <p className="text-xl font-lexend uppercase -mb-1">
-              <Link href="/films">Film</Link>
-            </p>
-            <h1>{getFilmTitle(film)}</h1>
+            <div className="flex gap-2">
+              <div className="grow">
+                <p className="text-xl font-lexend uppercase -mb-1">
+                  <Link href="/films">Film</Link>
+                </p>
+                <h1>{getFilmTitle(film)}</h1>
+              </div>
+              {(certSvg || film.cert !== Cert.UNKNOWN) && (
+                <a
+                  href={bbfcLink}
+                  target="_blank"
+                  rel="noopener"
+                  className="text-4xl hover:-translate-y-0.5 hover:drop-shadow-sm flex-shrink-0"
+                >
+                  {certSvg ? (
+                    <Image
+                      src={certSvg}
+                      alt={`BBFC ${formatCert(film.cert)} guideline`}
+                      className="w-12 sm:w-16 bg-transparent"
+                      width={60}
+                    />
+                  ) : (
+                    formatCert(film.cert)
+                  )}
+                </a>
+              )}
+            </div>
+
             <div className="md:text-lg mb-2 flex flex-wrap flex-col md:flex-row">
               <span>
                 <span className="font-lexend font-bold">Runtime:&nbsp;</span>
                 {formatFilmRuntime(film.runtime)}
               </span>
-              {aspectRatio && (
+              {aspectRatio && aspectRatio !== 'Unknown' && (
                 <>
                   <span className="hidden md:inline">&nbsp;|&nbsp;</span>
                   <span>
