@@ -147,7 +147,7 @@ export default async function Film({
           />
         </div>
         <div className="mx-auto max-w-7xl px-4 xs:px-8 relative pt-24 md:pt-40 pb-36 md:pb-24">
-          <div className="my-2 xs:my-0 xs:absolute w-36 sm:w-56 md:w-64 flex-shrink-0">
+          <div className="my-2 xs:my-0 xs:absolute w-full sm:w-56 md:w-64 flex-shrink-0">
             <Image
               src={posterUrl}
               width={256}
@@ -365,8 +365,9 @@ export default async function Film({
             </div>
           ) : (
             <div>
-              This film has been shown {pastScreenings.length} times before at
-              Warwick Student Cinema:
+              This film has been shown {pastScreenings.length} time$
+              {pastScreenings.length === 1 ? '' : 's'} before at Warwick Student
+              Cinema:
               <ul
                 className={`list-disc mt-1 ${
                   pastScreenings.length > 15
