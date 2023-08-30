@@ -4,6 +4,13 @@ import Image from 'next/image';
 import coverImage from '@/assets/crew/marketing-cover.jpg';
 import instagramImage from '@/assets/crew/marketing-instagram.jpg';
 import TeamOfficerCard from '@/app/crew/team-officer-card';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Marketing Team',
+  description:
+    'The Marketing Team advertises WSC through digital formats such as our LCD and pre-show slideshows and social networks.',
+};
 
 export default function Marketing() {
   return (

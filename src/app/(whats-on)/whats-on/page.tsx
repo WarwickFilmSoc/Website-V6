@@ -1,3 +1,10 @@
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Publicity',
+  description: '',
+};
+
 export default function WhatsOn() {
   return (
     <main>

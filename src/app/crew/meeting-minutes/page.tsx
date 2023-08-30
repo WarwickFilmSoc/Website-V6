@@ -7,6 +7,14 @@ import {
   getMeetingTypeString,
 } from '@/app/crew/meeting-minutes/meetings';
 import LargeButtonLink from '@/components/large-button-link';
+import { Metadata } from 'next';
+import { DateTimeFormat, formatDateTime } from '@/lib/date';
+
+export const metadata: Metadata = {
+  title: 'Meeting Minutes',
+  description:
+    'Many of our teams have weekly meetings to discuss the shows in the previous week and any procedure changes. Most of our meetings are open to all WSC members, and the minutes can be found on this page.',
+};
 
 export default async function MeetingMinutes({
   searchParams: { page },
@@ -82,15 +90,10 @@ export default async function MeetingMinutes({
                       dateTime={meeting.meeting_date.toISOString()}
                       className="text-sm"
                     >
-                      {meeting.meeting_date.toLocaleString(undefined, {
-                        weekday: 'short',
-                        day: 'numeric',
-                        month: 'short',
-                        year: 'numeric',
-                        hour: 'numeric',
-                        minute: 'numeric',
-                        hour12: true,
-                      })}
+                      {formatDateTime(
+                        meeting.meeting_date,
+                        DateTimeFormat.DATETIME_MEDIUM,
+                      )}
                     </time>
                   </Link>
                 );

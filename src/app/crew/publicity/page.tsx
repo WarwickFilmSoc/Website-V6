@@ -4,6 +4,13 @@ import Image from 'next/image';
 import coverImage from '@/assets/crew/publicity-cover.jpg';
 import scheduleImage from '@/assets/crew/publicity-schedule.jpg';
 import TeamOfficerCard from '@/app/crew/team-officer-card';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Publicity Team',
+  description:
+    'The publicity team are responsible for spreading the good word about WSC in attempt to make more people aware of our great service and programming and, ultimately, fill more seats at our screenings.',
+};
 
 export default function Publicity() {
   return (

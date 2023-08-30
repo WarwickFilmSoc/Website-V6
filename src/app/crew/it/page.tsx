@@ -5,6 +5,13 @@ import coverImage from '@/assets/crew/it-cover.jpg';
 import computersImage from '@/assets/crew/it-computers.jpg';
 import serverRackImage from '@/assets/crew/it-server-rack.jpg';
 import TeamOfficerCard from '@/app/crew/team-officer-card';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'IT Team',
+  description:
+    "Whether you are great with computers or can just about browse the web, WSC's IT Team needs you! If you aren't particularly technical, we need individuals who can write content for our website or tell us what's good and what needs to be improved - but we're also always happy to train you up.",
+};
 
 export default function It() {
   return (

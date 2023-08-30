@@ -24,6 +24,7 @@ import {
 } from '@/lib/tmdb';
 import Image from 'next/image';
 import { getCertSvg, getFilmAspectRatio } from '@/lib/film-server';
+import { Metadata } from 'next';
 
 export const revalidate = 3600; // Revalidate every hour
 
@@ -53,6 +54,69 @@ function GenreList({
         ))}
     </div>
   );
+}
+
+export async function generateMetadata({
+  params: { id },
+}: {
+  params: { id: string };
+}): Promise<Metadata> {
+  const numericId = parseInt(id);
+  let film;
+
+  if (!Number.isNaN(numericId)) {
+    film = await prisma.film.findFirst({
+      where: {
+        film_id: numericId,
+      },
+      include: {
+        screenings: {
+          select: { scr_id: true, timestamp: true, union_event_id: true },
+          where: {
+            timestamp: { gte: getStartOfDaySecondTimestamp() },
+          },
+          orderBy: {
+            timestamp: 'asc',
+          },
+          take: 1,
+        },
+      },
+    });
+  }
+
+  if (!film)
+    return {
+      title: 'Film Not Found',
+      description: 'That film could not be found.',
+    };
+
+  const tmdbMovie = await getTmdbMovie(film);
+  const posterUrl = tmdbMovie?.poster_path
+    ? getTmdbImageUrl(tmdbMovie.poster_path)
+    : '';
+
+  const title = film.year ? `${film.title} (${film.year})` : film.title;
+
+  return {
+    title,
+    description:
+      film.screenings.length > 0
+        ? `Come and watch ${title} at Warwick Student Cinema on ${formatDateTime(
+            new Date(Number(film.screenings[0].timestamp) * 1000),
+            DateTimeFormat.DATE_LONG,
+          )}.`
+        : `${title} at Warwick Student Cinema - read our film reviews, view our past screenings of this film and request us to screen it in the future.`,
+    openGraph: {
+      type: 'video.movie',
+      directors: film.director,
+      actors: film.starring,
+      duration: film.runtime ? film.runtime * 60 : null,
+      releaseDate: tmdbMovie?.release_date
+        ? new Date(tmdbMovie.release_date).toISOString()
+        : null,
+      images: [posterUrl],
+    },
+  };
 }
 
 export default async function Film({

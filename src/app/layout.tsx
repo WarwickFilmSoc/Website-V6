@@ -24,11 +24,8 @@ export const metadata: Metadata = {
     template: '%s | Warwick Student Cinema',
     default: 'Warwick Student Cinema',
   },
-  description: 'Welcome to your student cinema.',
-  openGraph: {
-    title: 'Warwick Student Cinema',
-    description: 'Welcome to your student cinema.',
-  },
+  description:
+    'Welcome to your student-run, professional-standard cinema at Warwick. Come and watch the best and latest films six days week, or get involved with our five teams.',
   metadataBase: new URL(process.env.URL || 'https://warwick.film'),
   themeColor: '#006295',
 };

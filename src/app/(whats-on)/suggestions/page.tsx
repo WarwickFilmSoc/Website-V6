@@ -1,4 +1,10 @@
 import Link from 'next/link';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Publicity',
+  description: '',
+};
 
 export default function Suggestions() {
   return (

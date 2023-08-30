@@ -7,6 +7,13 @@ import filmImage from '@/assets/crew/projection-film.jpg';
 import meetingImage from '@/assets/crew/projection-meeting.jpg';
 import soundImage from '@/assets/crew/projection-sound.jpg';
 import TeamOfficerCard from '@/app/crew/team-officer-card';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Projection and Technical Teams',
+  description:
+    "The projection team ensure that all films are projected to the society's highest standards and the technical team maintains WSC's equipment to minimise the chance that screenings are cancelled or delayed. WSC currently operates with a Barco digital projector and a changeover system of two Victoria 8 35mm projectors.",
+};
 
 export default function Projection() {
   return (

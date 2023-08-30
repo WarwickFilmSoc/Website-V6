@@ -8,6 +8,13 @@ import itImage from '@/assets/crew/it.jpg';
 import marketingImage from '@/assets/crew/marketing.jpg';
 import Image from 'next/image';
 import LoginForm from '@/components/login-form';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Crew',
+  description:
+    'The success of Warwick Student Cinema and the quality of service we are able to provide for our members is entirely down to members of the Crew who volunteer their time to help run every single show, and look after the day to day running of the society.',
+};
 
 const teams = [
   { name: 'Front of House', href: '/crew/front-of-house', image: fohImage },

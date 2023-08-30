@@ -5,6 +5,13 @@ import coverImage from '@/assets/crew/foh-cover.jpg';
 import teamImage from '@/assets/crew/foh-team.jpg';
 import dmsImage from '@/assets/crew/foh-dms.jpg';
 import TeamOfficerCard from '@/app/crew/team-officer-card';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Front of House Team',
+  description:
+    'The Front of House team of Stewards and Duty Managers look after everything related to our audience and aim to provide them with the best service possible.',
+};
 
 export default function FrontOfHouse() {
   return (
