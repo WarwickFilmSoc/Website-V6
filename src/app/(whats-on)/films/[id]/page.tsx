@@ -108,13 +108,13 @@ export async function generateMetadata({
         : `${title} at Warwick Student Cinema - read our film reviews, view our past screenings of this film and request us to screen it in the future.`,
     openGraph: {
       type: 'video.movie',
-      directors: film.director,
-      actors: film.starring,
-      duration: film.runtime ? film.runtime * 60 : null,
+      directors: film.director || undefined,
+      actors: film.starring || undefined,
+      duration: film.runtime ? film.runtime * 60 : undefined,
       releaseDate: tmdbMovie?.release_date
         ? new Date(tmdbMovie.release_date).toISOString()
-        : null,
-      images: [posterUrl],
+        : undefined,
+      images: posterUrl ? [posterUrl] : undefined,
     },
   };
 }
@@ -227,14 +227,18 @@ export default async function Film({
             )}
 
             <div className="mt-3 text-sm hidden xs:block">
-              <p className="mb-1">
-                <strong>Director: </strong>
-                {film.director}
-              </p>
-              <p>
-                <strong>Starring: </strong>
-                {film.starring}
-              </p>
+              {film.director && (
+                <p className="mb-1">
+                  <strong>Director: </strong>
+                  {film.director}
+                </p>
+              )}
+              {film.starring && (
+                <p>
+                  <strong>Starring: </strong>
+                  {film.starring}
+                </p>
+              )}
             </div>
 
             {youtubeTrailer && (
@@ -306,14 +310,18 @@ export default async function Film({
                   </span>
                 </>
               )}
-              <span className="xs:hidden">
-                <span className="font-lexend font-bold">Director:&nbsp;</span>
-                {film.director}
-              </span>
-              <span className="xs:hidden">
-                <span className="font-lexend font-bold">Starring:&nbsp;</span>
-                {film.starring}
-              </span>
+              {film.director && (
+                <span className="xs:hidden">
+                  <span className="font-lexend font-bold">Director:&nbsp;</span>
+                  {film.director}
+                </span>
+              )}
+              {film.starring && (
+                <span className="xs:hidden">
+                  <span className="font-lexend font-bold">Starring:&nbsp;</span>
+                  {film.starring}
+                </span>
+              )}
             </div>
 
             <Image
