@@ -18,6 +18,7 @@ import tomasCaldonImage from '@/assets/exec/tomas-caldon.jpg';
 export type ExecMember = {
   name: string;
   image: StaticImageData;
+  letterboxd?: string;
 };
 
 export type ExecPosition = {
@@ -49,6 +50,7 @@ export const execTeam: ExecTeam = {
       {
         name: 'Olivia Lancastle',
         image: oliviaLancastleImage,
+        letterboxd: 'livlancastle',
       },
     ],
     description: (
@@ -67,6 +69,7 @@ export const execTeam: ExecTeam = {
       {
         name: 'Daniel Kallin',
         image: danielKallinImage,
+        letterboxd: 'danisstillalive',
       },
     ],
     description: (
@@ -102,10 +105,12 @@ export const execTeam: ExecTeam = {
       {
         name: 'Zain Mothupi',
         image: zainMothupiImage,
+        letterboxd: 'becauseimz',
       },
       {
         name: 'Dillan Patel',
         image: dillanPatelImage,
+        letterboxd: 'drp579',
       },
     ],
     description: (
@@ -124,6 +129,7 @@ export const execTeam: ExecTeam = {
       {
         name: 'Eric Liu',
         image: ericLiuImage,
+        letterboxd: 'pinguy',
       },
     ],
     description: (
@@ -142,6 +148,7 @@ export const execTeam: ExecTeam = {
       {
         name: 'James Patt',
         image: jamesPattImage,
+        letterboxd: 'jamesp_',
       },
     ],
     description: (
@@ -196,6 +203,7 @@ export const execTeam: ExecTeam = {
       {
         name: 'Adam Skrzymowski',
         image: adamSkrzymowskiImage,
+        letterboxd: 'gremvy',
       },
       {
         name: 'Josh Heng',
@@ -235,6 +243,7 @@ export const execTeam: ExecTeam = {
       {
         name: 'Tomas Caldon',
         image: tomasCaldonImage,
+        letterboxd: 'teaenthusiast',
       },
     ],
     description: (

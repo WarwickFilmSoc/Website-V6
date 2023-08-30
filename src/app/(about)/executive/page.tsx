@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { ExecPosition, execTeam } from '@/data/exec';
 import { Metadata } from 'next';
+import letterboxdLogo from '@/assets/logos/social/letterboxd-colour.svg';
 
 export const metadata: Metadata = {
   title: 'The Executive Team',
@@ -60,14 +61,30 @@ export default function TheExecutiveTeam() {
               </a>
             </p>
 
-            <div className="h-auto sm:h-48 m-2 flex justify-center items-center gap-2 sm:gap-4 flex-wrap sm:flex-nowrap">
+            <div className="m-2 h-auto sm:h-48 flex justify-center items-center gap-2 sm:gap-4 flex-wrap sm:flex-nowrap">
               {position.members.map((member, i) => (
-                <Image
-                  key={i}
-                  src={member.image}
-                  alt={member.name}
-                  className="h-32 sm:h-full object-contain w-auto"
-                />
+                <div key={i} className="h-32 sm:h-full relative">
+                  <Image
+                    src={member.image}
+                    alt={member.name}
+                    className="h-32 sm:h-full object-contain object-top w-auto bg-transparent"
+                  />
+                  {member.letterboxd && (
+                    <a
+                      href={`https://letterboxd.com/${member.letterboxd}`}
+                      target="_blank"
+                      rel="noopener"
+                    >
+                      <Image
+                        src={letterboxdLogo}
+                        alt="Letterboxd"
+                        width={45}
+                        height={45}
+                        className="w-8 bg-transparent absolute top-2 right-2 hover:scale-105"
+                      />
+                    </a>
+                  )}
+                </div>
               ))}
             </div>
 
