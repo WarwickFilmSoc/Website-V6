@@ -439,7 +439,7 @@ export default async function Film({
             </div>
           ) : (
             <div>
-              This film has been shown {pastScreenings.length} time$
+              This film has been shown {pastScreenings.length} time
               {pastScreenings.length === 1 ? '' : 's'} before at Warwick Student
               Cinema:
               <ul
