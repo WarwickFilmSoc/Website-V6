@@ -9,10 +9,13 @@ const theme: CustomFlowbiteTheme = {
       flush: {
         off: 'hover:bg-[#ffffff11]',
       },
-      heading: 'text-base font-medium normal-case',
+      heading: 'text-lg font-medium normal-case',
       open: {
         on: 'text-black bg-white hover:bg-white',
       },
+    },
+    content: {
+      base: 'bg-primary/40 text-base p-5',
     },
   },
   modal: {
