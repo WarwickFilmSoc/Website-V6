@@ -1,5 +1,4 @@
 import { Film } from '@prisma/client';
-import { getTermWeekData } from '@/lib/term-dates';
 
 export function getFilmPrettyUrl(film: { title: string; film_id: number }) {
   return `/films/${film.film_id}?film=${film.title
@@ -44,7 +43,7 @@ export function splitScreeningDaysByFilm<
   return filmScreeningDays;
 }
 
-type BaseScreening = {
+export type BaseScreening = {
   scr_id: number;
   timestamp: bigint | null;
 };
@@ -93,34 +92,6 @@ export type TScreeningWeek<TScreening extends BaseScreening> = {
   termAndWeekName: string;
   screeningDays: TScreeningDay<TScreening>[];
 };
-
-export async function groupScreeningDaysByTermWeek<
-  TScreening extends BaseScreening,
->(
-  screeningDays: TScreeningDay<TScreening>[],
-): Promise<TScreeningWeek<TScreening>[]> {
-  const screeningWeeks: TScreeningWeek<TScreening>[] = [];
-
-  let currentWeek: TScreeningWeek<TScreening> | null = null;
-  for (const screeningDay of screeningDays) {
-    const weekData = await getTermWeekData(screeningDay.day);
-    if (
-      currentWeek &&
-      currentWeek.termAndWeekName === weekData.termAndWeekName
-    ) {
-      currentWeek.screeningDays.push(screeningDay);
-    } else {
-      if (currentWeek) screeningWeeks.push(currentWeek);
-      currentWeek = {
-        termAndWeekName: weekData.termAndWeekName,
-        screeningDays: [screeningDay],
-      };
-    }
-  }
-  if (currentWeek) screeningWeeks.push(currentWeek);
-
-  return screeningWeeks;
-}
 
 export function formatFilmRuntime(runtime: number) {
   if (runtime >= 60) {

@@ -9,12 +9,12 @@ import {
   formatCert,
   formatFilmRuntime,
   getFilmPrettyUrl,
-  groupScreeningDaysByTermWeek,
   groupScreeningsByDay,
   splitScreeningDaysByFilm,
   TScreeningDay,
   TScreeningWeek,
 } from '@/lib/film';
+import { groupScreeningDaysByTermWeek } from '@/lib/film-server';
 import Image from 'next/image';
 import { getTmdbImageUrl } from '@/lib/tmdb';
 import FilmGenreTags from '@/components/films/film-genre-tags';

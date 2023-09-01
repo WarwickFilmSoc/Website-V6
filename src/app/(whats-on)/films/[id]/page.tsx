@@ -92,6 +92,51 @@ export async function generateMetadata({
   };
 }
 
+async function ScreeningDay({ day }: { day: TScreeningDay<Screening> }) {
+  const termAndWeekName = await getTermAndWeekName(day.day);
+  return (
+    <article className="mt-2 bg-primary p-4 box-shadow-lg flex flex-col xs:flex-row xs:items-center gap-2 xs:gap-4">
+      <div>
+        <time dateTime={day.day.toISOString()}>
+          {formatDateTime(day.day, DateTimeFormat.DATE_LONG)}
+        </time>
+        <span className="block text-xs uppercase font-lexend font-bold">
+          {termAndWeekName}
+        </span>
+      </div>
+
+      <div className="flex flex-wrap xs:flex-row gap-2 xs:ml-auto xs:justify-end">
+        {day.screenings
+          .sort((a, b) => a.date.getTime() - b.date.getTime())
+          .map((screening) =>
+            screening.union_event_id ? (
+              <a
+                key={screening.scr_id}
+                href={getTicketLink(screening.union_event_id)}
+                target="_blank"
+                rel="noopener"
+                className="border-white border-2 rounded-md px-2 py-1 hover:scale-105"
+              >
+                <time dateTime={screening.date.toISOString()}>
+                  {formatDateTime(screening.date, DateTimeFormat.TIME)}
+                </time>
+              </a>
+            ) : (
+              <span
+                key={screening.scr_id}
+                className="border-white border-2 rounded-md px-2 py-1"
+              >
+                <time dateTime={screening.date.toISOString()}>
+                  {formatDateTime(screening.date, DateTimeFormat.TIME)}
+                </time>
+              </span>
+            ),
+          )}
+      </div>
+    </article>
+  );
+}
+
 export default async function Film({
   params: { id },
 }: {
@@ -215,7 +260,6 @@ export default async function Film({
               <iframe
                 src={`https://youtube.com/embed/${film.youtube_trailer_id}`}
                 title="Film Trailer"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
                 className="mt-3 w-64 hidden md:block"
               ></iframe>
@@ -325,54 +369,7 @@ export default async function Film({
                     a.dayTime - b.dayTime,
                 )
                 .map((day: TScreeningDay<Screening>) => (
-                  <article
-                    key={day.dayTime}
-                    className="mt-2 bg-primary p-4 box-shadow-lg flex flex-col xs:flex-row xs:items-center gap-2 xs:gap-4"
-                  >
-                    <div>
-                      <time dateTime={day.day.toISOString()}>
-                        {formatDateTime(day.day, DateTimeFormat.DATE_LONG)}
-                      </time>
-                      <p className="text-xs uppercase font-lexend font-bold">
-                        {getTermAndWeekName(day.day)}
-                      </p>
-                    </div>
-
-                    <div className="flex flex-wrap xs:flex-row gap-2 xs:ml-auto xs:justify-end">
-                      {day.screenings
-                        .sort((a, b) => a.date.getTime() - b.date.getTime())
-                        .map((screening) =>
-                          screening.union_event_id ? (
-                            <a
-                              key={screening.scr_id}
-                              href={getTicketLink(screening.union_event_id)}
-                              target="_blank"
-                              rel="noopener"
-                              className="border-white border-2 rounded-md px-2 py-1 hover:scale-105"
-                            >
-                              <time dateTime={screening.date.toISOString()}>
-                                {formatDateTime(
-                                  screening.date,
-                                  DateTimeFormat.TIME,
-                                )}
-                              </time>
-                            </a>
-                          ) : (
-                            <span
-                              key={screening.scr_id}
-                              className="border-white border-2 rounded-md px-2 py-1"
-                            >
-                              <time dateTime={screening.date.toISOString()}>
-                                {formatDateTime(
-                                  screening.date,
-                                  DateTimeFormat.TIME,
-                                )}
-                              </time>
-                            </span>
-                          ),
-                        )}
-                    </div>
-                  </article>
+                  <ScreeningDay day={day} key={day.dayTime} />
                 ))}
             </div>
           </div>
@@ -381,7 +378,6 @@ export default async function Film({
             <iframe
               src={`https://youtube.com/embed/${film.youtube_trailer_id}`}
               title="Film Trailer"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowFullScreen
               className="mt-4 w-full h-56 sm:h-64 md:hidden"
             ></iframe>
@@ -424,8 +420,8 @@ export default async function Film({
                     <li key={day.dayTime}>
                       <time dateTime={day.day.toISOString()}>
                         {formatDateTime(day.day, DateTimeFormat.DATE_MEDIUM)} (
-                        {getTermAndWeekName(day.day)})
                       </time>
+                      <span> ({getTermAndWeekName(day.day)})</span>
                       &nbsp;-&nbsp;
                       {day.screenings
                         .map((screening) =>
