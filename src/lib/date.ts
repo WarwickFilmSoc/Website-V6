@@ -69,6 +69,7 @@ export enum DateTimeFormat {
   TIME,
   WEEKDAY_DATE,
   WEEKDAY_DATE_MONTH,
+  DATE_SHORT,
   DATE_MEDIUM,
   DATE_LONG,
   DATETIME_MEDIUM,
@@ -84,6 +85,8 @@ export function formatDateTime(date: Date, format: DateTimeFormat): string {
       return dayjsDate.format('ddd Do');
     case DateTimeFormat.WEEKDAY_DATE_MONTH:
       return dayjsDate.format('dddd Do MMM');
+    case DateTimeFormat.DATE_SHORT:
+      return dayjsDate.format('Do MMM');
     case DateTimeFormat.DATE_MEDIUM:
       return dayjsDate.format('D MMM YYYY');
     case DateTimeFormat.DATE_LONG:

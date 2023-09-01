@@ -12,13 +12,16 @@ import {
   groupScreeningsByDay,
   splitScreeningDaysByFilm,
   TScreeningDay,
-  TScreeningWeek,
 } from '@/lib/film';
-import { groupScreeningDaysByTermWeek } from '@/lib/film-server';
+import {
+  groupScreeningDaysByTermWeek,
+  TScreeningWeek,
+} from '@/lib/film-server';
 import Image from 'next/image';
 import { getTmdbImageUrl } from '@/lib/tmdb';
 import FilmGenreTags from '@/components/films/film-genre-tags';
 import { Film, Screening } from '@prisma/client';
+import Link from 'next/link';
 
 function FilmScreeningDay({
   filmScreeningDay,
@@ -33,7 +36,7 @@ function FilmScreeningDay({
     : filmScreeningDay.film.title;
 
   return (
-    <a href={getFilmPrettyUrl(filmScreeningDay.film)} className="group mb-6">
+    <Link href={getFilmPrettyUrl(filmScreeningDay.film)} className="group mb-6">
       <article>
         <div className="flex justify-between items-center mb-1 flex-wrap">
           <div className="uppercase font-lexend mr-1">
@@ -86,7 +89,7 @@ function FilmScreeningDay({
           />
         )}
       </article>
-    </a>
+    </Link>
   );
 }
 
@@ -104,7 +107,7 @@ function ScreeningWeek({
       <div className="flex items-center md:mx-4 mb-6">
         <hr className="grow border-t-2 m-2 md:m-4 flex-shrink-0 w-4" />
         <h2 className="text-xl md:text-2xl mx-2 md:mx-4 text-center">
-          {screeningWeek.termAndWeekName}
+          {screeningWeek.weekData.termAndWeekName}
         </h2>
         <hr className="grow border-t-2 m-2 md:m-4 flex-shrink-0 w-4" />
       </div>
@@ -145,7 +148,7 @@ export default async function NormalView() {
       {upcomingScreeningWeeks.map((filmScreeningWeek) => (
         <ScreeningWeek
           screeningWeek={filmScreeningWeek}
-          key={filmScreeningWeek.termAndWeekName}
+          key={filmScreeningWeek.weekData.termAndWeekName}
         />
       ))}
     </div>

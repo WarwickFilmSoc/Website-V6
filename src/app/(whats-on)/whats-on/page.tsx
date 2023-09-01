@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import NormalView from '@/app/(whats-on)/whats-on/normal-view';
+import LargeButtonLink from '@/components/large-button-link';
 
 export const metadata: Metadata = {
   title: "What's On",
@@ -9,6 +10,9 @@ export const metadata: Metadata = {
 export default function WhatsOn() {
   return (
     <main>
+      <LargeButtonLink href="/schedule" className="float-right">
+        Schedule View
+      </LargeButtonLink>
       <h1 className="mb-1">What&apos;s On</h1>
       <p className="mb-6">
         Come and watch films in our fully-equipped L3 lecture theatre, and come

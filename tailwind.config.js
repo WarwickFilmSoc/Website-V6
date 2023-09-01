@@ -15,6 +15,7 @@ module.exports = {
       colors: {
         primary: '#006295',
         'primary-darker': '#005a85',
+        secondary: '#29205F',
         accent: '#4EDAB8',
         white: '#FFFFFF',
         dark: '#05050C',
@@ -27,6 +28,8 @@ module.exports = {
       maxWidth: {
         112: '28rem',
         128: '32rem',
+        '8xl': '90rem',
+        '9xl': '100rem',
       },
       listStyleType: {
         roman: 'lower-roman',

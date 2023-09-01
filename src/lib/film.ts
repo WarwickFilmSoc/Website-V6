@@ -88,11 +88,6 @@ export function groupScreeningsByDay<TScreening extends BaseScreening>(
   return screeningDays;
 }
 
-export type TScreeningWeek<TScreening extends BaseScreening> = {
-  termAndWeekName: string;
-  screeningDays: TScreeningDay<TScreening>[];
-};
-
 export function formatFilmRuntime(runtime: number) {
   if (runtime >= 60) {
     const hours = Math.floor(runtime / 60);
