@@ -3,7 +3,7 @@ import NormalView from '@/app/(whats-on)/whats-on/normal-view';
 
 export const metadata: Metadata = {
   title: "What's On",
-  description: '',
+  description: "Find out what we're screening at Warwick Student Cinema next",
 };
 
 export default function WhatsOn() {
