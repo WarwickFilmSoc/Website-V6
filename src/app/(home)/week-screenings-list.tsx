@@ -2,7 +2,7 @@ import FilmScreeningDayCard from './film-screening-day-card';
 import LargeButtonLink from '@/components/large-button-link';
 import prisma from '@/lib/prisma';
 import { getStartOfDaySecondTimestamp } from '@/lib/date';
-import { groupScreeningsByFilmScreeningDay } from '@/lib/film';
+import { groupScreeningsByDay, splitScreeningDaysByFilm } from '@/lib/film';
 
 export default async function WeekScreeningsList() {
   const upcomingScreenings = await prisma.screening.findMany({
@@ -14,15 +14,15 @@ export default async function WeekScreeningsList() {
     orderBy: {
       timestamp: 'asc',
     },
-    select: {
-      scr_id: true,
-      timestamp: true,
+    include: {
       film: true,
     },
     take: 12, // 6 * 2 times for each screening
   });
-  const upcomingFilmScreeningDays =
-    groupScreeningsByFilmScreeningDay(upcomingScreenings);
+  const upcomingScreeningDays = groupScreeningsByDay(upcomingScreenings);
+  const upcomingFilmScreeningDays = splitScreeningDaysByFilm(
+    upcomingScreeningDays,
+  );
 
   return (
     <section className="w-full mb-24 z-30 drop-shadow-lg -mt-32 h-sm:-mt-36 h-md:-mt-48 h-lg:-mt-64 pt-2">

@@ -1,5 +1,5 @@
 import prisma from '@/lib/prisma';
-import { Film } from '@prisma/client';
+import { Film, Screening } from '@prisma/client';
 import Link from 'next/link';
 import LargeButtonLink from '@/components/large-button-link';
 import {
@@ -9,7 +9,7 @@ import {
   getFilmTitle,
   getTicketLink,
   groupScreeningsByDay,
-  ScreeningDay,
+  TScreeningDay,
 } from '@/lib/film';
 import {
   DateTimeFormat,
@@ -21,6 +21,7 @@ import Image from 'next/image';
 import { getCertSvg, getFilmAspectRatio } from '@/lib/film-server';
 import { Metadata } from 'next';
 import FilmGenreTags from '@/components/films/film-genre-tags';
+import { getTermAndWeekName } from '@/lib/term-dates';
 
 export const revalidate = 3600; // Revalidate every hour
 
@@ -106,7 +107,6 @@ export default async function Film({
       },
       include: {
         screenings: {
-          select: { scr_id: true, timestamp: true, union_event_id: true },
           where: {
             timestamp: { not: null },
           },
@@ -321,16 +321,22 @@ export default async function Film({
             <div className="flex flex-col gap-2">
               {groupScreeningsByDay(upcomingScreenings)
                 .sort(
-                  (a: ScreeningDay, b: ScreeningDay) => a.dayTime - b.dayTime,
+                  (a: TScreeningDay<Screening>, b: TScreeningDay<Screening>) =>
+                    a.dayTime - b.dayTime,
                 )
-                .map((day: ScreeningDay) => (
+                .map((day: TScreeningDay<Screening>) => (
                   <article
                     key={day.dayTime}
                     className="mt-2 bg-primary p-4 box-shadow-lg flex flex-col xs:flex-row xs:items-center gap-2 xs:gap-4"
                   >
-                    <time dateTime={day.day.toISOString()}>
-                      {formatDateTime(day.day, DateTimeFormat.DATE_LONG)}
-                    </time>
+                    <div>
+                      <time dateTime={day.day.toISOString()}>
+                        {formatDateTime(day.day, DateTimeFormat.DATE_LONG)}
+                      </time>
+                      <p className="text-xs uppercase font-lexend font-bold">
+                        {getTermAndWeekName(day.day)}
+                      </p>
+                    </div>
 
                     <div className="flex flex-wrap xs:flex-row gap-2 xs:ml-auto xs:justify-end">
                       {day.screenings
@@ -338,7 +344,7 @@ export default async function Film({
                         .map((screening) =>
                           screening.union_event_id ? (
                             <a
-                              key={screening.id}
+                              key={screening.scr_id}
                               href={getTicketLink(screening.union_event_id)}
                               target="_blank"
                               rel="noopener"
@@ -353,7 +359,7 @@ export default async function Film({
                             </a>
                           ) : (
                             <span
-                              key={screening.id}
+                              key={screening.scr_id}
                               className="border-white border-2 rounded-md px-2 py-1"
                             >
                               <time dateTime={screening.date.toISOString()}>
@@ -412,20 +418,13 @@ export default async function Film({
               This film has been shown {pastScreenings.length} time
               {pastScreenings.length === 1 ? '' : 's'} before at Warwick Student
               Cinema:
-              <ul
-                className={`list-disc mt-1 ${
-                  pastScreenings.length > 15
-                    ? 'lg:columns-2 xl:columns-3'
-                    : pastScreenings.length > 10
-                    ? 'lg:columns-2'
-                    : ''
-                }`}
-              >
+              <ul className="list-disc mt-1">
                 {groupScreeningsByDay(pastScreenings).map(
-                  (day: ScreeningDay) => (
+                  (day: TScreeningDay<Screening>) => (
                     <li key={day.dayTime}>
                       <time dateTime={day.day.toISOString()}>
-                        {formatDateTime(day.day, DateTimeFormat.DATE_MEDIUM)}
+                        {formatDateTime(day.day, DateTimeFormat.DATE_MEDIUM)} (
+                        {getTermAndWeekName(day.day)})
                       </time>
                       &nbsp;-&nbsp;
                       {day.screenings

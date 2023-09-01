@@ -1,20 +1,16 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import styles from './film-screening-day-card.module.css';
-import {
-  Cert,
-  FilmScreeningDay,
-  formatCert,
-  getFilmPrettyUrl,
-} from '@/lib/film';
+import { Cert, TScreeningDay, formatCert, getFilmPrettyUrl } from '@/lib/film';
 import { getTmdbImageUrl } from '@/lib/tmdb';
 import { DateTimeFormat, formatDateTime } from '@/lib/date';
+import { Film, Screening } from '@prisma/client';
 
 export default async function FilmScreeningDayCard({
   filmScreeningDay,
   index,
 }: {
-  filmScreeningDay: FilmScreeningDay;
+  filmScreeningDay: TScreeningDay<Screening> & { film: Film };
   index: number;
 }) {
   const responsiveClasses = [
@@ -68,7 +64,7 @@ export default async function FilmScreeningDayCard({
               <time
                 dateTime={screening.date.toISOString()}
                 className="bg-primary rounded-md px-1 py-0.5 group-hover:scale-105"
-                key={screening.id}
+                key={screening.scr_id}
               >
                 {formatDateTime(screening.date, DateTimeFormat.TIME)}
               </time>

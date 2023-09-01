@@ -1,4 +1,5 @@
 import { Film } from '@prisma/client';
+import { getTermWeekData } from '@/lib/term-dates';
 
 export function getFilmPrettyUrl(film: { title: string; film_id: number }) {
   return `/films/${film.film_id}?film=${film.title
@@ -12,80 +13,61 @@ export function getFilmTitle(film: { title: string; year: number | null }) {
   return film.year ? `${film.title} (${film.year})` : film.title;
 }
 
-export type FilmScreeningDay = {
-  dayTime: number;
-  day: Date;
-  screenings: { id: number; date: Date }[];
-  film: Film;
-};
+export function splitScreeningDaysByFilm<
+  TScreening extends { film: Film } & BaseScreening,
+>(
+  screeningDays: TScreeningDay<TScreening>[],
+): (TScreeningDay<TScreening> & { film: Film })[] {
+  let filmScreeningDays: (TScreeningDay<TScreening> & { film: Film })[] = [];
 
-export function groupScreeningsByFilmScreeningDay(
-  screenings: {
-    scr_id: number;
-    timestamp: bigint | null;
-    film: Film;
-  }[],
-) {
-  const filmScreeningDays: FilmScreeningDay[] = [];
-
-  let currentDay: FilmScreeningDay | null = null;
-  for (const screening of screenings) {
-    if (!screening.timestamp) continue;
-
-    const date = new Date(Number(screening.timestamp) * 1000);
-    const transformedScreening = {
-      date,
-      id: screening.scr_id,
-    };
-
-    const dayStart = new Date(date.getTime());
-    dayStart.setHours(0, 0, 0, 0);
-
-    if (
-      currentDay &&
-      currentDay.film.film_id === screening.film.film_id &&
-      currentDay?.day.getTime() === dayStart.getTime()
-    )
-      currentDay.screenings.push(transformedScreening);
-    else {
-      if (currentDay) filmScreeningDays.push(currentDay);
-      currentDay = {
-        dayTime: dayStart.getTime(),
-        day: dayStart,
-        screenings: [transformedScreening],
-        film: screening.film,
-      };
+  for (const screeningDay of screeningDays) {
+    const filmScreeningDaysToday: {
+      [filmId: number]: TScreeningDay<TScreening> & { film: Film };
+    } = {};
+    for (const screening of screeningDay.screenings) {
+      if (filmScreeningDaysToday[screening.film.film_id])
+        filmScreeningDaysToday[screening.film.film_id].screenings.push(
+          screening,
+        );
+      else
+        filmScreeningDaysToday[screening.film.film_id] = {
+          ...screeningDay,
+          film: screening.film,
+          screenings: [screening],
+        };
     }
+    filmScreeningDays = filmScreeningDays.concat(
+      Object.values(filmScreeningDaysToday),
+    );
   }
 
-  if (currentDay) filmScreeningDays.push(currentDay);
   return filmScreeningDays;
 }
 
-export type ScreeningDay = {
-  dayTime: number;
-  day: Date;
-  screenings: { id: number; date: Date; union_event_id: number | null }[];
+type BaseScreening = {
+  scr_id: number;
+  timestamp: bigint | null;
 };
 
-export function groupScreeningsByDay(
-  screenings: {
-    scr_id: number;
-    timestamp: bigint | null;
-    union_event_id: number | null;
-  }[],
-) {
-  const screeningDays: ScreeningDay[] = [];
+export type TScreeningDay<TScreening extends BaseScreening> = {
+  dayTime: number;
+  day: Date;
+  screenings: ({ date: Date } & TScreening)[];
+};
 
-  let currentDay: ScreeningDay | null = null;
+export function groupScreeningsByDay<TScreening extends BaseScreening>(
+  screenings: TScreening[],
+): TScreeningDay<TScreening>[] {
+  const screeningDays: TScreeningDay<TScreening>[] = [];
+
+  let currentDay: TScreeningDay<TScreening> | null = null;
   for (const screening of screenings) {
     if (!screening.timestamp) continue;
 
     const date = new Date(Number(screening.timestamp) * 1000);
     const transformedScreening = {
+      ...screening,
       date,
-      id: screening.scr_id,
-      union_event_id: screening.union_event_id,
     };
 
     const dayStart = new Date(date.getTime());
@@ -105,6 +87,39 @@ export function groupScreeningsByDay(
 
   if (currentDay) screeningDays.push(currentDay);
   return screeningDays;
+}
+
+export type TScreeningWeek<TScreening extends BaseScreening> = {
+  termAndWeekName: string;
+  screeningDays: TScreeningDay<TScreening>[];
+};
+
+export async function groupScreeningDaysByTermWeek<
+  TScreening extends BaseScreening,
+>(
+  screeningDays: TScreeningDay<TScreening>[],
+): Promise<TScreeningWeek<TScreening>[]> {
+  const screeningWeeks: TScreeningWeek<TScreening>[] = [];
+
+  let currentWeek: TScreeningWeek<TScreening> | null = null;
+  for (const screeningDay of screeningDays) {
+    const weekData = await getTermWeekData(screeningDay.day);
+    if (
+      currentWeek &&
+      currentWeek.termAndWeekName === weekData.termAndWeekName
+    ) {
+      currentWeek.screeningDays.push(screeningDay);
+    } else {
+      if (currentWeek) screeningWeeks.push(currentWeek);
+      currentWeek = {
+        termAndWeekName: weekData.termAndWeekName,
+        screeningDays: [screeningDay],
+      };
+    }
+  }
+  if (currentWeek) screeningWeeks.push(currentWeek);
+
+  return screeningWeeks;
 }
 
 export function formatFilmRuntime(runtime: number) {

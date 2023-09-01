@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import prisma from '@/lib/prisma';
 import { Meeting } from '@prisma/client';
-import { getTabulaTermName } from '@/lib/tabula';
 import {
   getMeetingTypeIcon,
   getMeetingTypeString,
@@ -9,6 +8,7 @@ import {
 import LargeButtonLink from '@/components/large-button-link';
 import { Metadata } from 'next';
 import { DateTimeFormat, formatDateTime } from '@/lib/date';
+import { getTermName } from '@/lib/term-dates';
 
 export const metadata: Metadata = {
   title: 'Meeting Minutes',
@@ -34,14 +34,14 @@ export default async function MeetingMinutes({
         meeting_date: 'desc',
       },
     ],
-    skip: pageNumber * 25,
-    take: 25,
+    skip: pageNumber * 50,
+    take: 50,
   });
 
   let terms: { name: string; meetings: Meeting[] }[] = [];
   let currentTerm: { name: string; meetings: Meeting[] } | null = null;
   for (const meeting of meetings) {
-    let meetingTerm = await getTabulaTermName(meeting.meeting_date);
+    let meetingTerm = await getTermName(meeting.meeting_date);
     if (!currentTerm || meetingTerm !== currentTerm.name) {
       if (currentTerm) terms.push(currentTerm);
       currentTerm = { name: meetingTerm, meetings: [meeting] };

@@ -6,20 +6,24 @@ import {
 } from '@/lib/date';
 import {
   Cert,
-  FilmScreeningDay,
   formatCert,
   formatFilmRuntime,
   getFilmPrettyUrl,
-  groupScreeningsByFilmScreeningDay,
+  groupScreeningDaysByTermWeek,
+  groupScreeningsByDay,
+  splitScreeningDaysByFilm,
+  TScreeningDay,
+  TScreeningWeek,
 } from '@/lib/film';
 import Image from 'next/image';
 import { getTmdbImageUrl } from '@/lib/tmdb';
 import FilmGenreTags from '@/components/films/film-genre-tags';
+import { Film, Screening } from '@prisma/client';
 
 function FilmScreeningDay({
   filmScreeningDay,
 }: {
-  filmScreeningDay: FilmScreeningDay;
+  filmScreeningDay: TScreeningDay<Screening> & { film: Film };
 }) {
   const backdropUrl = filmScreeningDay.film.tmdb_backdrop_path
     ? getTmdbImageUrl(filmScreeningDay.film.tmdb_backdrop_path)
@@ -36,7 +40,7 @@ function FilmScreeningDay({
             <span>
               {formatDateTime(
                 filmScreeningDay.day,
-                DateTimeFormat.WEEKDAY_DATE_LONG,
+                DateTimeFormat.WEEKDAY_DATE_MONTH,
               )}
             </span>
           </div>
@@ -45,7 +49,7 @@ function FilmScreeningDay({
               <time
                 dateTime={screening.date.toISOString()}
                 className="bg-primary rounded-md px-1 py-0.5 group-hover:scale-105"
-                key={screening.id}
+                key={screening.scr_id}
               >
                 {formatDateTime(screening.date, DateTimeFormat.TIME)}
               </time>
@@ -86,6 +90,37 @@ function FilmScreeningDay({
   );
 }
 
+function ScreeningWeek({
+  screeningWeek,
+}: {
+  screeningWeek: TScreeningWeek<Screening & { film: Film }>;
+}) {
+  const filmScreeningDays = splitScreeningDaysByFilm(
+    screeningWeek.screeningDays,
+  );
+
+  return (
+    <>
+      <div className="flex items-center md:mx-4 mb-6">
+        <hr className="grow border-t-2 m-2 md:m-4 flex-shrink-0 w-4" />
+        <h2 className="text-xl md:text-2xl mx-2 md:mx-4 text-center">
+          {screeningWeek.termAndWeekName}
+        </h2>
+        <hr className="grow border-t-2 m-2 md:m-4 flex-shrink-0 w-4" />
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-12">
+        {filmScreeningDays.map((filmScreeningDay) => (
+          <FilmScreeningDay
+            filmScreeningDay={filmScreeningDay}
+            key={`${filmScreeningDay.dayTime}${filmScreeningDay.film.film_id}`}
+          />
+        ))}
+      </div>
+    </>
+  );
+}
+
 export default async function NormalView() {
   const upcomingScreenings = await prisma.screening.findMany({
     where: {
@@ -96,21 +131,21 @@ export default async function NormalView() {
     orderBy: {
       timestamp: 'asc',
     },
-    select: {
-      scr_id: true,
-      timestamp: true,
+    include: {
       film: true,
     },
   });
-  const upcomingFilmScreeningDays =
-    groupScreeningsByFilmScreeningDay(upcomingScreenings);
+  const upcomingScreeningDays = groupScreeningsByDay(upcomingScreenings);
+  const upcomingScreeningWeeks = await groupScreeningDaysByTermWeek(
+    upcomingScreeningDays,
+  );
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-      {upcomingFilmScreeningDays.map((filmScreeningDay) => (
-        <FilmScreeningDay
-          filmScreeningDay={filmScreeningDay}
-          key={`${filmScreeningDay.dayTime}${filmScreeningDay.film.film_id}`}
+    <div>
+      {upcomingScreeningWeeks.map((filmScreeningWeek) => (
+        <ScreeningWeek
+          screeningWeek={filmScreeningWeek}
+          key={filmScreeningWeek.termAndWeekName}
         />
       ))}
     </div>

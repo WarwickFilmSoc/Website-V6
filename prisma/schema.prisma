@@ -73,8 +73,8 @@ model Film {
 model Screening {
   scr_id          Int                     @id @default(autoincrement()) @db.UnsignedInt
   film_id         Int                     @default(0) @db.UnsignedInt
-  time            DateTime                @default(dbgenerated("'20:00:00'")) @db.Time(0)
-  date            DateTime                @default(dbgenerated("'0000-00-00'")) @db.Date
+  time            DateTime                @ignore @default(dbgenerated("'20:00:00'")) @db.Time(0)
+  date            DateTime                @ignore @default(dbgenerated("'0000-00-00'")) @db.Date
   timestamp       BigInt?
   location_id     Int                     @default(1)
   gauge           ScreeningGauge          @default(MM_35)
