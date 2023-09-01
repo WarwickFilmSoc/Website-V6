@@ -7,7 +7,7 @@ import {
   formatCert,
   getFilmPrettyUrl,
 } from '@/lib/film';
-import { getTmdbImageUrl, getTmdbMovie } from '@/lib/tmdb';
+import { getTmdbImageUrl } from '@/lib/tmdb';
 import { DateTimeFormat, formatDateTime } from '@/lib/date';
 
 export default async function FilmScreeningDayCard({
@@ -27,9 +27,8 @@ export default async function FilmScreeningDayCard({
   ];
   if (index > 5) return null;
 
-  const tmdbMovie = await getTmdbMovie(filmScreeningDay.film);
-  const posterUrl = tmdbMovie?.poster_path
-    ? getTmdbImageUrl(tmdbMovie.poster_path)
+  const posterUrl = filmScreeningDay.film.tmdb_poster_path
+    ? getTmdbImageUrl(filmScreeningDay.film.tmdb_poster_path)
     : 'https://m.media-amazon.com/images/M/MV5BYTdiOTIyZTQtNmQ1OS00NjZlLWIyMTgtYzk5Y2M3ZDVmMDk1XkEyXkFqcGdeQXVyMTAzMDg4NzU0._V1_.jpg';
 
   return (

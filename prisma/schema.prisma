@@ -35,29 +35,36 @@ model CertCode {
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model Film {
-  film_id         Int           @id @default(autoincrement()) @db.UnsignedInt
-  title           String        @default("") @db.VarChar(75)
-  year            Int?
-  runtime         Int           @default(0)
-  director        String        @db.VarChar(75)
-  starring        String        @db.VarChar(255)
-  synopsis        String        @db.MediumText
-  tagline         String?       @db.Text
-  review          String        @db.MediumText
-  reviewer        String        @default("Archive") @db.VarChar(50)
-  aspect          Int           @default(0)
-  cert            Int           @default(0)
-  imdb_url        String?       @db.VarChar(50)
-  imdb_id         String?       @db.VarChar(9)
-  tmdb_id         Int?
-  ticket_title    Bytes?        @db.MediumBlob
-  ticket_title_ct String        @db.Text
-  review_image    Int?
-  web_title       Int?
-  subtitles       FilmSubtitles @default(UNKNOWN)
-  screenings      Screening[]
+  film_id            Int           @id @default(autoincrement()) @db.UnsignedInt
+  title              String        @default("") @db.VarChar(75)
+  year               Int?
+  runtime            Int           @default(0)
+  director           String        @db.VarChar(75)
+  starring           String        @db.VarChar(255)
+  synopsis           String        @db.MediumText
+  tagline            String?       @db.Text
+  review             String        @db.MediumText
+  reviewer           String        @default("Archive") @db.VarChar(50)
+  aspect             Int           @default(0)
+  cert               Int           @default(0)
+  imdb_url           String?       @db.VarChar(50)
+  imdb_id            String?       @db.VarChar(9)
+  tmdb_id            Int?
+  ticket_title       Bytes?        @ignore @db.MediumBlob
+  ticket_title_ct    String        @db.Text
+  review_image       Int?
+  web_title          Int?
+  subtitles          FilmSubtitles @default(UNKNOWN)
+  tmdb_backdrop_path String?       @db.VarChar(64)
+  tmdb_poster_path   String?       @db.VarChar(64)
+  tmdb_overview      String?       @db.MediumText
+  tmdb_release_date  String?       @db.VarChar(32)
+  tmdb_genres        String?       @db.VarChar(256)
+  youtube_trailer_id String?       @db.VarChar(16)
+  tmdb_last_updated  DateTime?     @db.DateTime(0)
+  tmdb_disable       Boolean       @default(false)
+  screenings         Screening[]
 
-  // Length is required to make Prisma happy
   @@index([synopsis(length: 100), review(length: 100)], map: "synopsis")
   @@map("films")
 }

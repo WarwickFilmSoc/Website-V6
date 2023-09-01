@@ -16,12 +16,7 @@ import {
   formatDateTime,
   getStartOfDaySecondTimestamp,
 } from '@/lib/date';
-import {
-  getGenreName,
-  getTmdbImageUrl,
-  getTmdbMovie,
-  getYouTubeTrailer,
-} from '@/lib/tmdb';
+import { getTmdbImageUrl } from '@/lib/tmdb';
 import Image from 'next/image';
 import { getCertSvg, getFilmAspectRatio } from '@/lib/film-server';
 import { Metadata } from 'next';
@@ -37,21 +32,18 @@ function GenreList({
   genres,
   className,
 }: {
-  genres: number[];
+  genres: string[];
   className?: string;
 }) {
   return (
     <div
       className={`flex flex-wrap gap-2 text-xs uppercase font-lexend ${className}`}
     >
-      {genres
-        .map((genre) => getGenreName(genre))
-        .filter((genre) => genre)
-        .map((genre) => (
-          <span key={genre} className="block px-1.5 py-0.5 bg-primary">
-            {genre}
-          </span>
-        ))}
+      {genres.map((genre) => (
+        <span key={genre} className="block px-1.5 py-0.5 bg-primary">
+          {genre}
+        </span>
+      ))}
     </div>
   );
 }
@@ -90,9 +82,8 @@ export async function generateMetadata({
       description: 'That film could not be found.',
     };
 
-  const tmdbMovie = await getTmdbMovie(film);
-  const posterUrl = tmdbMovie?.poster_path
-    ? getTmdbImageUrl(tmdbMovie.poster_path)
+  const backdropUrl = film.tmdb_backdrop_path
+    ? getTmdbImageUrl(film.tmdb_backdrop_path)
     : '';
 
   const title = film.year ? `${film.title} (${film.year})` : film.title;
@@ -111,10 +102,10 @@ export async function generateMetadata({
       directors: film.director || undefined,
       actors: film.starring || undefined,
       duration: film.runtime ? film.runtime * 60 : undefined,
-      releaseDate: tmdbMovie?.release_date
-        ? new Date(tmdbMovie.release_date).toISOString()
+      releaseDate: film.tmdb_release_date
+        ? new Date(film.tmdb_release_date).toISOString()
         : undefined,
-      images: posterUrl ? [posterUrl] : undefined,
+      images: backdropUrl ? [backdropUrl] : undefined,
     },
   };
 }
@@ -183,12 +174,11 @@ export default async function Film({
     else upcomingScreenings.push(screening);
   }
 
-  const tmdbMovie = await getTmdbMovie(film);
-  const posterUrl = tmdbMovie?.poster_path
-    ? getTmdbImageUrl(tmdbMovie.poster_path)
+  const posterUrl = film.tmdb_poster_path
+    ? getTmdbImageUrl(film.tmdb_poster_path)
     : 'https://m.media-amazon.com/images/M/MV5BYTdiOTIyZTQtNmQ1OS00NjZlLWIyMTgtYzk5Y2M3ZDVmMDk1XkEyXkFqcGdeQXVyMTAzMDg4NzU0._V1_.jpg';
-  const backdropUrl = tmdbMovie?.backdrop_path
-    ? getTmdbImageUrl(tmdbMovie.backdrop_path)
+  const backdropUrl = film.tmdb_backdrop_path
+    ? getTmdbImageUrl(film.tmdb_backdrop_path)
     : 'https://m.media-amazon.com/images/M/MV5BYTdiOTIyZTQtNmQ1OS00NjZlLWIyMTgtYzk5Y2M3ZDVmMDk1XkEyXkFqcGdeQXVyMTAzMDg4NzU0._V1_.jpg';
 
   const aspectRatio = await getFilmAspectRatio(film.aspect);
@@ -197,7 +187,6 @@ export default async function Film({
   const bbfcLink = `https://www.bbfc.co.uk/search?q=${encodeURIComponent(
     film.title,
   )}`;
-  const youtubeTrailer = tmdbMovie && (await getYouTubeTrailer(tmdbMovie.id));
 
   return (
     <main className="-mt-24 max-w-full px-0">
@@ -222,8 +211,11 @@ export default async function Film({
               className="w-36 sm:w-56 md:w-64 box-shadow-lg"
             />
 
-            {tmdbMovie?.genre_ids && tmdbMovie.genre_ids.length > 0 && (
-              <GenreList genres={tmdbMovie?.genre_ids} className="mt-3" />
+            {film.tmdb_genres && (
+              <GenreList
+                genres={film.tmdb_genres.split(',')}
+                className="mt-3"
+              />
             )}
 
             <div className="mt-3 text-sm hidden xs:block">
@@ -241,9 +233,9 @@ export default async function Film({
               )}
             </div>
 
-            {youtubeTrailer && (
+            {film.youtube_trailer_id && (
               <iframe
-                src={`https://youtube.com/embed/${youtubeTrailer}`}
+                src={`https://youtube.com/embed/${film.youtube_trailer_id}`}
                 title="Film Trailer"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
@@ -296,7 +288,7 @@ export default async function Film({
                   </span>
                 </>
               )}
-              {tmdbMovie?.release_date && (
+              {film.tmdb_release_date && (
                 <>
                   <span className="hidden md:inline">&nbsp;|&nbsp;</span>
                   <span>
@@ -304,7 +296,7 @@ export default async function Film({
                       Release:&nbsp;
                     </span>
                     {formatDateTime(
-                      new Date(tmdbMovie.release_date),
+                      new Date(film.tmdb_release_date),
                       DateTimeFormat.DATE_MEDIUM,
                     )}
                   </span>
@@ -331,7 +323,7 @@ export default async function Film({
               alt={`${film.title} Backdrop`}
               className="w-48 lg:w-72 float-right ml-2 hidden md:block"
             />
-            <p>{film.synopsis || tmdbMovie?.overview}</p>
+            <p>{film.synopsis || film.tmdb_overview}</p>
           </div>
         </div>
       </div>
@@ -401,9 +393,9 @@ export default async function Film({
             </div>
           </div>
 
-          {youtubeTrailer && (
+          {film.youtube_trailer_id && (
             <iframe
-              src={`https://youtube.com/embed/${youtubeTrailer}`}
+              src={`https://youtube.com/embed/${film.youtube_trailer_id}`}
               title="Film Trailer"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowFullScreen
