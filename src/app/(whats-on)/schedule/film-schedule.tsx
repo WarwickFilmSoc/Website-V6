@@ -142,7 +142,7 @@ export default async function FilmSchedule({ term }: { term: TermDate }) {
         )}
       </div>
 
-      <div className="max-w-full overflow-x-auto max-h-screen">
+      <div className="max-w-full overflow-x-auto">
         <table className="table-fixed bg-secondary/40 w-full">
           <thead>
             <tr>
