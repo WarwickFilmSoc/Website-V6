@@ -31,7 +31,7 @@ export default async function WeekScreeningsList() {
         {upcomingFilmScreeningDays.map((filmScreeningDay, i) => (
           <FilmScreeningDayCard
             filmScreeningDay={filmScreeningDay}
-            key={filmScreeningDay.dayTime}
+            key={`${filmScreeningDay.dayTime}${filmScreeningDay.film.film_id}`}
             index={i}
           />
         ))}

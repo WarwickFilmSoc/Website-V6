@@ -20,32 +20,13 @@ import { getTmdbImageUrl } from '@/lib/tmdb';
 import Image from 'next/image';
 import { getCertSvg, getFilmAspectRatio } from '@/lib/film-server';
 import { Metadata } from 'next';
+import FilmGenreTags from '@/components/films/film-genre-tags';
 
 export const revalidate = 3600; // Revalidate every hour
 
 export async function generateStaticParams() {
   const films = await prisma.film.findMany();
   return films.map((film: Film) => ({ id: film.film_id.toString() }));
-}
-
-function GenreList({
-  genres,
-  className,
-}: {
-  genres: string[];
-  className?: string;
-}) {
-  return (
-    <div
-      className={`flex flex-wrap gap-2 text-xs uppercase font-lexend ${className}`}
-    >
-      {genres.map((genre) => (
-        <span key={genre} className="block px-1.5 py-0.5 bg-primary">
-          {genre}
-        </span>
-      ))}
-    </div>
-  );
 }
 
 export async function generateMetadata({
@@ -212,10 +193,7 @@ export default async function Film({
             />
 
             {film.tmdb_genres && (
-              <GenreList
-                genres={film.tmdb_genres.split(',')}
-                className="mt-3"
-              />
+              <FilmGenreTags genreString={film.tmdb_genres} className="mt-3" />
             )}
 
             <div className="mt-3 text-sm hidden xs:block">
