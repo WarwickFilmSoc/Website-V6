@@ -40,6 +40,7 @@ export default async function FilmScreeningDayCard({
             height={276}
             alt={filmScreeningDay.film.title}
             className="mx-auto w-full bg-black text-black group-hover:scale-105 transition-transform box-shadow-lg"
+            priority
           />
         </div>
         <div className="mt-2">

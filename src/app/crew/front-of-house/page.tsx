@@ -104,6 +104,7 @@ export default function FrontOfHouse() {
             alt="DMs counting money after a show"
             width={300}
             className="w-auto sm:w-72 h-56 sm:h-auto mt-8 sm:mb-4 sm:mr-4 object-cover"
+            priority
           />
           <div>
             <h2>Duty Managers (DMs)</h2>

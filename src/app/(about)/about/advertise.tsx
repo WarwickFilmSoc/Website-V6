@@ -18,6 +18,7 @@ export default function Advertise() {
         alt="A Spring Officer Elections advertisement in the pre-show slides"
         className="sm:float-right w-48 sm:ml-2 mb-2"
         width={200}
+        priority
       />
       <p className="mb-2">
         If you are interested in promoting an event, a product or increasing

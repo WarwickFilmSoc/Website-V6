@@ -69,6 +69,7 @@ export default function TechnicalSpecifications() {
             alt="One of our Cinemeccanica Victoria 8 projectors"
             height={570}
             className="max-w-96 h-56 md:auto md:w-80 object-cover"
+            priority
           />
           <figcaption>
             One of our Cinemeccanica Victoria 8 projectors
@@ -83,6 +84,7 @@ export default function TechnicalSpecifications() {
             alt="70mm 6-Track Dolby Stereo film"
             height={250}
             className="w-96 md:w-64 object-cover"
+            priority
           />
           <figcaption>70mm 6-Track Dolby Stereo film</figcaption>
         </figure>
@@ -106,6 +108,7 @@ export default function TechnicalSpecifications() {
             alt="Philips ST-270 platter"
             height={400}
             className="w-80 sm:w-48 object-cover"
+            priority
           />
           <figcaption>Philips ST-270 platter</figcaption>
         </figure>

@@ -36,6 +36,7 @@ export default function SoundFormats() {
         alt="Dolby Stereo"
         className="mt-1 sm:float-right sm:ml-4 w-64 md:w-72 mb-2 bg-transparent"
         width={300}
+        priority
       />
       <p>
         Before Dolby Stereo, the vast majority of 35mm cinema sound was optical
@@ -52,6 +53,7 @@ export default function SoundFormats() {
         alt="Dolby Spectral Recording (SR)"
         className="mt-1 sm:float-right sm:ml-4 w-64 md:w-72 mb-2 bg-transparent"
         width={300}
+        priority
       />
       <p>
         Dolby SR, or Spectral Recording, was released in 1986 and was an
@@ -68,6 +70,7 @@ export default function SoundFormats() {
         alt="Dolby Digital"
         className="mt-1 sm:float-right sm:ml-4 w-64 md:w-72 mb-2 bg-transparent"
         width={300}
+        priority
       />
       <p>
         Dolby Digital was released in late 1992 using AC-3 compression of a
@@ -84,6 +87,7 @@ export default function SoundFormats() {
         alt="Digital Theatre Systems (DTS)"
         className="mt-1 sm:float-right sm:ml-4 w-56 md:w-64 mb-2 bg-transparent"
         width={300}
+        priority
       />
       <p>
         DTS or digital theatre systems was the first widely available digital
@@ -102,6 +106,7 @@ export default function SoundFormats() {
         alt="Sony Dynamic Digital Sound (SDDS)"
         className="mt-1 sm:float-right sm:ml-4 w-64 md:w-72 mb-2 bg-transparent"
         width={300}
+        priority
       />
       <p>
         SDDS was the last sound format to be released in late 1993. It is the
@@ -123,6 +128,7 @@ export default function SoundFormats() {
         alt="Sony Dynamic Digital Sound (SDDS) - 8 Channel"
         className="mt-1 sm:float-right sm:ml-4 w-64 md:w-72 mb-2 bg-transparent"
         width={300}
+        priority
       />
       <p>
         This is the same format as before but it utilises 2 extra full band

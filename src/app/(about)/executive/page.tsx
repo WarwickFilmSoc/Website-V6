@@ -68,6 +68,7 @@ export default function TheExecutiveTeam() {
                     src={member.image}
                     alt={member.name}
                     className="h-32 sm:h-full object-contain object-top w-auto bg-transparent"
+                    priority
                   />
                   {member.letterboxd && (
                     <a
@@ -81,6 +82,7 @@ export default function TheExecutiveTeam() {
                         width={45}
                         height={45}
                         className="w-8 bg-transparent absolute top-2 right-2 hover:scale-105"
+                        priority
                       />
                     </a>
                   )}

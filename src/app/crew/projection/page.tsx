@@ -92,6 +92,7 @@ export default function Projection() {
             alt="Small reels of film on the making-up bench"
             width={300}
             className="w-full md:w-64 h-36 md:h-auto mb-4 md:mr-4 object-cover"
+            priority
           />
           <p>
             This process starts when the film arrives. For film showings, the
@@ -131,6 +132,7 @@ export default function Projection() {
             alt="Eric leading a projectionist meeting"
             width={250}
             className="w-full h-48 sm:w-64 sm:h-auto mb-4 sm:ml-4 object-cover"
+            priority
           />
         </div>
         <p>

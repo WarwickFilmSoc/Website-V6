@@ -10,6 +10,7 @@ export default function Find() {
           src={map}
           alt="Map to get to Warwick Student Cinema"
           className="w-64 h-48 lg:w-48 lg:h-96 object-cover"
+          priority
         />
         <div className="lg:w-96 grow">
           <p className="mb-2">

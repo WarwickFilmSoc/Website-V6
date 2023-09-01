@@ -85,6 +85,7 @@ export default function Crew() {
                 width={220}
                 className="w-56 h-36 object-cover group-hover:scale-105"
                 placeholder="blur"
+                priority
               />
             </div>
 

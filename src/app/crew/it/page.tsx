@@ -92,6 +92,7 @@ export default function It() {
             alt="The WSC server rack"
             width={300}
             className="w-48 sm:w-56 h-56 sm:h-auto mt-8 sm:mb-4 sm:mr-4 object-cover"
+            priority
           />
           <div>
             <h2>Hardware</h2>

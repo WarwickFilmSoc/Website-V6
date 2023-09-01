@@ -25,8 +25,10 @@ import Link from 'next/link';
 
 function FilmScreeningDay({
   filmScreeningDay,
+  preloadImages,
 }: {
   filmScreeningDay: TScreeningDay<Screening> & { film: Film };
+  preloadImages?: boolean;
 }) {
   const backdropUrl = filmScreeningDay.film.tmdb_backdrop_path
     ? getTmdbImageUrl(filmScreeningDay.film.tmdb_backdrop_path)
@@ -67,6 +69,7 @@ function FilmScreeningDay({
             width={300}
             height={150}
             className="w-full h-full object-cover group-hover:scale-105"
+            priority={preloadImages}
           />
         </div>
 
@@ -95,8 +98,10 @@ function FilmScreeningDay({
 
 function ScreeningWeek({
   screeningWeek,
+  index,
 }: {
   screeningWeek: TScreeningWeek<Screening & { film: Film }>;
+  index: number;
 }) {
   const filmScreeningDays = splitScreeningDaysByFilm(
     screeningWeek.screeningDays,
@@ -117,6 +122,7 @@ function ScreeningWeek({
           <FilmScreeningDay
             filmScreeningDay={filmScreeningDay}
             key={`${filmScreeningDay.dayTime}${filmScreeningDay.film.film_id}`}
+            preloadImages={index < 2}
           />
         ))}
       </div>
@@ -145,10 +151,11 @@ export default async function NormalView() {
 
   return (
     <div>
-      {upcomingScreeningWeeks.map((filmScreeningWeek) => (
+      {upcomingScreeningWeeks.map((filmScreeningWeek, i) => (
         <ScreeningWeek
           screeningWeek={filmScreeningWeek}
           key={filmScreeningWeek.weekData.termAndWeekName}
+          index={i}
         />
       ))}
     </div>

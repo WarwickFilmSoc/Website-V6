@@ -235,6 +235,7 @@ export default async function Film({
               height={384}
               alt={`${film.title} Poster`}
               className="w-36 sm:w-56 md:w-64 box-shadow-lg"
+              priority
             />
 
             {film.tmdb_genres && (
@@ -344,6 +345,7 @@ export default async function Film({
               height={300}
               alt={`${film.title} Backdrop`}
               className="w-48 lg:w-72 float-right ml-2 hidden md:block"
+              priority
             />
             <p>{film.synopsis || film.tmdb_overview}</p>
           </div>
