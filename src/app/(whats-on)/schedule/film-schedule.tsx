@@ -73,7 +73,7 @@ function FilmScheduleWeek({
   const filmScreeningDays = splitScreeningDaysByFilm(week.screeningDays);
   return (
     <tr>
-      <th className="outline outline-1 xl:outline-0 xl:border p-2 bg-primary-background sticky xl:static left-0 z-10">
+      <th className="outline outline-1 xl:outline-none xl:border p-2 bg-primary-background sticky xl:static left-0 z-10">
         <p className="text-sm xl:text-base">{week.weekData.weekName}</p>
         <p className="text-xs font-normal">
           {formatDateTime(week.weekData.startDate, DateTimeFormat.DATE_SHORT)}
@@ -159,7 +159,7 @@ export default async function FilmSchedule({ term }: { term: TermDate }) {
         <table className="table-fixed bg-secondary/40 w-full min-w-[1000px]">
           <thead>
             <tr className="sticky md:static top-0 z-20 md:m-0">
-              <th className="sticky xl:static left-0 outline outline-1 xl:outline-0 xl:border p-1 xl:p-2 font-normal bg-primary-background w-[5.2rem] xl:w-24">
+              <th className="sticky xl:static left-0 outline outline-1 xl:outline-none xl:border p-1 xl:p-2 font-normal bg-primary-background w-[5.2rem] xl:w-24">
                 Week
               </th>
               {[
@@ -173,7 +173,7 @@ export default async function FilmSchedule({ term }: { term: TermDate }) {
               ].map((day) => (
                 <th
                   key={day}
-                  className="outline outline-1 md:outline-0 md:border p-1 xl:p-2 font-normal bg-primary-background"
+                  className="outline outline-1 md:outline-none md:border p-1 xl:p-2 font-normal bg-primary-background"
                 >
                   {day}
                 </th>
