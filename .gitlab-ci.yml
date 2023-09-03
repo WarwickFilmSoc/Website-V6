@@ -45,6 +45,7 @@ build-app:
   artifacts:
     paths:
       - .next
+    expire_in: 3h
   cache:
     key: ${CI_COMMIT_REF_SLUG}
     paths:
