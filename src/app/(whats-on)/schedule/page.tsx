@@ -13,7 +13,10 @@ export async function generateMetadata(): Promise<Metadata> {
 
   const termDateName = getTermDateName(currentTerm);
   return {
-    title: `${termDateName} at Warwick Student Cinema`,
+    title: 'Schedule',
+    openGraph: {
+      title: `${termDateName} at Warwick Student Cinema`,
+    },
     description: `Read our full schedule for ${termDateName}.`,
   };
 }
@@ -24,11 +27,14 @@ export default async function Schedule() {
   return (
     <main className="max-w-9xl">
       <div className="mx-auto max-w-7xl">
-        <LargeButtonLink href="/whats-on" className="float-right">
-          Normal View
+        <LargeButtonLink
+          href="/whats-on"
+          className="mb-1 sm:mb-0 sm:float-right"
+        >
+          What&apos;s on View
         </LargeButtonLink>
-        <h1 className="mb-1">What&apos;s On - Term Schedule</h1>
-        <p className="mb-6">
+        <h1 className="mb-1">Term Schedule</h1>
+        <p className="mb-8">
           Come and watch films in our fully-equipped L3 lecture theatre, and
           come to our other events throughout the term too. All our screenings
           are open to both members of the public and of Warwick University.

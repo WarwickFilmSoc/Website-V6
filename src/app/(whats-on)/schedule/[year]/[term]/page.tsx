@@ -3,6 +3,7 @@ import FilmSchedule from '@/app/(whats-on)/schedule/film-schedule';
 import prisma from '@/lib/prisma';
 import { Metadata } from 'next';
 import { getTermDateName } from '@/lib/term-dates';
+import Link from 'next/link';
 
 export const revalidate = 3600; // Revalidate every hour
 
@@ -40,7 +41,10 @@ export async function generateMetadata({
 
   const termDateName = getTermDateName(termDate);
   return {
-    title: `${termDateName} at Warwick Student Cinema`,
+    title: `${termDateName} Schedule`,
+    openGraph: {
+      title: `${termDateName} at Warwick Student Cinema`,
+    },
     description: `Read our full schedule for ${termDateName}.`,
   };
 }
@@ -66,14 +70,20 @@ export default async function ScheduleArchive({
   return (
     <main className="max-w-9xl">
       <div className="mx-auto max-w-7xl">
-        <LargeButtonLink href="/whats-on" className="float-right">
-          Normal View
+        <LargeButtonLink
+          href="/schedule"
+          className="mb-2 md:mb-0 md:float-right"
+        >
+          Back to Current Term
         </LargeButtonLink>
-        <h1 className="mb-1">Term Schedule Archive</h1>
-        <p className="mb-6">
-          Come and watch films in our fully-equipped L3 lecture theatre, and
-          come to our other events throughout the term too. All our screenings
-          are open to both members of the public and of Warwick University.
+        <h1 className="mb-1">Schedule Archive</h1>
+        <p className="mb-8">
+          You can find the schedules for all our previous terms here, or search
+          for a specific film using&nbsp;
+          <Link href="/films" className="text-accent">
+            the film search tool
+          </Link>
+          .
         </p>
 
         {!termDate && <p>That term could not be found.</p>}

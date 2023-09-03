@@ -4,7 +4,7 @@ import Image from 'next/image';
 import wscLogo from '@/assets/logos/logo-white.png';
 import { usePathname, useRouter } from 'next/navigation';
 import { TextInput } from 'flowbite-react';
-import { FormEvent, useState } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
 import { FiExternalLink, FiSearch } from 'react-icons/fi';
 
 type HeaderLink = {
@@ -106,8 +106,34 @@ function FilmSearchBar() {
   );
 }
 
+const whatsOnLink: HeaderLink = { name: "What's On", href: '/whats-on' };
+const scheduleLink: HeaderLink = { name: 'Schedule', href: '/schedule' };
+
 export default function Header() {
   const pathname = usePathname();
+  const [mainWhatsOnOrScheduleLink, setMainWhatsOnOrScheduleLink] =
+    useState(whatsOnLink);
+
+  useEffect(() => {
+    if (
+      pathname.startsWith(scheduleLink.href) ||
+      pathname.startsWith(whatsOnLink.href)
+    ) {
+      if (pathname.startsWith(scheduleLink.href)) {
+        if (!localStorage.getItem('scheduleDefault'))
+          localStorage.setItem('scheduleDefault', '1');
+        setMainWhatsOnOrScheduleLink(scheduleLink);
+        return;
+      } else if (localStorage.getItem('scheduleDefault'))
+        localStorage.removeItem('scheduleDefault');
+      setMainWhatsOnOrScheduleLink(whatsOnLink);
+      return;
+    }
+
+    setMainWhatsOnOrScheduleLink(
+      localStorage.getItem('scheduleDefault') ? scheduleLink : whatsOnLink,
+    );
+  }, [pathname]);
 
   return (
     <header className="h-24">
@@ -120,8 +146,11 @@ export default function Header() {
           >
             <HeaderLink
               mainLinkClass="border-white px-2 border-2"
-              mainLink={{ name: "What's On", href: '/whats-on' }}
+              mainLink={mainWhatsOnOrScheduleLink}
               dropdownLinks={[
+                mainWhatsOnOrScheduleLink.name === whatsOnLink.name
+                  ? scheduleLink
+                  : whatsOnLink,
                 { name: 'Film Search', href: '/films' },
                 { name: 'Publicity', href: '/publicity' },
                 { name: 'Suggestions', href: '/suggestions' },

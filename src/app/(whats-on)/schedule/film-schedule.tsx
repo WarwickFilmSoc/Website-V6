@@ -13,6 +13,7 @@ import {
 import { Film, Screening, TermDate } from '@prisma/client';
 import Link from 'next/link';
 import {
+  getCurrentOrNextTerm,
   getLastTerm,
   getNextTerm,
   getPreTermStartUnixTimestamp,
@@ -34,7 +35,7 @@ function FilmScheduleDay({
 
   return (
     <td className="border">
-      <div className="flex flex-col gap-1">
+      <div className="flex flex-col xl:gap-1 break-words overflow-hidden hyphens-auto">
         {filmScreeningDaysToday.map((filmScreeningDay) => (
           <Link
             href={getFilmPrettyUrl(filmScreeningDay.film)}
@@ -42,10 +43,10 @@ function FilmScheduleDay({
             key={filmScreeningDay.film.film_id}
           >
             <article>
-              <p className="uppercase font-lexend font-normal text-sm text-center mb-0.5 group-hover:scale-105">
+              <p className="uppercase font-lexend font-normal text-xs xl:text-sm text-center mb-0.5 group-hover:scale-105">
                 {filmScreeningDay.film.title}
               </p>
-              <div className="flex text-xs gap-1 justify-center">
+              <div className="flex text-2xs xl:text-xs gap-1 justify-center flex-wrap">
                 {filmScreeningDay.screenings.map((screening) => (
                   <time
                     dateTime={screening.date.toISOString()}
@@ -72,8 +73,8 @@ function FilmScheduleWeek({
   const filmScreeningDays = splitScreeningDaysByFilm(week.screeningDays);
   return (
     <tr>
-      <th className="border p-2 bg-primary/40">
-        <p>{week.weekData.weekName}</p>
+      <th className="outline outline-1 xl:outline-0 xl:border p-2 bg-primary-background sticky xl:static left-0 z-10">
+        <p className="text-sm xl:text-base">{week.weekData.weekName}</p>
         <p className="text-xs font-normal">
           {formatDateTime(week.weekData.startDate, DateTimeFormat.DATE_SHORT)}
         </p>
@@ -92,6 +93,7 @@ function FilmScheduleWeek({
 export default async function FilmSchedule({ term }: { term: TermDate }) {
   const nextTermDate = await getNextTerm(term);
   const lastTermDate = await getLastTerm(term);
+  const currentTerm = await getCurrentOrNextTerm();
 
   const upcomingScreenings = await prisma.screening.findMany({
     where: {
@@ -122,31 +124,42 @@ export default async function FilmSchedule({ term }: { term: TermDate }) {
 
   return (
     <div>
-      <div className="relative flex flex-col justify-center items-center text-center mb-4 flex-wrap gap-2">
+      <h2 className="mx-4 xs:hidden text-center mb-1">
+        {getTermDateName(term)}
+      </h2>
+      <div className="relative flex justify-center items-center text-center mb-4 flex-wrap gap-2">
         {lastTermDate && (
           <LargeButtonLink
-            href={`/schedule/${lastTermDate.year}/${lastTermDate.term}`}
-            className="md:absolute left-0"
+            href={
+              lastTermDate.timestamp === currentTerm?.timestamp
+                ? '/schedule'
+                : `/schedule/${lastTermDate.year}/${lastTermDate.term}`
+            }
+            className="xs:absolute left-0"
           >
-            Previous Term
+            Prev<span className="hidden md:inline"> Term</span>
           </LargeButtonLink>
         )}
-        <h2 className="mx-4">{getTermDateName(term)}</h2>
+        <h2 className="mx-4 hidden xs:block">{getTermDateName(term)}</h2>
         {nextTermDate && (
           <LargeButtonLink
-            href={`/schedule/${nextTermDate.year}/${nextTermDate.term}`}
-            className="md:absolute right-0"
+            href={
+              nextTermDate.timestamp === currentTerm?.timestamp
+                ? '/schedule'
+                : `/schedule/${nextTermDate.year}/${nextTermDate.term}`
+            }
+            className="xs:absolute right-0"
           >
-            Next Term
+            Next<span className="hidden md:inline"> Term</span>
           </LargeButtonLink>
         )}
       </div>
 
-      <div className="max-w-full overflow-x-auto">
-        <table className="table-fixed bg-secondary/40 w-full">
+      <div className="max-w-full overflow-x-auto border max-h-[85vh] md:max-h-full">
+        <table className="table-fixed bg-secondary/40 w-full min-w-[1000px]">
           <thead>
-            <tr>
-              <th className="border p-2 font-normal bg-primary/40 w-28">
+            <tr className="sticky md:static top-0 z-20 md:m-0">
+              <th className="sticky xl:static left-0 outline outline-1 xl:outline-0 xl:border p-1 xl:p-2 font-normal bg-primary-background w-[5.2rem] xl:w-24">
                 Week
               </th>
               {[
@@ -158,7 +171,10 @@ export default async function FilmSchedule({ term }: { term: TermDate }) {
                 'Friday',
                 'Saturday',
               ].map((day) => (
-                <th key={day} className="border p-2 font-normal bg-primary/40">
+                <th
+                  key={day}
+                  className="outline outline-1 md:outline-0 md:border p-1 xl:p-2 font-normal bg-primary-background"
+                >
                   {day}
                 </th>
               ))}

@@ -12,10 +12,16 @@ export const metadata: Metadata = {
 export default function Films() {
   return (
     <main>
-      <p className="text-xl font-lexend uppercase -mb-1">
-        <Link href="/whats-on">What&apos;s On</Link>
-      </p>
       <h1 className="mb-1">Film Search</h1>
+      <p className="mb-6">
+        Looking for a film in particular? Search for it here! You can also find
+        all our reviews for previously-screened films here too, or find our
+        previous schedules on the{' '}
+        <Link href="/schedule" className="text-accent">
+          schedule page
+        </Link>
+        .
+      </p>
 
       <Suspense>
         <FilmSearch />

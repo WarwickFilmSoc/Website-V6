@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 export default function WhatsOn() {
   return (
     <main>
-      <LargeButtonLink href="/schedule" className="float-right">
+      <LargeButtonLink href="/schedule" className="mb-1 sm:mb-0 sm:float-right">
         Schedule View
       </LargeButtonLink>
       <h1 className="mb-1">What&apos;s On</h1>

@@ -15,6 +15,7 @@ module.exports = {
       colors: {
         primary: '#006295',
         'primary-darker': '#005a85',
+        'primary-background': '#10386c',
         secondary: '#29205F',
         accent: '#4EDAB8',
         white: '#FFFFFF',
@@ -36,6 +37,9 @@ module.exports = {
       },
       blur: {
         xs: '2px',
+      },
+      fontSize: {
+        '2xs': ['0.65rem', '0.8rem'],
       },
     },
     fontFamily: {

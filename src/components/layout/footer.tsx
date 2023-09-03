@@ -16,6 +16,7 @@ const leftFooterLinks: FooterLink[][] = [
   [{ name: 'Home', href: '/', primary: true }],
   [
     { name: "What's On", href: '/whats-on', primary: true },
+    { name: 'Schedule', href: '/schedule' },
     { name: 'Film Search', href: '/films' },
     { name: 'Publicity', href: '/publicity' },
     { name: 'Suggestions', href: '/suggestions' },
