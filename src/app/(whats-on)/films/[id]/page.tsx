@@ -421,7 +421,7 @@ export default async function Film({
                   (day: TScreeningDay<Screening>) => (
                     <li key={day.dayTime}>
                       <time dateTime={day.day.toISOString()}>
-                        {formatDateTime(day.day, DateTimeFormat.DATE_MEDIUM)} (
+                        {formatDateTime(day.day, DateTimeFormat.DATE_MEDIUM)}
                       </time>
                       <span> ({getTermAndWeekName(day.day)})</span>
                       &nbsp;-&nbsp;
