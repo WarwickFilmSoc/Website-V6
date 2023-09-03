@@ -29,9 +29,12 @@ function FilmScheduleDay({
   filmScreeningDays: (TScreeningDay<Screening> & { film: Film })[];
   weekDay: number;
 }) {
-  const filmScreeningDaysToday = filmScreeningDays.filter(
-    (day) => day.day.getDay() === weekDay,
-  );
+  const filmScreeningDaysToday = filmScreeningDays
+    .filter((day) => day.day.getDay() === weekDay)
+    .sort(
+      (a, b) =>
+        Number(a.screenings[0].timestamp) - Number(b.screenings[0].timestamp),
+    );
 
   return (
     <td className="border">

@@ -137,6 +137,23 @@ async function ScreeningDay({ day }: { day: TScreeningDay<Screening> }) {
   );
 }
 
+async function PastScreeningDay({ day }: { day: TScreeningDay<Screening> }) {
+  const termAndWeekName = await getTermAndWeekName(day.day);
+  return (
+    <li>
+      <time dateTime={day.day.toISOString()}>
+        {formatDateTime(day.day, DateTimeFormat.DATE_MEDIUM)}
+      </time>
+      <span> ({termAndWeekName})</span>
+      &nbsp;-&nbsp;
+      {day.screenings
+        .sort((a, b) => a.date.getTime() - b.date.getTime())
+        .map((screening) => formatDateTime(screening.date, DateTimeFormat.TIME))
+        .join(', ')}
+    </li>
+  );
+}
+
 export default async function Film({
   params: { id },
 }: {
@@ -419,18 +436,7 @@ export default async function Film({
               <ul className="list-disc mt-1">
                 {groupScreeningsByDay(pastScreenings).map(
                   (day: TScreeningDay<Screening>) => (
-                    <li key={day.dayTime}>
-                      <time dateTime={day.day.toISOString()}>
-                        {formatDateTime(day.day, DateTimeFormat.DATE_MEDIUM)}
-                      </time>
-                      <span> ({getTermAndWeekName(day.day)})</span>
-                      &nbsp;-&nbsp;
-                      {day.screenings
-                        .map((screening) =>
-                          formatDateTime(screening.date, DateTimeFormat.TIME),
-                        )
-                        .join(', ')}
-                    </li>
+                    <PastScreeningDay day={day} key={day.dayTime} />
                   ),
                 )}
               </ul>
