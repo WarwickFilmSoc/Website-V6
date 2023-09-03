@@ -227,8 +227,8 @@ export default async function Film({
             priority
           />
         </div>
-        <div className="mx-auto max-w-7xl px-4 xs:px-8 relative pt-24 md:pt-40 pb-36 md:pb-24">
-          <div className="my-2 xs:my-0 xs:absolute w-full sm:w-56 md:w-64 flex-shrink-0">
+        <div className="mx-auto max-w-7xl px-4 xs:px-8 z-20 relative pt-24 md:pt-40 pb-36 md:pb-24">
+          <div className="my-2 xs:my-0 xs:absolute w-full xs:w-36 sm:w-56 md:w-64 flex-shrink-0">
             <Image
               src={posterUrl}
               width={256}
