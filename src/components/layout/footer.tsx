@@ -48,14 +48,20 @@ const rightFooterLinks: FooterLink[][] = [
       primary: true,
     },
     {
-      name: 'Buy Tickets',
-      href: '/tickets',
+      name: 'Forums',
+      href: 'https://discourse.warwick.film/',
+      external: true,
       primary: true,
     },
     {
       name: 'Warwick SU',
       href: 'https://www.warwicksu.com/societies-sports/societies/filmsoc/',
       external: true,
+      primary: true,
+    },
+    {
+      name: 'Buy Tickets',
+      href: '/tickets',
       primary: true,
     },
   ],
