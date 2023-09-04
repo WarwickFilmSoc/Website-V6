@@ -97,3 +97,7 @@ export function formatDateTime(date: Date, format: DateTimeFormat): string {
       return dayjsDate.format('dddd Do MMM YYYY, h:mma');
   }
 }
+
+export function timestampToDate(timestamp: bigint) {
+  return new Date(Number(timestamp) * 1000);
+}

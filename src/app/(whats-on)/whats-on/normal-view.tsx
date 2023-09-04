@@ -22,6 +22,7 @@ import { getTmdbImageUrl } from '@/lib/tmdb';
 import FilmGenreTags from '@/components/films/film-genre-tags';
 import { Film, Screening } from '@prisma/client';
 import Link from 'next/link';
+import ScreeningsHr from '@/components/films/ScreeningsHr';
 
 function FilmScreeningDay({
   filmScreeningDay,
@@ -109,13 +110,7 @@ function ScreeningWeek({
 
   return (
     <>
-      <div className="flex items-center md:mx-4 mb-6">
-        <hr className="grow border-t-2 m-2 md:m-4 flex-shrink-0 w-4" />
-        <h2 className="text-xl md:text-2xl mx-2 md:mx-4 text-center">
-          {screeningWeek.weekData.termAndWeekName}
-        </h2>
-        <hr className="grow border-t-2 m-2 md:m-4 flex-shrink-0 w-4" />
-      </div>
+      <ScreeningsHr text={screeningWeek.weekData.termAndWeekName} />
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-12">
         {filmScreeningDays.map((filmScreeningDay) => (
