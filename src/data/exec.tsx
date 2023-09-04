@@ -167,6 +167,7 @@ export const execTeam: ExecTeam = {
       {
         name: 'Sophie Cooper',
         image: sophieCooperImage,
+        letterboxd: 'scoopsky',
       },
     ],
     description: (
@@ -203,7 +204,6 @@ export const execTeam: ExecTeam = {
       {
         name: 'Adam Skrzymowski',
         image: adamSkrzymowskiImage,
-        letterboxd: 'gremvy',
       },
       {
         name: 'Josh Heng',
