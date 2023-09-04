@@ -69,7 +69,7 @@ export default async function ScheduleArchive({
 
   return (
     <main className="max-w-9xl">
-      <div className="mx-auto max-w-7xl">
+      <div className="mx-auto max-w-7xl px-4 xs:px-8">
         <LargeButtonLink
           href="/schedule"
           className="mb-2 md:mb-0 md:float-right"
@@ -83,7 +83,12 @@ export default async function ScheduleArchive({
           <Link href="/films" className="text-accent">
             the film search tool
           </Link>
-          .
+          . If you&apos;re looking for the past publicity that we&apos;ve
+          created, take a look at the&nbsp;
+          <Link href="/publicity" className="text-accent">
+            publicity
+          </Link>
+          &nbsp;page.
         </p>
 
         {!termDate && <p>That term could not be found.</p>}

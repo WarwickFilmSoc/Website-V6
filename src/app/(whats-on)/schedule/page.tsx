@@ -2,6 +2,7 @@ import LargeButtonLink from '@/components/large-button-link';
 import FilmSchedule from '@/app/(whats-on)/schedule/film-schedule';
 import { getCurrentOrNextTerm, getTermDateName } from '@/lib/term-dates';
 import { Metadata } from 'next';
+import WhatsOnIntroductoryText from '@/app/(whats-on)/whats-on/whats-on-introductory-text';
 
 export async function generateMetadata(): Promise<Metadata> {
   const currentTerm = await getCurrentOrNextTerm();
@@ -26,7 +27,7 @@ export default async function Schedule() {
 
   return (
     <main className="max-w-9xl">
-      <div className="mx-auto max-w-7xl">
+      <div className="mx-auto max-w-7xl px-4 xs:px-8">
         <LargeButtonLink
           href="/whats-on"
           className="mb-1 sm:mb-0 sm:float-right"
@@ -34,11 +35,7 @@ export default async function Schedule() {
           What&apos;s on View
         </LargeButtonLink>
         <h1 className="mb-1">Term Schedule</h1>
-        <p className="mb-8">
-          Come and watch films in our fully-equipped L3 lecture theatre, and
-          come to our other events throughout the term too. All our screenings
-          are open to both members of the public and of Warwick University.
-        </p>
+        <WhatsOnIntroductoryText />
       </div>
 
       {!currentTerm ? (
