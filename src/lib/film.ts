@@ -40,7 +40,9 @@ export function splitScreeningDaysByFilm<
     );
   }
 
-  return filmScreeningDays;
+  return filmScreeningDays.sort(
+    (a, b) => a.screenings[0].date.getTime() - b.screenings[0].date.getTime(),
+  );
 }
 
 export type BaseScreening = {
@@ -84,7 +86,10 @@ export function groupScreeningsByDay<TScreening extends BaseScreening>(
     }
   }
 
-  if (currentDay) screeningDays.push(currentDay);
+  if (currentDay)
+    screeningDays.push({
+      ...currentDay,
+    });
   return screeningDays;
 }
 
