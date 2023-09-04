@@ -26,7 +26,7 @@ export default async function WeekScreeningsList() {
 
   return (
     <section className="w-full mb-24 z-30 drop-shadow-lg -mt-32 h-sm:-mt-36 h-md:-mt-48 h-lg:-mt-64 pt-2">
-      <h2 className="text-3xl mb-2">Upcoming Screenings</h2>
+      <h2 className="text-3xl mb-2 mx-2">Upcoming Screenings</h2>
       <div className="flex justify-center gap-x-6 mx-4 mb-6 overflow-x-hidden">
         {upcomingFilmScreeningDays.map((filmScreeningDay, i) => (
           <FilmScreeningDayCard
