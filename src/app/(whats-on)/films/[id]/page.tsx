@@ -1,5 +1,5 @@
 import prisma from '@/lib/prisma';
-import { Film, Screening } from '@prisma/client';
+import { Film, FilmSubtitles, Screening, ScreeningGauge } from '@prisma/client';
 import Link from 'next/link';
 import LargeButtonLink from '@/components/large-button-link';
 import {
@@ -28,6 +28,21 @@ export const revalidate = 3600; // Revalidate every hour
 export async function generateStaticParams() {
   const films = await prisma.film.findMany();
   return films.map((film: Film) => ({ id: film.film_id.toString() }));
+}
+
+function getGauge(gauge: ScreeningGauge) {
+  switch (gauge) {
+    case ScreeningGauge.MM_16:
+      return 'Presented on 16mm film';
+    case ScreeningGauge.MM_35:
+      return 'Presented on 35mm film';
+    case ScreeningGauge.MM_70:
+      return 'Presented on 70mm film';
+    case ScreeningGauge.DIGITAL:
+      return 'Digital';
+    case ScreeningGauge.DIGITAL_35MM:
+      return 'Digital 35mm film';
+  }
 }
 
 export async function generateMetadata({
@@ -92,10 +107,16 @@ export async function generateMetadata({
   };
 }
 
-async function ScreeningDay({ day }: { day: TScreeningDay<Screening> }) {
+async function ScreeningDay({
+  day,
+  subtitled,
+}: {
+  day: TScreeningDay<Screening>;
+  subtitled: boolean;
+}) {
   const termAndWeekName = await getTermAndWeekName(day.day);
   return (
-    <article className="mt-2 bg-primary p-4 box-shadow-lg flex flex-col xs:flex-row xs:items-center gap-2 xs:gap-4">
+    <article className="mt-2 bg-primary p-4 box-shadow-lg flex flex-col flex-wrap xs:flex-row xs:items-center gap-2 xs:gap-4">
       <div>
         <time dateTime={day.day.toISOString()}>
           {formatDateTime(day.day, DateTimeFormat.DATE_LONG)}
@@ -132,6 +153,19 @@ async function ScreeningDay({ day }: { day: TScreeningDay<Screening> }) {
               </span>
             ),
           )}
+      </div>
+      <div className="w-full block space-x-3">
+        {day.screenings[0].gauge && (
+          <span className="rounded-lg bg-green-500 px-2 py-1 text-xs font-bold font-lexend uppercase">
+            {getGauge(day.screenings[0].gauge)}
+          </span>
+        )}
+
+        {subtitled && (
+          <span className="rounded-lg bg-[#a20057] px-2 py-1 text-xs font-bold font-lexend uppercase">
+            Subtitled
+          </span>
+        )}
       </div>
     </article>
   );
@@ -384,9 +418,15 @@ export default async function Film({
             <div className="flex flex-col gap-2">
               {groupScreeningsByDay(upcomingScreenings)
                 .reverse()
-                .map((day: TScreeningDay<Screening>) => (
-                  <ScreeningDay day={day} key={day.dayTime} />
-                ))}
+                .map(function (this: Film, day: TScreeningDay<Screening>) {
+                  return (
+                    <ScreeningDay
+                      day={day}
+                      key={day.dayTime}
+                      subtitled={this.subtitles === FilmSubtitles.EXPECTED}
+                    />
+                  );
+                }, film)}
             </div>
           </div>
 
