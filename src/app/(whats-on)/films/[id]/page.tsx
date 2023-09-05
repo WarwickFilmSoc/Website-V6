@@ -382,7 +382,7 @@ export default async function Film({
               </div>
             )}
             <div className="flex flex-col gap-2">
-              {groupScreeningsByDay(upcomingScreenings).map(
+              {groupScreeningsByDay(upcomingScreenings).reverse().map(
                 (day: TScreeningDay<Screening>) => (
                   <ScreeningDay day={day} key={day.dayTime} />
                 ),
