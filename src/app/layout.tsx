@@ -2,10 +2,9 @@ import './globals.css';
 import type { Metadata } from 'next';
 import { Lexend, Poppins } from 'next/font/google';
 import Footer from '@/components/layout/footer';
-import Header from '@/components/layout/header';
-import Providers from '@/app/providers';
 import { ReactNode } from 'react';
 import FlowbiteTheme from './flowbite-theme';
+import { Main } from '@/components/layout/main';
 
 const lexend = Lexend({
   subsets: ['latin'],
@@ -38,19 +37,14 @@ export default function RootLayout({
   ticketsModal: ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body
-        className={`${lexend.variable} ${poppins.variable} flex flex-col min-h-screen`}
-      >
-        <FlowbiteTheme>
-          <Providers>
-            <Header />
-            {children}
-            <Footer />
-            {ticketsModal}
-          </Providers>
-        </FlowbiteTheme>
-      </body>
+    <html lang="en" className={`${lexend.variable} ${poppins.variable}`}>
+      <FlowbiteTheme>
+        <Main>
+          {children}
+          <Footer />
+          {ticketsModal}
+        </Main>
+      </FlowbiteTheme>
     </html>
   );
 }
