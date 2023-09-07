@@ -149,7 +149,10 @@ export default function FilmSearch() {
               ?
             </p>
           ) : (
-            <Screenings past={data?.past || []} future={data?.future || []} />
+            <Screenings
+              past={data?.past.filter((x) => x.screenings.length > 0) || []}
+              future={data?.future.filter((x) => x.screenings.length > 0) || []}
+            />
           )}
         </>
       )}
