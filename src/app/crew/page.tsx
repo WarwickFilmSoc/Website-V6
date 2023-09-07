@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import Link from 'next/link';
 import crewImage from '@/assets/crew/crew.jpg';
 import fohImage from '@/assets/crew/foh.jpg';
@@ -7,8 +7,9 @@ import publicityImage from '@/assets/crew/publicity.jpg';
 import itImage from '@/assets/crew/it.jpg';
 import marketingImage from '@/assets/crew/marketing.jpg';
 import Image from 'next/image';
-import LoginForm from '@/components/login-form';
 import { Metadata } from 'next';
+import CrewCardContent from '@/app/crew/crew-card-content';
+import CrewCardSkeleton from '@/app/crew/crew-card-skeleton';
 
 export const metadata: Metadata = {
   title: 'Crew',
@@ -29,17 +30,9 @@ export default function Crew() {
     <main>
       <div className="flex gap-4 lg:gap-8 flex-wrap-reverse">
         <div className="bg-primary max-w-full w-96 p-4 grow lg:grow-0">
-          <h2>Login</h2>
-          <p className="mb-4">
-            If you have a Warwick Student Cinema account, please login here.
-          </p>
-          <LoginForm />
-          <p className="mt-8">
-            Not got an account?&nbsp;
-            <Link href="#register" className="text-accent">
-              Register Account
-            </Link>
-          </p>
+          <Suspense fallback={<CrewCardSkeleton />}>
+            <CrewCardContent />
+          </Suspense>
         </div>
         <div className="w-128 grow">
           <Image
