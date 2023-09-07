@@ -21,6 +21,8 @@ module.exports = {
         white: '#FFFFFF',
         dark: '#05050C',
         modal: '#15193b',
+        subtitle: '#a20057',
+        gauge: '#16a34a'
       },
       width: {
         112: '28rem',
