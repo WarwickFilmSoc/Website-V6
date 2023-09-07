@@ -29,6 +29,7 @@ const leftFooterLinks: FooterLink[][] = [
     { name: 'FAQ', href: '/faq' },
     { name: 'Constitution', href: '/constitution' },
     { name: 'Terms', href: '/terms-and-conditions' },
+    { name: 'Privacy & Data', href: '/privacy' },
   ],
 ];
 const rightFooterLinks: FooterLink[][] = [
