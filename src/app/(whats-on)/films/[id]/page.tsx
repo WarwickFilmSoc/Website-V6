@@ -31,6 +31,7 @@ export async function generateStaticParams() {
 }
 
 function getGauge(gauge: ScreeningGauge) {
+  // TODO: Add 4K when added to db
   switch (gauge) {
     case ScreeningGauge.MM_16:
       return 'Presented on 16mm film';
@@ -41,7 +42,7 @@ function getGauge(gauge: ScreeningGauge) {
     case ScreeningGauge.DIGITAL:
       return 'Digital';
     case ScreeningGauge.DIGITAL_35MM:
-      return 'Digital 35mm film';
+      return 'Digital/35mm';
   }
 }
 
@@ -90,9 +91,9 @@ export async function generateMetadata({
     description:
       film.screenings.length > 0
         ? `Come and watch ${title} at Warwick Student Cinema on ${formatDateTime(
-            new Date(Number(film.screenings[0].timestamp) * 1000),
-            DateTimeFormat.DATE_LONG,
-          )}.`
+          new Date(Number(film.screenings[0].timestamp) * 1000),
+          DateTimeFormat.DATE_LONG,
+        )}.`
         : `${title} at Warwick Student Cinema - read our film reviews, view our past screenings of this film and request us to screen it in the future.`,
     openGraph: {
       type: 'video.movie',
@@ -124,6 +125,20 @@ async function ScreeningDay({
         <span className="block text-xs uppercase font-lexend font-bold">
           {termAndWeekName}
         </span>
+        <div className='mt-2 space-x-2 mb-1 sm:mb-0'>
+          {day.screenings[0].gauge && (
+            <span className="rounded-lg bg-gauge px-2 py-1 text-xs font-bold font-lexend uppercase">
+              {getGauge(day.screenings[0].gauge)}
+            </span>
+          )}
+
+          {subtitled && (
+            <span className="rounded-lg bg-subtitle px-2 py-1 text-xs font-bold font-lexend uppercase">
+              Subtitled
+            </span>
+          )}
+        </div>
+
       </div>
 
       <div className="flex flex-wrap xs:flex-row gap-2 xs:ml-auto xs:justify-end">
@@ -153,19 +168,6 @@ async function ScreeningDay({
               </span>
             ),
           )}
-      </div>
-      <div className="w-full block space-x-3">
-        {day.screenings[0].gauge && (
-          <span className="rounded-lg bg-gauge px-2 py-1 text-xs font-bold font-lexend uppercase">
-            {getGauge(day.screenings[0].gauge)}
-          </span>
-        )}
-
-        {subtitled && (
-          <span className="rounded-lg bg-subtitle px-2 py-1 text-xs font-bold font-lexend uppercase">
-            Subtitled
-          </span>
-        )}
       </div>
     </article>
   );

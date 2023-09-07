@@ -22,7 +22,7 @@ module.exports = {
         dark: '#05050C',
         modal: '#15193b',
         subtitle: '#a20057',
-        gauge: '#22c55e'
+        gauge: '#16a34a'
       },
       width: {
         112: '28rem',
