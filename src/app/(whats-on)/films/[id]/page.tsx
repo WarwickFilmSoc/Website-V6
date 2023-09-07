@@ -91,9 +91,9 @@ export async function generateMetadata({
     description:
       film.screenings.length > 0
         ? `Come and watch ${title} at Warwick Student Cinema on ${formatDateTime(
-          new Date(Number(film.screenings[0].timestamp) * 1000),
-          DateTimeFormat.DATE_LONG,
-        )}.`
+            new Date(Number(film.screenings[0].timestamp) * 1000),
+            DateTimeFormat.DATE_LONG,
+          )}.`
         : `${title} at Warwick Student Cinema - read our film reviews, view our past screenings of this film and request us to screen it in the future.`,
     openGraph: {
       type: 'video.movie',
@@ -125,9 +125,10 @@ async function ScreeningDay({
         <span className="block text-xs uppercase font-lexend font-bold">
           {termAndWeekName}
         </span>
-        <div className='mt-2 space-x-2 mb-1 sm:mb-0'>
+        <div className="mt-2 space-x-2 mb-1 sm:mb-0">
           {day.screenings[0].gauge && (
             <span className="rounded-lg bg-gauge px-2 py-1 text-xs font-bold font-lexend uppercase">
+              {/* TODO: Assumes that all screenings on a given day will have same gauge - needs to be changed */}
               {getGauge(day.screenings[0].gauge)}
             </span>
           )}
@@ -138,7 +139,6 @@ async function ScreeningDay({
             </span>
           )}
         </div>
-
       </div>
 
       <div className="flex flex-wrap xs:flex-row gap-2 xs:ml-auto xs:justify-end">
