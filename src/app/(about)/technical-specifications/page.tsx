@@ -188,7 +188,7 @@ export default function TechnicalSpecifications() {
         components specified elsewhere in THX-certified systems are used.
       </p>
 
-      <p>
+      {/*<p>
         Digital films all have a standard LPCM sound format, which is entirely
         uncompressed and lossless in order to give the highest quality audio
         possible. From film, we are capable of playing all industry-standard
@@ -230,6 +230,20 @@ export default function TechnicalSpecifications() {
           Sound Formats
         </Link>
         &nbsp;page.
+      </p> */}
+
+      <p>
+        Digital films all have a standard LPCM sound format, which is entirely
+        uncompressed and lossless in order to give the highest quality audio
+        possible. From film, we are capable of playing all industry-standard
+        sound formats; this includes all three major digital systems - Dolby
+        Digital, Digital Theatre Systems (DTS) and Sony Dynamic Digital Sound
+        (SDDS) - as well as the older analogue formats. Analogue sound on 35mm
+        film is usually recorded optically and comprises the single-channel mono
+        format as well as the stereo and analogue surround sound Dolby A and
+        Dolby SR formats. 70mm film is presented with either fantastic
+        six-channel Dolby magnetic sound or crystal-clear DTS digital sound.
+        Magnetic sound on 35mm is rare - but we can play it if the need arises!
       </p>
 
       <div className="flex gap-x-4 flex-col sm:flex-row">
@@ -309,9 +323,7 @@ export default function TechnicalSpecifications() {
       <p className="mt-4 text-sm">
         Originally by Amanda Window (technical team); updated by Timothy Green
         (chief projectionist 2011&ndash;12) and subsequently by Kieran Hall
-        (chief projectionist 2017&ndash;19). Updated by Ethan Graham (chief
-        projectionist 2022&ndash;23) and Josh Heng (IT officer 2023&ndash;24)
-        during the upgrade to the new website.
+        (chief projectionist 2017&ndash;19).
       </p>
     </main>
   );
