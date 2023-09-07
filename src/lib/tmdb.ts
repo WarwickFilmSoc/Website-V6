@@ -1,3 +1,5 @@
+import 'server-only';
+
 import { Film } from '@prisma/client';
 
 const tmdbImageUrlBase = 'https://image.tmdb.org/t/p/original/';

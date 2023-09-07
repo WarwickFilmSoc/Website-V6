@@ -73,8 +73,8 @@ model Film {
 model Screening {
   scr_id          Int                     @id @default(autoincrement()) @db.UnsignedInt
   film_id         Int                     @default(0) @db.UnsignedInt
-  time            DateTime                @ignore @default(dbgenerated("'20:00:00'")) @db.Time(0)
-  date            DateTime                @ignore @default(dbgenerated("'0000-00-00'")) @db.Date
+  time            DateTime                @default(dbgenerated("'20:00:00'")) @ignore @db.Time(0)
+  date            DateTime                @default(dbgenerated("'0000-00-00'")) @ignore @db.Date
   timestamp       BigInt?
   location_id     Int                     @default(1)
   gauge           ScreeningGauge          @default(MM_35)
@@ -107,6 +107,85 @@ model TermDate {
 
   @@index([term, year], map: "term_year")
   @@map("term_dates")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model WebUser {
+  hash            String       @default("") @db.VarChar(32)
+  name            String?      @db.VarChar(100)
+  mem_id          Int?         @default(0)
+  pid             Int          @default(0) @db.UnsignedInt
+  passlastreset   DateTime?    @default(now()) @ignore @db.Timestamp(6)
+  login           String       @unique(map: "login") @default("") @db.VarChar(30)
+  seed            String       @default("") @db.VarChar(40)
+  web_id          Int          @id @default(autoincrement())
+  redirect        Int          @default(1) @db.SmallInt
+  phpbb_id        Int?         @db.MediumInt
+  update_name     Boolean      @default(true)
+  v6_web_sessions WebSession[]
+  person          Person       @relation(fields: [pid], references: [id], onDelete: Cascade, map: "person")
+
+  @@index([pid], map: "pid")
+  @@map("web_users")
+}
+
+model WebSession {
+  id          String   @id @db.VarChar(128)
+  web_user_id Int
+  created_at  DateTime @db.DateTime(0)
+  expires_at  DateTime @db.DateTime(0)
+  web_user    WebUser  @relation(fields: [web_user_id], references: [web_id], onDelete: Cascade, map: "web_user_id")
+
+  @@index([expires_at], map: "expires_at_index")
+  @@index([web_user_id], map: "web_user_id")
+  @@map("v6_web_sessions")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model Membership {
+  mem_id          Int            @id @default(autoincrement()) @db.UnsignedInt
+  person_id       Int            @db.UnsignedInt
+  joined          DateTime       @default(dbgenerated("'0000-00-00'")) @db.Date
+  expires         DateTime?      @db.Date
+  autoupdate      Int            @default(1) @db.TinyInt
+  membership_type MembershipType @default(MEMBER)
+  added           DateTime       @default(now()) @db.DateTime(0)
+  addedBy         Int            @default(0)
+  updated         DateTime       @default(now()) @db.Timestamp(0)
+  updatedBy       Int            @default(0)
+  person          Person         @relation(fields: [person_id], references: [id], onDelete: NoAction, map: "memberships_ibfk_1")
+
+  @@index([expires], map: "expires")
+  @@index([membership_type], map: "membership_type")
+  @@index([person_id], map: "person_id")
+  @@map("memberships")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model Person {
+  id          Int          @id @default(autoincrement()) @db.UnsignedInt
+  uni_no      String       @unique(map: "uni_no") @default("wsc0000") @db.VarChar(7)
+  forename    String       @default("") @db.VarChar(60)
+  surname     String       @default("") @db.VarChar(60)
+  nickname    String?      @db.VarChar(30)
+  photo_id    Int?
+  email       String?      @db.VarChar(255)
+  canemail    Boolean      @default(false)
+  canphone    Boolean      @default(false)
+  canpost     Boolean      @default(false)
+  no3rdparty  Boolean      @default(true)
+  autoupdate  Boolean      @default(true)
+  added       DateTime     @default(now()) @db.DateTime(0)
+  addedBy     Int          @default(0)
+  updated     DateTime     @default(now()) @db.Timestamp(0)
+  updatedBy   Int          @default(0)
+  memberships Membership[]
+  web_users   WebUser[]
+
+  @@index([email], map: "email")
+  @@index([forename], map: "forename")
+  @@index([surname], map: "surname")
+  @@map("people")
 }
 
 enum MeetingType {
@@ -151,4 +230,12 @@ enum FilmSubtitles {
   UNKNOWN   @map("unknown")
   EXPECTED  @map("expected")
   PARTIALLY @map("partially")
+}
+
+enum MembershipType {
+  MEMBER           @map("member")
+  LIFE_MEMBER      @map("life member")
+  LIFE_ASSOCIATE   @map("life associate")
+  CREW             @map("crew")
+  PROVISIONAL_CREW @map("provisional_crew")
 }
