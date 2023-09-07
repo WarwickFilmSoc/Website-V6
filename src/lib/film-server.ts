@@ -1,3 +1,5 @@
+import 'server-only';
+
 import prisma from '@/lib/prisma';
 import { BaseScreening, Cert, TScreeningDay } from '@/lib/film';
 import certUSvg from '@/assets/films/certifications/u.svg';
