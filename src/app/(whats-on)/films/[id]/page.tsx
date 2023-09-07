@@ -156,13 +156,13 @@ async function ScreeningDay({
       </div>
       <div className="w-full block space-x-3">
         {day.screenings[0].gauge && (
-          <span className="rounded-lg bg-green-500 px-2 py-1 text-xs font-bold font-lexend uppercase">
+          <span className="rounded-lg bg-gauge px-2 py-1 text-xs font-bold font-lexend uppercase">
             {getGauge(day.screenings[0].gauge)}
           </span>
         )}
 
         {subtitled && (
-          <span className="rounded-lg bg-[#a20057] px-2 py-1 text-xs font-bold font-lexend uppercase">
+          <span className="rounded-lg bg-subtitle px-2 py-1 text-xs font-bold font-lexend uppercase">
             Subtitled
           </span>
         )}
