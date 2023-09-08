@@ -123,7 +123,7 @@ export default async function FilmSchedule({ term }: { term: TermDate }) {
   );
 
   return (
-    <div>
+    <div className="mx-4">
       <h2 className="mx-4 xs:hidden text-center mb-1">
         {getTermDateName(term)}
       </h2>
