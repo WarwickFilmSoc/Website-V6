@@ -22,35 +22,48 @@ import {
 } from '@/lib/term-dates';
 import LargeButtonLink from '@/components/large-button-link';
 
+const weekdayLabels = [
+  'Sunday',
+  'Monday',
+  'Tuesday',
+  'Wednesday',
+  'Thursday',
+  'Friday',
+  'Saturday',
+];
+const shortWeekdayLabels = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
 function FilmScheduleDay({
   filmScreeningDays,
   weekDay,
+  className,
 }: {
   filmScreeningDays: (TScreeningDay<Screening> & { film: Film })[];
   weekDay: number;
+  className?: string;
 }) {
   const filmScreeningDaysToday = filmScreeningDays.filter(
     (day) => day.day.getDay() === weekDay,
   );
 
   return (
-    <td className="border">
-      <div className="flex flex-col xl:gap-1 break-words overflow-hidden hyphens-auto">
+    <td className={`border p-0.5 xs:p-1 pb-0 ${className}`}>
+      <div className="flex flex-col 2xl:gap-1 break-words overflow-hidden hyphens-auto">
         {filmScreeningDaysToday.map((filmScreeningDay) => (
           <Link
             href={getFilmPrettyUrl(filmScreeningDay.film)}
-            className="group m-1"
+            className="group mb-1 md:mb-1.5"
             key={filmScreeningDay.film.film_id}
           >
             <article>
-              <p className="uppercase font-lexend font-normal text-xs xl:text-sm text-center mb-0.5 group-hover:scale-105">
+              <p className="sm:uppercase font-lexend font-normal text-4xs xs:text-3xs md:text-2xs lg:text-xs 2xl:text-sm text-center mb-[0.1rem] md:mb-0 group-hover:scale-105">
                 {filmScreeningDay.film.title}
               </p>
-              <div className="flex text-2xs xl:text-xs gap-1 justify-center flex-wrap">
+              <div className="flex text-4xs xs:text-3xs md:text-2xs 2xl:text-xs gap-0.5 md:gap-1 justify-center flex-wrap">
                 {filmScreeningDay.screenings.map((screening) => (
                   <time
                     dateTime={screening.date.toISOString()}
-                    className="bg-primary rounded-md px-1 py-0.5 group-hover:scale-105"
+                    className="bg-primary rounded-sm sm:rounded-md px-0.5 sm:px-1 py-[0.08rem] md:py-0.5 group-hover:scale-105"
                     key={screening.scr_id}
                   >
                     {formatDateTime(screening.date, DateTimeFormat.TIME)}
@@ -67,30 +80,73 @@ function FilmScheduleDay({
 
 function FilmScheduleWeek({
   week,
+  weekDaysToShow,
+  highlightDate,
 }: {
   week: TScreeningWeek<Screening & { film: Film }>;
+  weekDaysToShow: number[];
+  highlightDate?: Date;
 }) {
+  const highlightPastOrCurrent =
+    highlightDate && highlightDate > week.weekData.startDate;
+  let highlightInCurrentWeek = false;
+  if (highlightPastOrCurrent) {
+    let diff = highlightDate
+      ? highlightDate.getTime() - week.weekData.startDate.getTime()
+      : -1;
+    highlightInCurrentWeek = diff > 0 && diff < 1000 * 60 * 60 * 24 * 7;
+  }
+
   const filmScreeningDays = splitScreeningDaysByFilm(week.screeningDays);
   return (
     <tr>
-      <th className="outline outline-1 xl:outline-none xl:border p-2 bg-primary-background sticky xl:static left-0 z-10">
-        <p className="text-sm xl:text-base">{week.weekData.weekName}</p>
-        <p className="text-xs font-normal">
+      <th className="outline outline-1 xl:outline-none xl:border p-0.5 sm:p-2 bg-primary-background sticky xl:static left-0 z-10 overflow-hidden">
+        <p className="hidden lg:block lg:text-sm 2xl:text-base">
+          {week.weekData.weekName}
+        </p>
+        <p className="text-2xs sm:text-xs md:text-sm lg:hidden">
+          {week.weekData.weekNameShort}
+        </p>
+        <p className="text-3xs sm:text-2xs md:text-xs font-normal">
           {formatDateTime(week.weekData.startDate, DateTimeFormat.DATE_SHORT)}
         </p>
       </th>
-      {[0, 1, 2, 3, 4, 5, 6].map((weekDay) => (
-        <FilmScheduleDay
-          filmScreeningDays={filmScreeningDays}
-          weekDay={weekDay}
-          key={weekDay}
-        />
-      ))}
+      {weekDaysToShow.map((weekDay) => {
+        let highlightPastDate = highlightPastOrCurrent;
+        let highlightCurrentDate = false;
+
+        if (highlightInCurrentWeek && highlightDate) {
+          if (highlightDate.getDay() < weekDay) highlightPastDate = false;
+          else if (highlightDate.getDay() === weekDay)
+            highlightCurrentDate = true;
+        }
+
+        return (
+          <FilmScheduleDay
+            filmScreeningDays={filmScreeningDays}
+            weekDay={weekDay}
+            key={weekDay}
+            className={
+              highlightCurrentDate
+                ? 'bg-secondary'
+                : highlightPastDate
+                ? 'opacity-50'
+                : ''
+            }
+          />
+        );
+      })}
     </tr>
   );
 }
 
-export default async function FilmSchedule({ term }: { term: TermDate }) {
+export default async function FilmSchedule({
+  term,
+  highlightSchedule,
+}: {
+  term: TermDate;
+  highlightSchedule?: boolean;
+}) {
   const nextTermDate = await getNextTerm(term);
   const lastTermDate = await getLastTerm(term);
   const currentTerm = await getCurrentOrNextTerm();
@@ -121,9 +177,15 @@ export default async function FilmSchedule({ term }: { term: TermDate }) {
   const upcomingScreeningWeeks = await groupScreeningDaysByTermWeek(
     upcomingScreeningDays,
   );
+  const weekDaysToShow = [0, 1, 2, 3, 4, 5, 6].filter((weekDay) =>
+    upcomingScreeningDays.some((day) => day.day.getDay() === weekDay),
+  );
+
+  const highlightDate = highlightSchedule ? new Date() : undefined;
+  if (highlightDate) highlightDate.setHours(5, 0, 0, 0); // Avoid issues with timezones
 
   return (
-    <div className="mx-4">
+    <div className="mx-1 sm:mx-4">
       <h2 className="mx-4 xs:hidden text-center mb-1">
         {getTermDateName(term)}
       </h2>
@@ -155,27 +217,25 @@ export default async function FilmSchedule({ term }: { term: TermDate }) {
         )}
       </div>
 
-      <div className="max-w-full overflow-x-auto border max-h-[85vh] md:max-h-full">
-        <table className="table-fixed bg-secondary/40 w-full min-w-[1000px]">
+      <div className="max-w-full overflow-x-auto border">
+        <table className="table-fixed bg-secondary/40 w-full relative">
           <thead>
-            <tr className="sticky md:static top-0 z-20 md:m-0">
-              <th className="sticky xl:static left-0 outline outline-1 xl:outline-none xl:border p-1 xl:p-2 font-normal bg-primary-background w-[5.2rem] xl:w-24">
-                Week
+            <tr className="top-0 z-20 md:m-0">
+              <th className="left-0 outline outline-1 xl:outline-none xl:border sm:p-1 2xl:p-2 font-normal bg-primary-background w-[1.6rem] xs:w-[2rem] sm:w-[2.4rem] md:w-[3rem] lg:w-[5.2rem] xl:w-24">
+                <span className="hidden lg:block">Week</span>
+                <span className="lg:hidden text-xs sm:text-sm">Wk</span>
               </th>
-              {[
-                'Sunday',
-                'Monday',
-                'Tuesday',
-                'Wednesday',
-                'Thursday',
-                'Friday',
-                'Saturday',
-              ].map((day) => (
+              {weekDaysToShow.map((day) => (
                 <th
                   key={day}
-                  className="outline outline-1 md:outline-none md:border p-1 xl:p-2 font-normal bg-primary-background"
+                  className="outline outline-1 md:outline-none md:border sm:p-1 2xl:p-2 font-normal bg-primary-background"
                 >
-                  {day}
+                  <span className="hidden sm:block text-xs md:text-base">
+                    {weekdayLabels[day]}
+                  </span>
+                  <span className="sm:hidden text-xs">
+                    {shortWeekdayLabels[day]}
+                  </span>
                 </th>
               ))}
             </tr>
@@ -183,7 +243,10 @@ export default async function FilmSchedule({ term }: { term: TermDate }) {
           <tbody>
             {upcomingScreeningWeeks.length === 0 && (
               <tr>
-                <td colSpan={8} className="border px-2 pt-12 pb-16 text-center">
+                <td
+                  colSpan={weekDaysToShow.length + 1}
+                  className="border px-2 pt-12 pb-16 text-center"
+                >
                   <div className="mx-auto max-w-7xl">
                     <p>There are no screenings scheduled for this term!</p>
                     <LargeButtonLink href="/schedule" className="block mt-2">
@@ -196,7 +259,9 @@ export default async function FilmSchedule({ term }: { term: TermDate }) {
             {upcomingScreeningWeeks.map((week) => (
               <FilmScheduleWeek
                 week={week}
+                weekDaysToShow={weekDaysToShow}
                 key={week.weekData.termAndWeekName}
+                highlightDate={highlightDate}
               />
             ))}
           </tbody>

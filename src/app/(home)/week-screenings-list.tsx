@@ -1,14 +1,14 @@
 import FilmScreeningDayCard from './film-screening-day-card';
 import LargeButtonLink from '@/components/large-button-link';
 import prisma from '@/lib/prisma';
-import { getStartOfDaySecondTimestamp } from '@/lib/date';
 import { groupScreeningsByDay, splitScreeningDaysByFilm } from '@/lib/film';
+import dayjs from 'dayjs';
 
 export default async function WeekScreeningsList() {
   const upcomingScreenings = await prisma.screening.findMany({
     where: {
       timestamp: {
-        gte: getStartOfDaySecondTimestamp(),
+        gte: dayjs().subtract(2, 'hours').unix(),
       },
     },
     orderBy: {
