@@ -22,7 +22,7 @@ module.exports = {
         dark: '#05050C',
         modal: '#15193b',
         subtitle: '#a20057',
-        gauge: '#16a34a'
+        gauge: '#16a34a',
       },
       width: {
         112: '28rem',
@@ -41,7 +41,9 @@ module.exports = {
         xs: '2px',
       },
       fontSize: {
-        '2xs': ['0.65rem', '0.8rem'],
+        '2xs': ['0.65rem', '0.85rem'],
+        '3xs': ['0.5rem', '0.6rem'],
+        '4xs': ['0.4rem', '0.5rem'],
       },
     },
     fontFamily: {

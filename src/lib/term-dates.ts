@@ -93,6 +93,7 @@ export function convertTermNumberToName(no: number): string {
 export type WeekData = {
   termName: string;
   weekName: string;
+  weekNameShort: string;
   termAndWeekName: string;
   startDate: Date;
 };
@@ -103,6 +104,7 @@ export async function getTermWeekData(date: Date): Promise<WeekData> {
     return {
       termName: date.getFullYear().toString(),
       weekName: date.getFullYear().toString(),
+      weekNameShort: date.getFullYear().toString().slice(-2),
       termAndWeekName: date.getFullYear().toString(),
       startDate: dayjs().startOf('year').toDate(),
     };
@@ -125,6 +127,7 @@ export async function getTermWeekData(date: Date): Promise<WeekData> {
       return {
         termName: `Welcome Week ${term.year}`,
         weekName: 'Welcome Week',
+        weekNameShort: 'WW',
         termAndWeekName: `Welcome Week, ${termName}`,
         startDate,
       };
@@ -136,6 +139,7 @@ export async function getTermWeekData(date: Date): Promise<WeekData> {
     return {
       termName: `Pre-${termName}`,
       weekName: weekName,
+      weekNameShort: `P${Math.abs(weekNumber)}`,
       termAndWeekName: `${weekName}, ${termName}`,
       startDate,
     };
@@ -145,6 +149,7 @@ export async function getTermWeekData(date: Date): Promise<WeekData> {
     return {
       termName: `${termName} Vacation`,
       weekName,
+      weekNameShort: `V${weekNumber - TERM_WEEK_LENGTH}`,
       termAndWeekName: `${weekName}, ${termName}`,
       startDate,
     };
@@ -154,6 +159,7 @@ export async function getTermWeekData(date: Date): Promise<WeekData> {
   return {
     termName,
     weekName,
+    weekNameShort: `W${weekNumber}`,
     termAndWeekName: `${weekName}, ${termName}`,
     startDate,
   };

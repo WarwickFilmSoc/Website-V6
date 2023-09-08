@@ -4,6 +4,8 @@ import { getCurrentOrNextTerm, getTermDateName } from '@/lib/term-dates';
 import { Metadata } from 'next';
 import WhatsOnIntroductoryText from '@/app/(whats-on)/whats-on/whats-on-introductory-text';
 
+export const revalidate = 3600; // Revalidate every hour
+
 export async function generateMetadata(): Promise<Metadata> {
   const currentTerm = await getCurrentOrNextTerm();
   if (!currentTerm)
@@ -41,7 +43,7 @@ export default async function Schedule() {
       {!currentTerm ? (
         <p>There is currently nothing scheduled at Warwick Student Cinema.</p>
       ) : (
-        <FilmSchedule term={currentTerm} />
+        <FilmSchedule term={currentTerm} highlightSchedule />
       )}
     </main>
   );
