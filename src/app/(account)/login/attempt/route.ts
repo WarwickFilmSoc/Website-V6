@@ -5,11 +5,11 @@ import { cookies } from 'next/headers';
 import { redirectWith302 } from '@/lib/routes';
 import { createSession } from '@/lib/auth';
 
-function authFailed(request: Request, crewPage: boolean) {
+function authFailed(crewPage: boolean) {
   return redirectWith302(
     new URL(
       `${crewPage ? '/crew' : '/login'}?state=invalid`,
-      request.url,
+      process.env.URL,
     ).toString(),
   );
 }
@@ -21,7 +21,7 @@ export async function POST(request: Request) {
   const remember = formData.get('remember') === 'on';
   const crewPage = formData.get('crewPage') === 'crew';
 
-  if (!username || !password) return authFailed(request, crewPage);
+  if (!username || !password) return authFailed(crewPage);
 
   const webUser = await prisma.webUser.findFirst({
     where: {
@@ -35,13 +35,13 @@ export async function POST(request: Request) {
     },
   });
   if (!webUser) {
-    return authFailed(request, crewPage);
+    return authFailed(crewPage);
   }
 
   const hash = createHash('md5')
     .update(`${webUser.seed.toLowerCase()}+${password}`)
     .digest('hex');
-  if (webUser.hash !== hash) return authFailed(request, crewPage);
+  if (webUser.hash !== hash) return authFailed(crewPage);
 
   const session = await createSession(webUser.web_id, remember);
 
@@ -53,6 +53,6 @@ export async function POST(request: Request) {
   });
 
   return redirectWith302(
-    new URL(crewPage ? '/crew' : '/account', request.url).toString(),
+    new URL(crewPage ? '/crew' : '/account', process.env.URL).toString(),
   );
 }

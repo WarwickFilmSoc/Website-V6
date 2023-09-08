@@ -26,7 +26,7 @@ export default async function Schedule() {
   const currentTerm = await getCurrentOrNextTerm();
 
   return (
-    <main className="max-w-9xl">
+    <main className="max-w-9xl px-0 xs:px-0">
       <div className="mx-auto max-w-7xl px-4 xs:px-8">
         <LargeButtonLink
           href="/whats-on"
