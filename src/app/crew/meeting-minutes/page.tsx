@@ -8,7 +8,7 @@ import {
 import LargeButtonLink from '@/components/large-button-link';
 import { Metadata } from 'next';
 import { DateTimeFormat, formatDateTime } from '@/lib/date';
-import { getTermName } from '@/lib/term-dates';
+import { getTermName } from '@/lib/term-dates-server';
 
 export const metadata: Metadata = {
   title: 'Meeting Minutes',

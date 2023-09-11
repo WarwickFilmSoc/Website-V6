@@ -12,15 +12,17 @@ import {
 } from '@/lib/film-server';
 import { Film, Screening, TermDate } from '@prisma/client';
 import Link from 'next/link';
+import { getTermDateName } from '@/lib/term-dates';
 import {
   getCurrentOrNextTerm,
   getLastTerm,
   getNextTerm,
   getPreTermStartUnixTimestamp,
-  getTermDateName,
   getTermEndUnixTimestamp,
-} from '@/lib/term-dates';
+  getTermListByYear,
+} from '@/lib/term-dates-server';
 import LargeButtonLink from '@/components/large-button-link';
+import ArchiveDropdown from '@/app/(whats-on)/schedule/archive-dropdown';
 
 const weekdayLabels = [
   'Sunday',
@@ -184,11 +186,14 @@ export default async function FilmSchedule({
   const highlightDate = highlightSchedule ? new Date() : undefined;
   if (highlightDate) highlightDate.setHours(5, 0, 0, 0); // Avoid issues with timezones
 
+  const termYears = await getTermListByYear(currentTerm || undefined);
+
   return (
     <div className="mx-1 sm:mx-4">
-      <h2 className="mx-4 xs:hidden text-center mb-1">
-        {getTermDateName(term)}
-      </h2>
+      <div className="xs:hidden relative max-w-max mx-auto">
+        <h2 className="mx-4 text-center mb-1">{getTermDateName(term)}</h2>
+        <ArchiveDropdown termYears={termYears} />
+      </div>
       <div className="relative flex justify-center items-center text-center mb-4 flex-wrap gap-2">
         {lastTermDate && (
           <LargeButtonLink
@@ -202,7 +207,10 @@ export default async function FilmSchedule({
             Prev<span className="hidden md:inline"> Term</span>
           </LargeButtonLink>
         )}
-        <h2 className="mx-4 hidden xs:block">{getTermDateName(term)}</h2>
+        <div className="relative hidden xs:block">
+          <h2 className="mx-4">{getTermDateName(term)}</h2>
+          <ArchiveDropdown termYears={termYears} />
+        </div>
         {nextTermDate && (
           <LargeButtonLink
             href={

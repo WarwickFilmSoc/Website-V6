@@ -21,7 +21,7 @@ import Image from 'next/image';
 import { getCertSvg, getFilmAspectRatio } from '@/lib/film-server';
 import { Metadata } from 'next';
 import FilmGenreTags from '@/components/films/film-genre-tags';
-import { getTermAndWeekName } from '@/lib/term-dates';
+import { getTermAndWeekName } from '@/lib/term-dates-server';
 
 export const revalidate = 600; // Revalidate every 10m
 

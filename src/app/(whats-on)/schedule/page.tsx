@@ -1,6 +1,7 @@
 import LargeButtonLink from '@/components/large-button-link';
 import FilmSchedule from '@/app/(whats-on)/schedule/film-schedule';
-import { getCurrentOrNextTerm, getTermDateName } from '@/lib/term-dates';
+import { getTermDateName } from '@/lib/term-dates';
+import { getCurrentOrNextTerm } from '@/lib/term-dates-server';
 import { Metadata } from 'next';
 import WhatsOnIntroductoryText from '@/app/(whats-on)/whats-on/whats-on-introductory-text';
 
