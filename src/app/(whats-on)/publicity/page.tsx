@@ -55,16 +55,16 @@ export default function Publicity() {
         <TeamOfficerCard position={execTeam.publicityOfficer} />
       </div>
 
-      <h2 className="mt-8">Publicity Archive</h2>
+      <h2 className="mt-8">Finding Publicity</h2>
       <p className="mb-4">
         Publicity for the current term can be collected for free at our
-        publicity table in the Science Concourse. However, if you&apos;d also
+        publicity table in the Science Concourse.
+        {/* However, if you&apos;d also
         like to download a digital version or see our past publicity, you can
-        find it here!
+        find it here! */}
       </p>
 
       {/* TODO */}
-      <p>There is currently no past publicity. Please check back later!</p>
     </main>
   );
 }
