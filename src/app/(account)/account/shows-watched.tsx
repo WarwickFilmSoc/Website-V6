@@ -46,8 +46,10 @@ export default async function ShowsWatched({ personId }: { personId: number }) {
   return (
     <div>
       <p className="mb-4">
-        You&apos;ve watched {screenings.length} shows and purchased&nbsp;
-        {ticketLog.length} tickets at Warwick Student Cinema.
+        You&apos;ve watched {screenings.length} show
+        {screenings.length === 1 ? '' : 's'} and purchased&nbsp;
+        {ticketLog.length} ticket{screenings.length === 1 ? '' : 's'} at Warwick
+        Student Cinema.
       </p>
       <FilmLayout>
         {screenings.map((screening) => (
