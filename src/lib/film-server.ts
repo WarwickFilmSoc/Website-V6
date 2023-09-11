@@ -9,7 +9,7 @@ import cert12Svg from '@/assets/films/certifications/12.svg';
 import cert15Svg from '@/assets/films/certifications/15.svg';
 import cert18Svg from '@/assets/films/certifications/18.svg';
 import { StaticImageData } from 'next/image';
-import { getTermWeekData, WeekData } from '@/lib/term-dates';
+import { getTermWeekData, WeekData } from '@/lib/term-dates-server';
 
 export async function getFilmAspectRatio(
   aspectCode: number,
