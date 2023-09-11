@@ -37,7 +37,7 @@ export default async function WeekScreeningsList() {
         ))}
       </div>
 
-      <LargeButtonLink href="/whats-on">View Screenings</LargeButtonLink>
+      <LargeButtonLink href="/whats-on">What&apos;s On</LargeButtonLink>
     </section>
   );
 }

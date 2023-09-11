@@ -4,7 +4,7 @@ import AboutUsCard from '@/app/(home)/about-us-card';
 import WatchAFilm from '@/app/(home)/watch-a-film';
 import JoinTheCrew from '@/app/(home)/join-the-crew';
 import BlogCarousel from '@/app/(home)/blog-carousel';
-import HeroCarousel from '@/app/(home)/hero-carousel';
+import HeroCarousel from '@/app/(home)/(carousel)/hero-carousel';
 
 export default function Home() {
   return (
