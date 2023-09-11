@@ -1,6 +1,6 @@
-export default function LoadingFilmCard() {
+export default function FilmLoadingCard({ className }: { className?: string }) {
   return (
-    <article className="group mb-6 animate-pulse">
+    <article className={`group mb-6 animate-pulse ${className}`}>
       <div className="w-full h-40 overflow-hidden mb-2">
         <div className="w-full h-full object-cover bg-slate-700 "></div>
       </div>

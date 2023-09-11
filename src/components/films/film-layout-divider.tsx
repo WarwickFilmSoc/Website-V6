@@ -1,4 +1,4 @@
-export default function ScreeningsHr({ text }: { text: string }) {
+export default function FilmLayoutDivider({ text }: { text: string }) {
   return (
     <div className="flex items-center md:mx-4 mb-6">
       <hr className="grow border-t-2 m-2 md:m-4 flex-shrink-0 w-4" />

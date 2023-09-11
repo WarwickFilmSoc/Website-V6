@@ -84,6 +84,7 @@ model Screening {
   union_event_id  Int?                    @unique(map: "union_event_id") @db.UnsignedInt
   hidden          Boolean                 @default(false)
   film            Film                    @relation(fields: [film_id], references: [film_id], onUpdate: Restrict, map: "film_id")
+  ticket_log      TicketLog[]
 
   @@unique([film_id, scr_id], map: "epos")
   @@index([film_id], map: "film_id")
@@ -154,6 +155,7 @@ model Membership {
   updated         DateTime       @default(now()) @db.Timestamp(0)
   updatedBy       Int            @default(0)
   person          Person         @relation(fields: [person_id], references: [id], onDelete: NoAction, map: "memberships_ibfk_1")
+  ticket_log      TicketLog[]
 
   @@index([expires], map: "expires")
   @@index([membership_type], map: "membership_type")
@@ -180,12 +182,41 @@ model Person {
   updated     DateTime     @default(now()) @db.Timestamp(0)
   updatedBy   Int          @default(0)
   memberships Membership[]
+  ticket_log  TicketLog[]
   web_users   WebUser[]
 
   @@index([email], map: "email")
   @@index([forename], map: "forename")
   @@index([surname], map: "surname")
   @@map("people")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model TicketLog {
+  id                      Int         @id @default(autoincrement())
+  mem_id                  Int?        @db.UnsignedInt
+  event_id                Int?        @db.UnsignedInt
+  ticket_type_id          Int         @default(0) @db.UnsignedInt
+  transaction_time        DateTime    @default(dbgenerated("'0000-00-00 00:00:00'")) @db.DateTime(0)
+  transaction_id          Int         @default(0) @db.UnsignedInt
+  multiticket_id          Int?
+  user_id                 Int?        @db.UnsignedInt
+  till_name               String?     @db.VarChar(150)
+  till_ip                 String?     @db.VarChar(15)
+  session_id              Int         @default(0) @db.UnsignedInt
+  ticket_transaction_type String      @default("TICKET_SALE") @db.VarChar(30)
+  person                  Person?     @relation(fields: [mem_id], references: [id], map: "ticket_log_ibfk_1")
+  screening               Screening?  @relation(fields: [event_id], references: [scr_id], onDelete: NoAction, map: "ticket_log_ibfk_2")
+  membership              Membership? @relation(fields: [user_id], references: [mem_id], onDelete: NoAction, map: "ticket_log_ibfk_7")
+
+  @@index([event_id], map: "event_id")
+  @@index([mem_id, ticket_type_id, event_id], map: "idx_mem_type_event")
+  @@index([multiticket_id], map: "multiticket_id")
+  @@index([session_id], map: "session_id")
+  @@index([ticket_type_id], map: "ticket_type_id")
+  @@index([transaction_id], map: "transaction_id")
+  @@index([user_id], map: "user_id")
+  @@map("ticket_log")
 }
 
 enum MeetingType {

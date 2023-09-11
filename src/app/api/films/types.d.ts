@@ -5,6 +5,8 @@ export type FilmSearchResult = Prisma.FilmGetPayload<{
     title: true;
     year: true;
     film_id: true;
+    runtime: true;
+    cert: true;
     tmdb_backdrop_path: true;
     tmdb_genres: true;
     screenings: {
