@@ -3,6 +3,8 @@ import NormalView from '@/app/(whats-on)/whats-on/normal-view';
 import LargeButtonLink from '@/components/large-button-link';
 import WhatsOnIntroductoryText from '@/app/(whats-on)/whats-on/whats-on-introductory-text';
 
+export const revalidate = 600; // Revalidate every 10m
+
 export const metadata: Metadata = {
   title: "What's On",
   description: "Find out what we're screening at Warwick Student Cinema next!",

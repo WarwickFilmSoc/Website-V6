@@ -4,7 +4,7 @@ import { getCurrentOrNextTerm, getTermDateName } from '@/lib/term-dates';
 import { Metadata } from 'next';
 import WhatsOnIntroductoryText from '@/app/(whats-on)/whats-on/whats-on-introductory-text';
 
-export const revalidate = 3600; // Revalidate every hour
+export const revalidate = 600; // Revalidate every 10m
 
 export async function generateMetadata(): Promise<Metadata> {
   const currentTerm = await getCurrentOrNextTerm();

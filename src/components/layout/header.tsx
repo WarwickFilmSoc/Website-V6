@@ -106,7 +106,7 @@ function HeaderLink({
                   href={link.href}
                   key={link.href}
                   className={`hover:scale-105 block ${
-                    pathname === link.href ? 'font-black' : ''
+                    pathname.startsWith(link.href) ? 'font-black' : ''
                   }`}
                 >
                   {link.name}
@@ -165,7 +165,7 @@ function MobileLink({
               href={link.href}
               key={link.href}
               className={`block mb-0.5 ${
-                pathname === link.href ? 'font-black' : ''
+                pathname.startsWith(link.href) ? 'font-black' : ''
               }`}
               onClick={closeDropdownMenu}
             >

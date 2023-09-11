@@ -23,6 +23,8 @@ export async function GET(request: NextRequest) {
       title: true,
       year: true,
       film_id: true,
+      cert: true,
+      runtime: true,
       tmdb_backdrop_path: true,
       tmdb_genres: true,
       screenings: {

@@ -23,7 +23,7 @@ import { Metadata } from 'next';
 import FilmGenreTags from '@/components/films/film-genre-tags';
 import { getTermAndWeekName } from '@/lib/term-dates';
 
-export const revalidate = 3600; // Revalidate every hour
+export const revalidate = 600; // Revalidate every 10m
 
 export async function generateStaticParams() {
   const films = await prisma.film.findMany();

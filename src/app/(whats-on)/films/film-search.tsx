@@ -1,24 +1,20 @@
 'use client';
 import { FilmSearchResult, FilmSearchResultData } from '@/app/api/films/types';
-import wscLogo from '@/assets/logos/logo-white.png';
-import LoadingFilmCard from '@/components/films/LoadingFilmCard';
-import ScreeningsHr from '@/components/films/ScreeningsHr';
-import FilmGenreTags from '@/components/films/film-genre-tags';
+import FilmLayoutDivider from '@/components/films/film-layout-divider';
 import {
   DateTimeFormat,
   formatDateTime,
   formatSecondsTimestamp,
   timestampToDate,
 } from '@/lib/date';
-import { getFilmPrettyUrl, getFilmTitle } from '@/lib/film';
-import { getTmdbImageUrl } from '@/lib/tmdb';
 import { useQuery } from '@tanstack/react-query';
 import { TextInput } from 'flowbite-react';
-import Image from 'next/image';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useDebounce } from 'use-debounce';
+import FilmLayout from '@/components/films/film-layout';
+import FilmCard from '@/components/films/film-card';
 
 export function Film({
   film,
@@ -27,11 +23,6 @@ export function Film({
   film: FilmSearchResult;
   upcoming: boolean;
 }) {
-  // show WSC logo if no film backdrop
-  const imageSrc = film.tmdb_backdrop_path
-    ? getTmdbImageUrl(film.tmdb_backdrop_path)
-    : wscLogo;
-
   let mostRecentScreening =
     film.screenings.length > 0 && film.screenings[0].timestamp
       ? film.screenings[0]
@@ -58,27 +49,9 @@ export function Film({
   }
 
   return (
-    <Link href={getFilmPrettyUrl(film)} className="group mb-6">
-      <article>
-        <div className="w-full h-40 overflow-hidden mb-2">
-          <Image
-            src={imageSrc}
-            alt={`${film.title} Backdrop`}
-            width={300}
-            height={150}
-            className="w-full h-full object-cover group-hover:scale-105"
-            loading="lazy"
-          />
-        </div>
-
-        <p className="text-lg font-lexend uppercase font-bold leading-6">
-          {getFilmTitle(film)}
-        </p>
-
-        {film.tmdb_genres && (
-          <FilmGenreTags genreString={film.tmdb_genres} className="mt-1" />
-        )}
-
+    <FilmCard
+      film={film}
+      footer={
         <p className="mt-2 text-sm font-lexend uppercase leading-6">
           {mostRecentScreening !== null && mostRecentScreening.timestamp ? (
             <>
@@ -94,8 +67,8 @@ export function Film({
             'Never shown'
           )}
         </p>
-      </article>
-    </Link>
+      }
+    />
   );
 }
 
@@ -130,13 +103,7 @@ export default function FilmSearch() {
 
       {debouncedSearch && (
         <>
-          {isLoading && (
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 justify-between">
-              <LoadingFilmCard />
-              <LoadingFilmCard />
-              <LoadingFilmCard />
-            </div>
-          )}
+          {isLoading && <FilmLayout loading />}
 
           {isSuccess &&
           (!data || (data.past.length === 0 && data.future.length === 0)) ? (
@@ -171,22 +138,22 @@ function Screenings({
     <>
       {future.length > 0 && (
         <div>
-          <ScreeningsHr text="Upcoming Screenings" />
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 justify-between">
+          <FilmLayoutDivider text="Upcoming Screenings" />
+          <FilmLayout>
             {future.map((film) => (
               <Film film={film} key={film.film_id} upcoming={true} />
             ))}
-          </div>
+          </FilmLayout>
         </div>
       )}
       {past.length > 0 && (
         <div>
-          <ScreeningsHr text="Past Screenings" />
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4  gap-4 justify-between">
+          <FilmLayoutDivider text="Past Screenings" />
+          <FilmLayout>
             {past.map((film) => (
               <Film film={film} key={film.film_id} upcoming={false} />
             ))}
-          </div>
+          </FilmLayout>
         </div>
       )}
     </>
