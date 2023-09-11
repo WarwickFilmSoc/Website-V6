@@ -6,7 +6,7 @@ import LargeButtonLink from '@/components/large-button-link';
 import { Metadata } from 'next';
 import { DateTimeFormat, formatDateTime } from '@/lib/date';
 
-export const revalidate = 3600; // Revalidate every hour
+export const revalidate = 600; // Revalidate every 10m
 
 export async function generateStaticParams() {
   const meetings = await prisma.meeting.findMany({

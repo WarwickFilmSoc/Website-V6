@@ -5,7 +5,7 @@ import { Metadata } from 'next';
 import { getTermDateName } from '@/lib/term-dates';
 import Link from 'next/link';
 
-export const revalidate = 3600; // Revalidate every hour
+export const revalidate = 600; // Revalidate every 10m
 
 export async function generateStaticParams() {
   const termDates = await prisma.termDate.findMany();
