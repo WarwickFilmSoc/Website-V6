@@ -46,10 +46,12 @@ export async function POST(request: Request) {
   const session = await createSession(webUser.web_id, remember);
 
   const cookieStore = cookies();
-  cookieStore.set('wsc_auth', session.id, {
-    expires: remember ? session.expires_at : 0,
+  cookieStore.set('WSC_AUTH', session.id, {
+    expires: remember ? session.expires_at : undefined,
     httpOnly: true,
     secure: request.url.startsWith('https'),
+    sameSite: 'lax',
+    path: '/',
   });
 
   return redirectWith302(

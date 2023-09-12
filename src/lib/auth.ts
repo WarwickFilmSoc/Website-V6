@@ -26,7 +26,7 @@ export function createSession(
 
 export async function getAuthedUser(redirectIfUnauthenticated: boolean = true) {
   const cookieStore = cookies();
-  const authCookie = cookieStore.get('wsc_auth');
+  const authCookie = cookieStore.get('WSC_AUTH');
 
   if (authCookie?.value) {
     const session = await prisma.webSession.findFirst({

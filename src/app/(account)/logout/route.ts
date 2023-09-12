@@ -4,7 +4,7 @@ import { redirectWith302 } from '@/lib/routes';
 
 export async function GET() {
   const cookieStore = cookies();
-  const authCookie = cookieStore.get('wsc_auth');
+  const authCookie = cookieStore.get('WSC_AUTH');
 
   if (authCookie?.value) {
     await prisma.webSession.update({
@@ -18,7 +18,7 @@ export async function GET() {
         expires_at: new Date(),
       },
     });
-    cookieStore.delete('wsc_auth');
+    cookieStore.delete('WSC_AUTH');
   }
 
   return redirectWith302('/login?state=loggedOut');
