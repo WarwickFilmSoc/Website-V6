@@ -6,6 +6,7 @@ import Find from './find';
 import Membership from './membership';
 import Tickets from './tickets';
 import { Metadata } from 'next';
+import Acknowledgements from '@/app/(about)/about/acknowledgements';
 
 export const metadata: Metadata = {
   title: 'About',
@@ -137,6 +138,7 @@ export default function About() {
         <Membership />
         <Find />
         <Advertise />
+        <Acknowledgements />
       </div>
     </main>
   );
