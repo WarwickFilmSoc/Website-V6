@@ -32,7 +32,7 @@ export default function Committees() {
           </a>
         </li>
         <li>
-          <Link href="/constitution/executive-roles">
+          <Link href="/constitution/exec-roles">
             Executive Roles and Responsibilities
           </Link>
           &nbsp;

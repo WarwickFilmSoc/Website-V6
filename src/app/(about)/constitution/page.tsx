@@ -30,7 +30,7 @@ export default function Constitution() {
           </a>
         </li>
         <li>
-          <Link href="/constitution/executive-roles">
+          <Link href="/constitution/exec-roles">
             Executive Roles and Responsibilities
           </Link>
           &nbsp;
@@ -106,7 +106,7 @@ export default function Constitution() {
               </span>
               <ol>
                 <li>
-                  <Link href="/constitution/executive-roles" target="_blank">
+                  <Link href="/constitution/exec-roles" target="_blank">
                     Executive Roles and Responsibilities
                   </Link>
                 </li>
@@ -225,7 +225,7 @@ export default function Constitution() {
               At the discretion of the Executive committee, other Executive
               roles will be defined, in any number and combination, in the
               document&nbsp;
-              <Link href="/constitution/executive-roles" target="_blank">
+              <Link href="/constitution/exec-roles" target="_blank">
                 Executive Roles and Responsibilities
               </Link>
               .
@@ -234,7 +234,7 @@ export default function Constitution() {
               The Exec members as defined here and in the above document, must
               fulfil the appropriate criteria and will carry out their
               designated job descriptions as detailed in&nbsp;
-              <Link href="/constitution/executive-roles" target="_blank">
+              <Link href="/constitution/exec-roles" target="_blank">
                 Executive Roles and Responsibilities
               </Link>
               .
@@ -283,7 +283,7 @@ export default function Constitution() {
               in either case be their sole Exec position. If two people hold a
               role, they will each have full Exec rights and responsibilities
               including a full vote, as defined in&nbsp;
-              <Link href="/constitution/executive-roles" target="_blank">
+              <Link href="/constitution/exec-roles" target="_blank">
                 Executive Roles and Responsibilities
               </Link>
             </li>
@@ -458,7 +458,7 @@ export default function Constitution() {
             </li>
             <li>
               An appropriate Exec member (as specified in&nbsp;
-              <Link href="/constitution/executive-roles" target="_blank">
+              <Link href="/constitution/exec-roles" target="_blank">
                 Executive Roles and Responsibilities
               </Link>
               &nbsp;shall act as Returning Officer in all elections unless they

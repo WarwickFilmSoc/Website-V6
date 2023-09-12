@@ -41,7 +41,7 @@ const headerLinksSchedule: HeaderLink[] = [
 
 const headerLinksAbout: HeaderLink[] = [
   { name: 'About', href: '/about' },
-  { name: 'The Executive', href: '/executive' },
+  { name: 'The Exec', href: '/exec' },
   { name: 'Tech Specs', href: '/technical-specifications' },
   { name: 'Our History', href: '/history' },
   { name: 'FAQ', href: '/faq' },

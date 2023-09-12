@@ -5,18 +5,18 @@ import { Metadata } from 'next';
 import letterboxdLogo from '@/assets/logos/social/letterboxd-colour.svg';
 
 export const metadata: Metadata = {
-  title: 'The Executive Team',
+  title: 'The Exec Team',
   description:
     'The Executive Committee, or Exec, are a team of students elected at the end of Term 2 to oversee the society. There are currently 11 roles.',
 };
 
-export default function TheExecutiveTeam() {
+export default function TheExecTeam() {
   return (
     <main>
       <p className="text-xl font-lexend uppercase -mb-1">
         <Link href="/about">About Us</Link>
       </p>
-      <h1 className="mb-1">The Executive Team</h1>
+      <h1 className="mb-1">The Exec Team</h1>
       <p className="mb-2">
         The Executive Committee, or &apos;Exec&apos;, are a team of students
         elected at the end of Term 2 to oversee the society as per the&nbsp;
@@ -29,7 +29,7 @@ export default function TheExecutiveTeam() {
         </Link>
         . There are currently 11 roles, which are detailed in the&nbsp;
         <Link
-          href="/constitution/executive-roles"
+          href="/constitution/exec-roles"
           className="text-accent"
           target="_blank"
         >
