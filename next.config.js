@@ -60,7 +60,7 @@ const nextConfig = {
     },
     {
       source: '/info/executive',
-      destination: '/executive',
+      destination: '/exec',
       permanent: true,
     },
     {

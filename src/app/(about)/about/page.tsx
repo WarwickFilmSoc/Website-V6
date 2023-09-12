@@ -80,8 +80,8 @@ export default function About() {
           constitution
         </Link>
         &nbsp; and have an annually-elected&nbsp;
-        <Link href="/executive" className="text-accent">
-          Executive Team
+        <Link href="/exec" className="text-accent">
+          Executive Committee
         </Link>
         .
       </p>
@@ -118,10 +118,10 @@ export default function About() {
           FAQ
         </Link>
         , contact an&nbsp;
-        <Link href="/executive" className="text-accent">
-          individual Executive Team member
+        <Link href="/exec" className="text-accent">
+          individual Exec Team member
         </Link>
-        &nbsp;or contact the Executive collectively at&nbsp;
+        &nbsp;or contact the Exec collectively at&nbsp;
         <a
           href="mailto:info@warwick.film"
           target="_blank"

@@ -27,7 +27,7 @@ export default function Advertise() {
         in our poster and booklet publicity.
       </p>
       <p className="mb-2">
-        Please contact the Executive at&nbsp;
+        Please contact the Exec at&nbsp;
         <a
           href="mailto:info@warwick.film"
           target="_blank"

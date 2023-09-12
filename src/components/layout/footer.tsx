@@ -24,7 +24,7 @@ const leftFooterLinks: FooterLink[][] = [
   ],
   [
     { name: 'About Us', href: '/about', primary: true },
-    { name: 'The Executive', href: '/executive' },
+    { name: 'The Exec', href: '/exec' },
     { name: 'Tech Specs', href: '/technical-specifications' },
     { name: 'Our History', href: '/history' },
     { name: 'FAQ', href: '/faq' },
