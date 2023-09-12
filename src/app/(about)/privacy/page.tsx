@@ -20,19 +20,18 @@ export default function Privacy() {
       <h2>What Data do we Hold on You?</h2>
       <p>
         The data we hold on you depends on where we got it from. In general,
-        data on members will have come from the Students’ Union. Data on
-        University members who are not members of WSC will have come from the
-        University. Additional data on anyone who has a website logon will have
-        have been provided by you directly.
+        conatct information for members will have come from the Students’ Union.
+        Data on University members who are not members of WSC will have come
+        from the University. Additional data on anyone who has a website logon
+        will have have been provided by you directly.
       </p>
 
       <h3>Warwick Student Cinema Members and Student Union Members</h3>
       <p>
-        Information on the majority of our members comes from the Students’
-        Union. We check hourly that all the data we hold is up to date with the
-        data that the Students’ Union hold on you. To have your data corrected,
-        use the Students’ Union portal and the information we hold will be
-        updated next time we synchronise our database.
+        Contact information for the majority of our members comes from Warwick
+        SU. We check hourly that all the data we hold is up to date with the
+        data that the Students’ Union hold on you. To change your mailing
+        preference or email address, visit the SU website.
       </p>
       <p>
         E-mails sent to members make use of the BCC field to keep all members
@@ -41,29 +40,27 @@ export default function Privacy() {
         communication we have had with any members via this method.
       </p>
 
-      <h3>University of Warwick Students Who Are Non-Members</h3>
+      <h3>University of Warwick Card Holders</h3>
       <p>
-        When a non-member attends a show, their student status is validated
-        using the University’s LDAP address book. This information is then
-        cached on our system to make it more efficient next time you attend a
-        show and to allow us to compile attendance statistics.
+        When a member of the University attends a show, their student or staff
+        status and name is validated using the University’s address book. This
+        information is then cached on our system to make it more efficient next
+        time you attend a show and to allow us to compile attendance statistics.
+        To update your name, change your preferred name with the University.
       </p>
 
       <h3>Website Users</h3>
       <p>
         When you create an account on our website, you may be given the option
         to provide additional information about yourself. This information may
-        be in addition to information collected about you from the Students’
-        Union. In this case, the information collected from the Students’ Union
-        will still be synchronised hourly, so any amendments to that data should
-        be made through the Students’ Union portal. The additional information
-        you have provided directly can be amended by you through the Filmsoc
-        website.
+        be in addition to information collected about you from the University
+        and SU. The additional information you have provided directly can be
+        amended by you through the WSC website.
       </p>
       <p>
         The option is also available to disable synchronisation of your data
-        with the Students’ Union. In this case, all data held on you can be
-        updated through the Filmsoc website.
+        with the SU. In this case, all data held on you can be updated through
+        the WSC website.
       </p>
 
       <h2>Who Has Access to This Data?</h2>
