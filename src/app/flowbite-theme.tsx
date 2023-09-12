@@ -27,7 +27,7 @@ const theme: CustomFlowbiteTheme = {
       base: 'px-4 py-4',
     },
     header: {
-      title: 'text-3xl font-bold font-lexend uppercase',
+      title: 'text-2xl md:text-3xl font-bold font-lexend uppercase',
       close: {
         base: 'ml-auto inline-flex items-center rounded-lg bg-transparent p-1.5 text-sm text-white hover:bg-gray-200 hover:text-gray-900',
       },

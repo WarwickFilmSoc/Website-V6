@@ -1,4 +1,4 @@
-import { Film } from '@prisma/client';
+import { Film, ScreeningGauge } from '@prisma/client';
 
 export function getFilmPrettyUrl(film: { title: string; film_id: number }) {
   return `/films/${film.film_id}?film=${film.title
@@ -140,4 +140,20 @@ export function formatCert(cert: Cert): string {
 
 export function getTicketLink(id: number): string {
   return `https://www.warwicksu.com/venues-events/events/4273/${id}`;
+}
+
+export function getGauge(gauge: ScreeningGauge) {
+  // TODO: Add 4K when added to db
+  switch (gauge) {
+    case ScreeningGauge.MM_16:
+      return 'Presented on 16mm film';
+    case ScreeningGauge.MM_35:
+      return 'Presented on 35mm film';
+    case ScreeningGauge.MM_70:
+      return 'Presented on 70mm film';
+    case ScreeningGauge.DIGITAL:
+      return 'Digital';
+    case ScreeningGauge.DIGITAL_35MM:
+      return 'Digital/35mm';
+  }
 }
