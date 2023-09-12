@@ -1,49 +1,35 @@
-import prisma from '@/lib/prisma';
-import { Film, FilmSubtitles, Screening, ScreeningGauge } from '@prisma/client';
-import Link from 'next/link';
+import FilmGenreTags from '@/components/films/film-genre-tags';
 import LargeButtonLink from '@/components/large-button-link';
-import {
-  Cert,
-  formatCert,
-  formatFilmRuntime,
-  getFilmTitle,
-  getTicketLink,
-  groupScreeningsByDay,
-  TScreeningDay,
-} from '@/lib/film';
 import {
   DateTimeFormat,
   formatDateTime,
   getStartOfDaySecondTimestamp,
 } from '@/lib/date';
-import { getTmdbImageUrl } from '@/lib/tmdb';
-import Image from 'next/image';
+import {
+  Cert,
+  TScreeningDay,
+  formatCert,
+  formatFilmRuntime,
+  getFilmTitle,
+  getGauge,
+  groupScreeningsByDay,
+} from '@/lib/film';
 import { getCertSvg, getFilmAspectRatio } from '@/lib/film-server';
-import { Metadata } from 'next';
-import FilmGenreTags from '@/components/films/film-genre-tags';
+import prisma from '@/lib/prisma';
 import { getTermAndWeekName } from '@/lib/term-dates-server';
+import { getTmdbImageUrl } from '@/lib/tmdb';
+import { Film, FilmSubtitles, Screening } from '@prisma/client';
+import { Metadata } from 'next';
+import Image from 'next/image';
+import Link from 'next/link';
+import ScreeningModal from './(screenings-modal)/ScreeningModal';
+import ClientScreeningButton from './ClientButton';
 
 export const revalidate = 600; // Revalidate every 10m
 
 export async function generateStaticParams() {
   const films = await prisma.film.findMany();
   return films.map((film: Film) => ({ id: film.film_id.toString() }));
-}
-
-function getGauge(gauge: ScreeningGauge) {
-  // TODO: Add 4K when added to db
-  switch (gauge) {
-    case ScreeningGauge.MM_16:
-      return 'Presented on 16mm film';
-    case ScreeningGauge.MM_35:
-      return 'Presented on 35mm film';
-    case ScreeningGauge.MM_70:
-      return 'Presented on 70mm film';
-    case ScreeningGauge.DIGITAL:
-      return 'Digital';
-    case ScreeningGauge.DIGITAL_35MM:
-      return 'Digital/35mm';
-  }
 }
 
 export async function generateMetadata({
@@ -144,30 +130,13 @@ async function ScreeningDay({
       <div className="flex flex-wrap xs:flex-row gap-2 xs:ml-auto xs:justify-end">
         {day.screenings
           .sort((a, b) => a.date.getTime() - b.date.getTime())
-          .map((screening) =>
-            screening.union_event_id ? (
-              <a
-                key={screening.scr_id}
-                href={getTicketLink(screening.union_event_id)}
-                target="_blank"
-                rel="noopener"
-                className="border-white border-2 rounded-md px-2 py-1 hover:scale-105"
-              >
-                <time dateTime={screening.date.toISOString()}>
-                  {formatDateTime(screening.date, DateTimeFormat.TIME)}
-                </time>
-              </a>
-            ) : (
-              <span
-                key={screening.scr_id}
-                className="border-white border-2 rounded-md px-2 py-1"
-              >
-                <time dateTime={screening.date.toISOString()}>
-                  {formatDateTime(screening.date, DateTimeFormat.TIME)}
-                </time>
-              </span>
-            ),
-          )}
+          .map((screening) => (
+            <ClientScreeningButton
+              id={screening.scr_id}
+              datetime={screening.date}
+              key={screening.scr_id}
+            />
+          ))}
       </div>
     </article>
   );
@@ -192,8 +161,10 @@ async function PastScreeningDay({ day }: { day: TScreeningDay<Screening> }) {
 
 export default async function Film({
   params: { id },
+  searchParams,
 }: {
   params: { id: string };
+  searchParams?: { screening: string };
 }) {
   const numericId = parseInt(id);
   let film;
@@ -483,6 +454,9 @@ export default async function Film({
           )}
         </div>
       </div>
+      {searchParams?.screening && (
+        <ScreeningModal id={searchParams.screening} />
+      )}
     </main>
   );
 }
