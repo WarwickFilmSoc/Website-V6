@@ -6,7 +6,7 @@ import { Suspense } from 'react';
 import FilmLayout from '@/components/films/film-layout';
 import { Metadata } from 'next';
 
-export const revalidate = 0; // Revalidate every 10m
+export const revalidate = 0; // Don't revalidate
 export const metadata: Metadata = {
   title: 'Your Account',
   description: 'View your account and past ticket history',
@@ -60,7 +60,7 @@ export default async function Account() {
           <table className="mt-1 lg:ml-auto table-style">
             <tbody>
               <tr>
-                <th>Name (From SU)</th>
+                <th>Name</th>
                 <td className="text-left">
                   {user.person.forename} {user.person.surname}
                 </td>

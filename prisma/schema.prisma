@@ -219,6 +219,25 @@ model TicketLog {
   @@map("ticket_log")
 }
 
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model NewsArticle {
+  article_id       Int             @id @default(autoincrement())
+  creator_id       Int             @default(0)
+  add_timestamp    Int             @default(0)
+  title            String          @default("") @db.VarChar(200)
+  text             String          @db.MediumText
+  author           String          @default("") @db.VarChar(200)
+  old              Boolean         @default(false)
+  html             Boolean         @default(false)
+  visible          Boolean         @default(false)
+  modify_timestamp Int             @default(0)
+  priority         Int             @default(0) @db.TinyInt
+  type             NewsArticleType @default(GENERAL)
+
+  @@index([old], map: "idx_old")
+  @@map("news_articles")
+}
+
 enum MeetingType {
   EXEC_MEETING          @map("Exec Meeting")
   DM_MEETING            @map("DM Meeting")
@@ -269,4 +288,10 @@ enum MembershipType {
   LIFE_ASSOCIATE   @map("life associate")
   CREW             @map("crew")
   PROVISIONAL_CREW @map("provisional_crew")
+}
+
+enum NewsArticleType {
+  GENERAL @map("general")
+  CREW    @map("associate")
+  ALL     @map("all")
 }

@@ -40,8 +40,8 @@ export default function HeroCarouselClient({
         {slides.length === 0 ? (
           <WelcomeSlide />
         ) : (
-          slides.map((slide) => {
-            if (slide.type === 'welcome') return <WelcomeSlide />;
+          slides.map((slide, i) => {
+            if (slide.type === 'welcome') return <WelcomeSlide key={i} />;
             else
               return (
                 <HeroFilmSlide

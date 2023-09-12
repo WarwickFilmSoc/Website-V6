@@ -24,6 +24,7 @@ const scheduleLink: HeaderLink = { name: 'Schedule', href: '/schedule' };
 const headerLinksWhatsOn: HeaderLink[] = [
   whatsOnLink,
   scheduleLink,
+  { name: 'News', href: '/news' },
   { name: 'Film Search', href: '/films' },
   { name: 'Publicity', href: '/publicity' },
   { name: 'Suggestions', href: '/suggestions' },
@@ -32,6 +33,7 @@ const headerLinksWhatsOn: HeaderLink[] = [
 const headerLinksSchedule: HeaderLink[] = [
   scheduleLink,
   whatsOnLink,
+  { name: 'News', href: '/news' },
   { name: 'Film Search', href: '/films' },
   { name: 'Publicity', href: '/publicity' },
   { name: 'Suggestions', href: '/suggestions' },
