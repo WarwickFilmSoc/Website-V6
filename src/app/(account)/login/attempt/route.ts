@@ -49,7 +49,7 @@ export async function POST(request: Request) {
   cookieStore.set('WSC_AUTH', session.id, {
     expires: remember ? session.expires_at : undefined,
     httpOnly: true,
-    secure: request.url.startsWith('https'),
+    // secure: request.url.startsWith('https'),
     sameSite: 'lax',
     path: '/',
   });
