@@ -1,0 +1,7 @@
+.newsArticleStyle td, .newsArticleStyle th {
+  @apply text-left pt-2;
+}
+
+.newsArticleStyle table {
+  @apply mb-4;
+}
