@@ -74,11 +74,29 @@ export default function Tickets({ showTitle }: { showTitle?: boolean }) {
         </thead>
         <tbody>
           <tr>
-            <th className="font-normal">Term 1 Film Pass (Members)</th>
+            <th className="font-normal">
+              <a
+                href="https://www.warwicksu.com/venues-events/events/4273/24401/"
+                target="_blank"
+                rel="noopener"
+                className="text-accent"
+              >
+                Term 1 Film Pass (Members)
+              </a>
+            </th>
             <td>£25.00</td>
           </tr>
           <tr>
-            <th className="font-normal">Term 1 Film Pass (Non-Members)</th>
+            <th className="font-normal">
+              <a
+                href="https://www.warwicksu.com/venues-events/events/4273/24401/"
+                target="_blank"
+                rel="noopener"
+                className="text-accent"
+              >
+                Term 1 Film Pass (Non-Members)
+              </a>
+            </th>
             <td>£35.00</td>
           </tr>
         </tbody>

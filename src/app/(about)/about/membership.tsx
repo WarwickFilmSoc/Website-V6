@@ -67,24 +67,54 @@ export default function Membership() {
         </thead>
         <tbody>
           <tr>
-            <th className="font-normal">WSC Membership</th>
+            <th className="font-normal">
+              <a
+                href="https://www.warwicksu.com/societies-sports/societies/filmsoc/#org-join"
+                target="_blank"
+                rel="noopener"
+                className="text-accent"
+              >
+                WSC Membership
+              </a>
+            </th>
             <td>£4.00</td>
           </tr>
           <tr>
             <th className="font-normal">
-              Societies Federation Fee - Undergraduate (1 Year)
+              <a
+                href="https://www.warwicksu.com/societies-sports/societies/societies-federation-membership/#membership-fees-header"
+                target="_blank"
+                rel="noopener"
+                className="text-accent"
+              >
+                Societies Federation Fee - Undergraduate (1 Year)
+              </a>
             </th>
             <td>£20.00</td>
           </tr>
           <tr>
             <th className="font-normal">
-              Societies Federation Fee - Postgraduate (1 Year)
+              <a
+                href="https://www.warwicksu.com/societies-sports/societies/societies-federation-membership/#membership-fees-header"
+                target="_blank"
+                rel="noopener"
+                className="text-accent"
+              >
+                Societies Federation Fee - Postgraduate (1 Year)
+              </a>
             </th>
             <td>£10.00</td>
           </tr>
           <tr>
             <th className="font-normal">
-              Societies Federation Fee - ERASMUS (1 Year)
+              <a
+                href="https://www.warwicksu.com/societies-sports/societies/societies-federation-membership/#membership-fees-header"
+                target="_blank"
+                rel="noopener"
+                className="text-accent"
+              >
+                Societies Federation Fee - ERASMUS (1 Year)
+              </a>
             </th>
             <td>£8.00</td>
           </tr>
