@@ -50,7 +50,7 @@ export default async function Account() {
             </p>
           )}
 
-          <LargeButtonLink href="/logout" className="mt-4">
+          <LargeButtonLink href="/logout" className="mt-4" prefetch={false}>
             Logout
           </LargeButtonLink>
         </div>
