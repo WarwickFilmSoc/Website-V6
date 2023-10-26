@@ -58,7 +58,7 @@ export default function Marketing() {
           </li>
           <li>
             Finding interesting content to keep our <b>social network feeds</b>
-            &nbsp; (
+            &nbsp;(
             <a
               href="https://www.facebook.com/wscfilmsoc"
               target="_blank"
@@ -97,7 +97,7 @@ export default function Marketing() {
             >
               YouTube page
             </a>
-            &nbsp; for all eternity!
+            &nbsp;for all eternity!
           </li>
           <li>
             <b>Producing promotional videos</b> to sell the society as a whole,
