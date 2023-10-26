@@ -286,6 +286,7 @@ export default function Constitution() {
               <Link href="/constitution/exec-roles" target="_blank">
                 Executive Roles and Responsibilities
               </Link>
+              .
             </li>
             <li>
               Any member may have their privileges removed by the Exec. Members
@@ -306,22 +307,22 @@ export default function Constitution() {
             </li>
             <li>
               Committees may only be formed by agreement of the Exec and
-              subsequent amendment of &nbsp;
+              subsequent amendment of&nbsp;
               <Link href="/constitution/committees" target="_blank">
                 Committees
               </Link>
               .
             </li>
             <li>
-              Each committee shall fulfil their approved job descriptions in
-              &nbsp;
+              Each committee shall fulfil their approved job descriptions
+              in&nbsp;
               <Link href="/constitution/committees" target="_blank">
                 Committees
               </Link>
               .
             </li>
             <li>
-              Committees are able to make day to day decisions on the
+              Committees are able to make day-to-day decisions on the
               appropriate areas of WSC, but all decisions may be overturned by
               the Exec.
             </li>
