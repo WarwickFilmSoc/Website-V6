@@ -80,7 +80,7 @@ export default function About() {
         <Link href="/constitution" className="text-accent">
           constitution
         </Link>
-        &nbsp; and have an annually-elected&nbsp;
+        &nbsp;and have an annually-elected&nbsp;
         <Link href="/exec" className="text-accent">
           Executive Committee
         </Link>
