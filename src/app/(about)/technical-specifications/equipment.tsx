@@ -45,7 +45,7 @@ export function Credit({ className }: { className?: string }) {
         </li>
         <li>
           Platter kindly loaned by the&nbsp;
-          <a href="http://www.ppttrust.org/" target="_blank" rel="noopener">
+          <a href="https://theppt.org/" target="_blank" rel="noopener">
             Projected Picture Trust
           </a>
           .
