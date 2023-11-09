@@ -6,6 +6,9 @@ import JoinTheCrew from '@/app/(home)/join-the-crew';
 import BlogCarousel from '@/app/(home)/blog-carousel';
 import HeroCarousel from '@/app/(home)/(carousel)/hero-carousel';
 
+// Revalidate every 15 mins
+export const revalidate = 900;
+
 export default function Home() {
   return (
     <main className="text-center mx-0 max-w-full px-0">
