@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import prisma from '@/lib/prisma';
-import { Meeting } from '@prisma/client';
+import { Meeting, TermDate } from '@prisma/client';
 import {
   getMeetingTypeIcon,
   getMeetingTypeString,
@@ -8,7 +8,11 @@ import {
 import LargeButtonLink from '@/components/large-button-link';
 import { Metadata } from 'next';
 import { DateTimeFormat, formatDateTime } from '@/lib/date';
-import { getTermName } from '@/lib/term-dates-server';
+import {
+  getPreTermStartUnixTimestamp,
+  getTerm,
+  getTermNameFromTerm,
+} from '@/lib/term-dates-server';
 
 export const metadata: Metadata = {
   title: 'Meeting Minutes',
@@ -38,16 +42,31 @@ export default async function MeetingMinutes({
     take: 50,
   });
 
-  let terms: { name: string; meetings: Meeting[] }[] = [];
-  let currentTerm: { name: string; meetings: Meeting[] } | null = null;
+  let termPeriods: { name: string; meetings: Meeting[] }[] = [];
+  let currentTerm: TermDate | null = null;
+  let currentTermPeriod: { name: string; meetings: Meeting[] } | null = null;
   for (const meeting of meetings) {
-    let meetingTerm = await getTermName(meeting.meeting_date);
-    if (!currentTerm || meetingTerm !== currentTerm.name) {
-      if (currentTerm) terms.push(currentTerm);
-      currentTerm = { name: meetingTerm, meetings: [meeting] };
-    } else currentTerm.meetings.push(meeting);
+    if (
+      !currentTerm ||
+      meeting.meeting_date.getTime() <
+        getPreTermStartUnixTimestamp(currentTerm) * 1000
+    ) {
+      currentTerm = await getTerm(meeting.meeting_date);
+    }
+
+    if (
+      !currentTermPeriod ||
+      currentTermPeriod.name !==
+        getTermNameFromTerm(meeting.meeting_date, currentTerm)
+    ) {
+      if (currentTermPeriod) termPeriods.push(currentTermPeriod);
+      currentTermPeriod = {
+        name: getTermNameFromTerm(meeting.meeting_date, currentTerm),
+        meetings: [meeting],
+      };
+    } else currentTermPeriod.meetings.push(meeting);
   }
-  if (currentTerm) terms.push(currentTerm);
+  if (currentTermPeriod) termPeriods.push(currentTermPeriod);
 
   return (
     <main>
@@ -61,14 +80,14 @@ export default async function MeetingMinutes({
         to all WSC members, and the minutes can be found on this page.
       </p>
 
-      {terms.length === 0 ? (
+      {termPeriods.length === 0 ? (
         <p>
           {pageNumber === 0
             ? 'There are currently no meetings stored. Please check back later!'
             : 'There are no remaining meetings on this page.'}
         </p>
       ) : (
-        terms.map((term) => (
+        termPeriods.map((term) => (
           <div key={term.name} className="mb-8">
             <h2 className="mb-2">{term.name}</h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">

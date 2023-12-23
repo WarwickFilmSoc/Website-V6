@@ -132,8 +132,8 @@ function FilmScheduleWeek({
               highlightCurrentDate
                 ? 'bg-secondary'
                 : highlightPastDate
-                ? 'opacity-50'
-                : ''
+                  ? 'opacity-50'
+                  : ''
             }
           />
         );
@@ -149,8 +149,8 @@ export default async function FilmSchedule({
   term: TermDate;
   highlightSchedule?: boolean;
 }) {
-  const nextTermDate = await getNextTerm(term);
-  const lastTermDate = await getLastTerm(term);
+  const nextTermDate = await getNextTerm(term.timestamp);
+  const lastTermDate = await getLastTerm(term.timestamp);
   const currentTerm = await getCurrentOrNextTerm();
 
   const upcomingScreenings = await prisma.screening.findMany({
