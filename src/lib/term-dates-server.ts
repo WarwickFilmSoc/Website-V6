@@ -4,6 +4,7 @@ import prisma from '@/lib/prisma';
 import { TermDate } from '@prisma/client';
 import dayjs from 'dayjs';
 import { getTermDateName } from '@/lib/term-dates';
+import { cache } from 'react';
 
 const TERM_WEEK_LENGTH = 10;
 const TERM_ADVANCE_WEEKS_LENGTH = 2;
@@ -21,62 +22,68 @@ export function getTerm(date: Date): Promise<TermDate | null> {
   });
 }
 
-export function getNextTerm(currentTerm: TermDate): Promise<TermDate | null> {
-  return prisma.termDate.findFirst({
-    where: {
-      timestamp: {
-        gt: currentTerm.timestamp,
+export const getNextTerm = cache(
+  (currentTermTimestamp: number): Promise<TermDate | null> => {
+    return prisma.termDate.findFirst({
+      where: {
+        timestamp: {
+          gt: currentTermTimestamp,
+        },
       },
-    },
-    orderBy: {
-      timestamp: 'asc',
-    },
-  });
-}
-
-export function getLastTerm(currentTerm: TermDate): Promise<TermDate | null> {
-  return prisma.termDate.findFirst({
-    where: {
-      timestamp: {
-        lt: currentTerm.timestamp,
+      orderBy: {
+        timestamp: 'asc',
       },
-    },
-    orderBy: {
-      timestamp: 'desc',
-    },
-  });
-}
+    });
+  },
+);
 
-export async function getCurrentOrNextTerm(): Promise<TermDate | null> {
-  const currentDate = new Date();
-  const currentTermDate = await getTerm(currentDate);
-  if (!currentTermDate) return null;
+export const getLastTerm = cache(
+  (currentTermTimestamp: number): Promise<TermDate | null> => {
+    return prisma.termDate.findFirst({
+      where: {
+        timestamp: {
+          lt: currentTermTimestamp,
+        },
+      },
+      orderBy: {
+        timestamp: 'desc',
+      },
+    });
+  },
+);
 
-  if (
-    dayjs
-      .unix(currentTermDate.timestamp)
-      .add(TERM_WEEK_LENGTH, 'weeks')
-      .endOf('week')
-      .isBefore(dayjs())
-  ) {
-    // Try next term
-    const nextTerm = await getNextTerm(currentTermDate);
-    if (nextTerm) {
-      if (
-        (await prisma.screening.count({
-          where: {
-            timestamp: {
-              gte: nextTerm.timestamp,
+export const getCurrentOrNextTerm = cache(
+  async (): Promise<TermDate | null> => {
+    const currentDate = new Date();
+    const currentTermDate = await getTerm(currentDate);
+    if (!currentTermDate) return null;
+
+    if (
+      dayjs
+        .unix(currentTermDate.timestamp)
+        .add(TERM_WEEK_LENGTH, 'weeks')
+        .endOf('week')
+        .isBefore(dayjs())
+    ) {
+      // Try next term
+      const nextTerm = await getNextTerm(currentTermDate.timestamp);
+      if (nextTerm) {
+        if (
+          (await prisma.screening.count({
+            where: {
+              timestamp: {
+                gte: nextTerm.timestamp,
+              },
             },
-          },
-        })) > 0
-      )
-        return nextTerm;
+          })) > 0
+        )
+          return nextTerm;
+      }
     }
-  }
 
-  return currentTermDate;
-}
+    return currentTermDate;
+  },
+);
 
 export type WeekData = {
   termName: string;
@@ -88,7 +95,14 @@ export type WeekData = {
 
 export async function getTermWeekData(date: Date): Promise<WeekData> {
   const term = await getTerm(date);
-  if (!term)
+  return getTermWeekDataFromTerm(date, term);
+}
+
+export function getTermWeekDataFromTerm(
+  date: Date,
+  term: TermDate | null,
+): WeekData {
+  if (!term) {
     return {
       termName: date.getFullYear().toString(),
       weekName: date.getFullYear().toString(),
@@ -96,6 +110,7 @@ export async function getTermWeekData(date: Date): Promise<WeekData> {
       termAndWeekName: date.getFullYear().toString(),
       startDate: dayjs().startOf('year').toDate(),
     };
+  }
 
   const dateSecondsTimestamp = Math.floor(date.getTime() / 1000) + 60 * 6; // 6am to avoid issues with timezones
 
@@ -155,6 +170,10 @@ export async function getTermWeekData(date: Date): Promise<WeekData> {
 
 export async function getTermName(date: Date): Promise<string> {
   return (await getTermWeekData(date)).termName;
+}
+
+export function getTermNameFromTerm(date: Date, term: TermDate | null): string {
+  return getTermWeekDataFromTerm(date, term).termName;
 }
 
 export async function getWeekName(date: Date): Promise<string> {

@@ -1,5 +1,5 @@
 import './globals.css';
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Lexend, Poppins } from 'next/font/google';
 import Footer from '@/components/layout/footer';
 import { ReactNode } from 'react';
@@ -26,6 +26,9 @@ export const metadata: Metadata = {
   description:
     'Welcome to your student-run, professional-standard cinema at Warwick. Come and watch the best and latest films six days week, or get involved with our five teams.',
   metadataBase: new URL(process.env.URL || 'https://warwick.film'),
+};
+
+export const viewport: Viewport = {
   themeColor: '#006295',
 };
 

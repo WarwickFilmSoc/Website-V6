@@ -3,8 +3,7 @@ import defaultTheme from 'tailwindcss/defaultTheme';
 
 module.exports = {
   content: [
-    './node_modules/flowbite/**/*.js',
-    './node_modules/flowbite-react/**/*.js',
+    './node_modules/flowbite-react/lib/esm/**/*.js',
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
@@ -23,7 +22,7 @@ module.exports = {
         modal: '#15193b',
         subtitle: '#a20057',
         gauge: '#16a34a',
-        su: '#DF2673'
+        su: '#DF2673',
       },
       width: {
         112: '28rem',

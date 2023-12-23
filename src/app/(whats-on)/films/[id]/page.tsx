@@ -14,7 +14,7 @@ import {
   getGauge,
   groupScreeningsByDay,
 } from '@/lib/film';
-import { getCertSvg, getFilmAspectRatio } from '@/lib/film-server';
+import { getCertSvg, getFilm, getFilmAspectRatio } from '@/lib/film-server';
 import prisma from '@/lib/prisma';
 import { getTermAndWeekName } from '@/lib/term-dates-server';
 import { getTmdbImageUrl } from '@/lib/tmdb';
@@ -39,25 +39,25 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const numericId = parseInt(id);
   let film;
+  let nextScreening;
 
   if (!Number.isNaN(numericId)) {
-    film = await prisma.film.findFirst({
-      where: {
-        film_id: numericId,
-      },
-      include: {
-        screenings: {
-          select: { scr_id: true, timestamp: true, union_event_id: true },
-          where: {
-            timestamp: { gte: getStartOfDaySecondTimestamp() },
-          },
-          orderBy: {
-            timestamp: 'asc',
-          },
-          take: 1,
-        },
-      },
-    });
+    film = await getFilm(numericId);
+
+    const startOfDayTimestamp = getStartOfDaySecondTimestamp();
+    if (film) {
+      // Iterate through backwards so in ascending order
+      for (let i = film.screenings.length - 1; i >= 0; i--) {
+        if (
+          film.screenings[i]?.timestamp &&
+          // @ts-ignore
+          film.screenings[i].timestamp > startOfDayTimestamp
+        ) {
+          nextScreening = film.screenings[i];
+          break;
+        }
+      }
+    }
   }
 
   if (!film)
@@ -74,13 +74,12 @@ export async function generateMetadata({
 
   return {
     title,
-    description:
-      film.screenings.length > 0
-        ? `Come and watch ${title} at Warwick Student Cinema on ${formatDateTime(
-            new Date(Number(film.screenings[0].timestamp) * 1000),
-            DateTimeFormat.DATE_LONG,
-          )}.`
-        : `${title} at Warwick Student Cinema - read our film reviews, view our past screenings of this film and request us to screen it in the future.`,
+    description: nextScreening
+      ? `Come and watch ${title} at Warwick Student Cinema on ${formatDateTime(
+          new Date(Number(nextScreening.timestamp) * 1000),
+          DateTimeFormat.DATE_LONG,
+        )}.`
+      : `${title} at Warwick Student Cinema - read our film reviews, view our past screenings of this film and request us to screen it in the future.`,
     openGraph: {
       type: 'video.movie',
       directors: film.director || undefined,
@@ -169,23 +168,7 @@ export default async function Film({
   const numericId = parseInt(id);
   let film;
 
-  if (!Number.isNaN(numericId)) {
-    film = await prisma.film.findFirst({
-      where: {
-        film_id: numericId,
-      },
-      include: {
-        screenings: {
-          where: {
-            timestamp: { not: null },
-          },
-          orderBy: {
-            timestamp: 'desc',
-          },
-        },
-      },
-    });
-  }
+  if (!Number.isNaN(numericId)) film = await getFilm(numericId);
 
   if (!film)
     return (
@@ -252,7 +235,7 @@ export default async function Film({
           />
         </div>
         <div className="mx-auto max-w-7xl px-4 xs:px-8 relative pt-24 md:pt-40 pb-36 md:pb-24">
-          <div className="my-2 xs:my-0 xs:absolute w-full xs:w-36 sm:w-56 md:w-64 flex-shrink-0 z-20">
+          <div className="my-2 xs:my-0 xs:absolute w-full xs:w-36 sm:w-56 md:w-64 flex-shrink-0 z-10">
             <Image
               src={posterUrl}
               width={256}
