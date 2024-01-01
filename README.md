@@ -47,11 +47,11 @@ This will start a live-reloading web server at [http://localhost:3000](http://lo
 ### MySQL
 If you need to connect to the MySQL database, please contact Josh for the Website-V6 environment variable. You'll also need to forward port 3306 on a docker swarm node to your local machine with the following command:
 ```bash
-ssh -L 3306:panavision:3306 FirstName.LastName@warwick.film
+ssh -L 3306:altitude:3306 FirstName.LastName@warwick.film
 ```
 
 
-The `website-v6` user is read-only and should only be added to SELECT new tables as we need them on [phpMyAdmin](***REMOVED***) - this also helps to keep the schema nice and tidy with only stuff we need. 
+The `website-v6` user is read-only and should only be added to SELECT new tables as we need them - this also helps to keep the schema nice and tidy with only stuff we need. 
 
 We're using Prisma to generate the database schema, which uses the following commands:
 
