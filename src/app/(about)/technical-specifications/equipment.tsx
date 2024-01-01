@@ -45,7 +45,7 @@ export function Credit({ className }: { className?: string }) {
         </li>
         <li>
           Platter kindly loaned by the&nbsp;
-          <a href="http://www.ppttrust.org/" target="_blank" rel="noopener">
+          <a href="https://theppt.org/" target="_blank" rel="noopener">
             Projected Picture Trust
           </a>
           .
@@ -115,7 +115,7 @@ export default function Equipment() {
               1x Dolby CP500-70 film sound processor and 2x CAT689 Dolby CP500
               remotes
             </li>
-            <li>1x Dolby MPU-1 mangnetic audio preamplifier</li>
+            <li>1x Dolby MPU-1 magnetic audio preamplifier</li>
             <li>
               2x Dolby/Cinemeccanica reverse scan analogue/digital 35mm sound
               readers

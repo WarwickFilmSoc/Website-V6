@@ -130,7 +130,7 @@ export default function FaqAccordion() {
         </Accordion.Content>
       </Accordion.Panel>
       <Accordion.Panel>
-        <Accordion.Title>How can I become a society member</Accordion.Title>
+        <Accordion.Title>How can I become a society member?</Accordion.Title>
         <Accordion.Content>
           You can become a member of the society on the&nbsp;
           <a
@@ -227,6 +227,7 @@ export default function FaqAccordion() {
           <Link href="/crew" className="text-accent" target="_blank">
             Find out more about becoming a crew member
           </Link>
+          .
         </Accordion.Content>
       </Accordion.Panel>
       <Accordion.Panel>
@@ -237,8 +238,9 @@ export default function FaqAccordion() {
           community with fun socials and access to our office. With 5 teams to
           choose from, there&apos;s something for everyone!&nbsp;
           <Link href="/crew" className="text-accent" target="_blank">
-            Find out more about the different opportunities on the crew.
+            Find out more about the different opportunities on the crew
           </Link>
+          .
         </Accordion.Content>
       </Accordion.Panel>
       <Accordion.Panel>
@@ -294,7 +296,7 @@ export default function FaqAccordion() {
           <a href="mailto:vice-president@warwick.film" className="text-accent">
             vice-president@warwick.film
           </a>
-          )
+          ).
         </Accordion.Content>
       </Accordion.Panel>
     </Accordion>
