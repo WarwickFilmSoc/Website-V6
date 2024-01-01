@@ -1,12 +1,16 @@
 # WSC Website V6
 > This is the 6th version of the WSC main website. It is written in [Next.js](https://nextjs.org/) and is designed to work with the existing Website-V2 database schema.
 
+## GitHub / GitLab Mirror
+The main repository is public on the [Warwick FilmSoc GitLab](https://gitlab.warwick.film/WSC/Website-V6), however it is also publicly mirrored to [GitHub](https://github.com/WarwickFilmSoc/Website-V6) for better discoverability. All issues and merge requests should be made on GitLab.
+
+Please note that all changes made (including names and emails in commit history) will be public.
+
 ## Resources
 * Designs can be found on [Figma](https://www.figma.com/file/zXtnJxRgcaZmosPbCUGbGF/Website-V6?type=design&node-id=176-1667&mode=design&t=7zVnAXb6QF788p3H-0)
 * The [Website v3](https://wiki.warwick.film/wiki/Functional_Spec_(Website_Version_3)) functional specification can be used as rough guidance.
 * Communication with WSC as a whole is done on the [Website V6](https://discourse.warwick.film/t/website-v6/6548) forum page.
 * Make sure to familiarise yourself with the [NextJS Documentation](https://nextjs.org/docs) before getting started.
-* [Google Photos](***REMOVED***) (may need to optimise and strip metadata first!)
 
 ## Contributing
 All contributions are welcome! If you have any questions, ask Josh in the #websidite-v6 Slack channel!
